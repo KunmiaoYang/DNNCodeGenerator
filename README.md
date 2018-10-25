@@ -12,7 +12,7 @@
   </tr>
   <tr>
     <td>STRING</td>
-    <td>^&quot;([^&quot;]|\\&quot;)*&quot;$</td>
+    <td>^&quot;([^&quot;]|\\&quot;)\*&quot;$</td>
   </tr>
 </table>
 
@@ -60,8 +60,8 @@
   </tr>
   <tr>
     <td>7</td>
-    <td>DECIMAL</td>
-    <td>DECIMAL</td>
+    <td>FLOAT</td>
+    <td>FLOAT</td>
   </tr>
   <tr>
     <td>7</td>
