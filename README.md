@@ -12,7 +12,7 @@
   </tr>
   <tr>
     <td>STRING</td>
-    <td>^"([^"]|\\\\")\*"$</td>
+    <td>^&quot;([^&quot;]|\\&quot;)*&quot;$</td>
   </tr>
 </table>
 
