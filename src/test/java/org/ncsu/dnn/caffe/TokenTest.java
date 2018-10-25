@@ -69,4 +69,24 @@ public class TokenTest extends TestCase {
         Assert.assertFalse(Token.isReal("-+123.E10"));
         Assert.assertFalse(Token.isReal("123.4E10E10"));
     }
+
+    public void testIsName() {
+        Assert.assertTrue(Token.isName("abc"));
+        Assert.assertTrue(Token.isName("ABC"));
+        Assert.assertTrue(Token.isName("_abc"));
+        Assert.assertTrue(Token.isName("abc0"));
+        Assert.assertTrue(Token.isName("abc.efg"));
+        Assert.assertTrue(Token.isName("a.e.f.g"));
+        Assert.assertTrue(Token.isName("_a._e0._f.g"));
+
+        Assert.assertFalse(Token.isName("0abc"));
+        Assert.assertFalse(Token.isName(".abc"));
+        Assert.assertFalse(Token.isName("+abc"));
+        Assert.assertFalse(Token.isName("a-bc"));
+        Assert.assertFalse(Token.isName("abc*"));
+        Assert.assertFalse(Token.isName("123"));
+        Assert.assertFalse(Token.isName("abc."));
+        Assert.assertFalse(Token.isName("a..bc"));
+        Assert.assertFalse(Token.isName("a.0c"));
+    }
 }

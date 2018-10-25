@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Token {
     private static final String REGEX_STRING = "^\"([^\"]|\\\\\")*\"$";
+    private static final String REGEX_NAME = "^[A-Za-z_]\\w*(\\.[A-Za-z_]\\w*)*";
 
     static boolean isString(String s) {
         return s.matches(REGEX_STRING);
@@ -19,5 +20,9 @@ public class Token {
 
     static boolean isReal(String s) {
         return new Scanner(s).hasNextBigDecimal();
+    }
+
+    static boolean isName(String s) {
+        return s.matches(REGEX_NAME);
     }
 }
