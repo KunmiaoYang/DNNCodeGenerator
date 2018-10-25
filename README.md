@@ -26,14 +26,14 @@
   </tr>
   <tr>
     <td>1</td>
-    <td><Goal\></td>
-    <td><List\></td>
+    <td>&lt;Goal&gt;</td>
+    <td>&lt;List&gt;</td>
     <td>NAME, EOF</td>
   </tr>
   <tr>
     <td>2</td>
-    <td rowspan="2"><List\></td>
-    <td>NAME <Object\> <List\></td>
+    <td rowspan="2">&lt;List&gt;</td>
+    <td>NAME &lt;Object&gt; &lt;List&gt;</td>
     <td>NAME</td>
   </tr>
   <tr>
@@ -43,18 +43,18 @@
   </tr>
   <tr>
     <td>4</td>
-    <td rowspan="2"><Object\></td>
-    <td>LEFT_BRACE <List\> RIGHT_BRACE</td>
+    <td rowspan="2">&lt;Object&gt;</td>
+    <td>LEFT_BRACE &lt;List&gt; RIGHT_BRACE</td>
     <td>LEFT_BRACE</td>
   </tr>
   <tr>
     <td>5</td>
-    <td>COLON <Value\></td>
+    <td>COLON &lt;Value&gt;</td>
     <td>COLON</td>
   </tr>
   <tr>
     <td>6</td>
-    <td rowspan="4"><Value\></td>
+    <td rowspan="4">&lt;Value&gt;</td>
     <td>INTEGER</td>
     <td>INTEGER</td>
   </tr>
