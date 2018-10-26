@@ -64,12 +64,12 @@
     <td>FLOAT</td>
   </tr>
   <tr>
-    <td>7</td>
+    <td>8</td>
     <td>BOOLEAN</td>
     <td>BOOLEAN</td>
   </tr>
   <tr>
-    <td>7</td>
+    <td>9</td>
     <td>STRING</td>
     <td>STRING</td>
   </tr>
