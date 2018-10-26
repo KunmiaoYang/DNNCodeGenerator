@@ -1,10 +1,14 @@
 package org.ncsu.dnn.caffe;
 
-import java.util.Scanner;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 public class Token {
     private static final String REGEX_STRING = "^\"([^\"]|\\\\\")*\"$";
     private static final String REGEX_NAME = "^[A-Za-z_]\\w*(\\.[A-Za-z_]\\w*)*";
+    private static final String REGEX_SPACE = "^\\s+$";
+    private static final String REGEX_NO_SPACE = "[^\\s]+";
+    public static final Token EOF = new Token(TokenName.EOF, "");
 
     private TokenName tokenName;
     private String val;
@@ -23,6 +27,9 @@ public class Token {
     }
 
     static Token parseToken(String str) {
+        if (isSpace(str))
+            return new Token(TokenName.SPACE, str);
+
         if (":".equals(str))
             return new Token(TokenName.COLON, str);
 
@@ -59,14 +66,30 @@ public class Token {
     }
 
     static boolean isInteger(String s) {
-        return new Scanner(s).hasNextBigInteger();
+        try {
+            BigInteger bigInteger = new BigInteger(s);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+//        return s.matches(REGEX_NO_SPACE) && new Scanner(s).hasNextBigInteger();
     }
 
     static boolean isFloat(String s) {
-        return new Scanner(s).hasNextBigDecimal();
+        try {
+            BigDecimal bigDecimal = new BigDecimal(s);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+//        return s.matches(REGEX_NO_SPACE) && new Scanner(s).hasNextBigDecimal();
     }
 
     static boolean isName(String s) {
         return s.matches(REGEX_NAME);
+    }
+
+    static boolean isSpace(String s) {
+        return s.matches(REGEX_SPACE);
     }
 }

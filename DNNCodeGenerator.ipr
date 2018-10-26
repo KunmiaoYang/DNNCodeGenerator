@@ -17,7 +17,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="DNNCodeGenerator" target="1.5" />
+      <module name="DNNCodeGenerator" target="7" />
     </bytecodeTargetLevel>
   </component>
   <component name="ExportToHTMLSettings">

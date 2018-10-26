@@ -45,6 +45,7 @@ public class TokenTest extends TestCase {
         Assert.assertTrue(Token.isInteger("123456789012345678901234567890123456789012345678901234567890"));
 
         Assert.assertFalse(Token.isInteger("0."));
+        Assert.assertFalse(Token.isInteger(".0"));
         Assert.assertFalse(Token.isInteger("123.0"));
         Assert.assertFalse(Token.isInteger("123E10"));
         Assert.assertFalse(Token.isInteger("0-123"));
@@ -53,6 +54,7 @@ public class TokenTest extends TestCase {
 
     public void testIsFloat() {
         Assert.assertTrue(Token.isFloat("0."));
+        Assert.assertTrue(Token.isFloat(".0"));
         Assert.assertTrue(Token.isFloat("0.00"));
         Assert.assertTrue(Token.isFloat("00.00"));
         Assert.assertTrue(Token.isFloat("123.0"));
@@ -89,6 +91,9 @@ public class TokenTest extends TestCase {
         Assert.assertFalse(Token.isName("abc."));
         Assert.assertFalse(Token.isName("a..bc"));
         Assert.assertFalse(Token.isName("a.0c"));
+        Assert.assertFalse(Token.isName(" abc"));
+        Assert.assertFalse(Token.isName("abc "));
+        Assert.assertFalse(Token.isName("ab c"));
     }
 
     public void testParseToken() {
@@ -149,17 +154,46 @@ public class TokenTest extends TestCase {
         Assert.assertEquals(TokenName.STRING, token.getTokenName());
         Assert.assertEquals("\"a\\\"bc\"", token.getVal());
 
+        token = Token.parseToken("\"a bc\"");
+        Assert.assertNotNull(token);
+        Assert.assertEquals(TokenName.STRING, token.getTokenName());
+        Assert.assertEquals("\"a bc\"", token.getVal());
+
         token = Token.parseToken("_var0");
         Assert.assertNotNull(token);
         Assert.assertEquals(TokenName.NAME, token.getTokenName());
         Assert.assertEquals("_var0", token.getVal());
 
+        token = Token.parseToken("trueName");
+        Assert.assertNotNull(token);
+        Assert.assertEquals(TokenName.NAME, token.getTokenName());
+        Assert.assertEquals("trueName", token.getVal());
+
         Assert.assertNull(Token.parseToken("123var"));
         Assert.assertNull(Token.parseToken("123E"));
+        Assert.assertNull(Token.parseToken("12 3"));
+        Assert.assertNull(Token.parseToken(" 123"));
+        Assert.assertNull(Token.parseToken("123 "));
+        Assert.assertNull(Token.parseToken("12E 3"));
+        Assert.assertNull(Token.parseToken(" 1.23"));
+        Assert.assertNull(Token.parseToken("1.23 "));
         Assert.assertNull(Token.parseToken("var:"));
         Assert.assertNull(Token.parseToken("var{"));
+        Assert.assertNull(Token.parseToken("var "));
+        Assert.assertNull(Token.parseToken("va r"));
         Assert.assertNull(Token.parseToken("123}"));
         Assert.assertNull(Token.parseToken(":123"));
         Assert.assertNull(Token.parseToken("{var"));
+        Assert.assertNull(Token.parseToken(" var"));
+    }
+
+    public void testIsSpace() {
+        Assert.assertTrue(Token.isSpace(" "));
+        Assert.assertTrue(Token.isSpace("  "));
+        Assert.assertTrue(Token.isSpace(" \t"));
+
+        Assert.assertFalse(Token.isSpace(" abc"));
+        Assert.assertFalse(Token.isSpace("abc "));
+        Assert.assertFalse(Token.isSpace("ab c"));
     }
 }
