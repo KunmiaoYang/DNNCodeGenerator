@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffd3e03a-225b-4aa1-a443-93ee904fe69f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Scanner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/caffeModel/inception_v1.prototxt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ScannerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNNCodeGenerator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNNCodeGenerator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNNCodeGenerator.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/DNNCodeGenerator.ipr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNNCodeGenerator.iws" beforeDir="false" afterPath="$PROJECT_DIR$/DNNCodeGenerator.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/TokenName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/TokenName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/TokenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/TokenTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Scanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Scanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ScannerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ScannerTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -210,8 +202,8 @@
       <file leaf-file-name="Scanner.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Scanner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+            <state relative-caret-position="266">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2597#2598#0" expanded="true" />
@@ -231,8 +223,8 @@
       <file leaf-file-name="ScannerTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ScannerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="52" />
+            <state relative-caret-position="197">
+              <caret line="16" column="50" selection-start-line="15" selection-start-column="54" selection-end-line="16" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -315,8 +307,8 @@
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/TokenName.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/TokenTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Scanner.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Token.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Scanner.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ScannerTest.java" />
       </list>
     </option>
@@ -663,20 +655,11 @@
       <option name="presentableId" value="Default" />
       <updated>1540437465575</updated>
       <workItem from="1540437466744" duration="597000" />
-      <workItem from="1540493347411" duration="29352000" />
+      <workItem from="1540493347411" duration="29600000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Whole_project - 2018.10.26 at 01h 02m 20s.xml">
-      <configuration name="Whole project" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Whole_project - 2018.10.26 at 01h 03m 47s.xml">
-      <configuration name="Whole project" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Whole_project - 2018.10.26 at 01h 04m 08s.xml">
-      <configuration name="Whole project" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Whole_project - 2018.10.26 at 01h 05m 04s.xml">
       <configuration name="Whole project" configurationId="JUnit" />
     </history-entry>
@@ -698,9 +681,18 @@
     <history-entry file="Whole_project - 2018.10.26 at 01h 31m 37s.xml">
       <configuration name="Whole project" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Whole_project - 2018.10.26 at 01h 33m 39s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Whole_project - 2018.10.26 at 01h 37m 22s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Whole_project - 2018.10.26 at 01h 37m 38s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29949000" />
+    <option name="totallyTimeSpent" value="30197000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -989,20 +981,6 @@
     <entry file="file://$PROJECT_DIR$/src/test/caffeModel/inception_v1.prototxt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Scanner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2597#2598#0" expanded="true" />
-            <element signature="e#2629#2630#0" expanded="true" />
-            <element signature="e#2663#2664#0" expanded="true" />
-            <element signature="e#2693#2694#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Token.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
@@ -1026,10 +1004,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Scanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2597#2598#0" expanded="true" />
+            <element signature="e#2629#2630#0" expanded="true" />
+            <element signature="e#2663#2664#0" expanded="true" />
+            <element signature="e#2693#2694#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ScannerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="52" />
+        <state relative-caret-position="197">
+          <caret line="16" column="50" selection-start-line="15" selection-start-column="54" selection-end-line="16" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

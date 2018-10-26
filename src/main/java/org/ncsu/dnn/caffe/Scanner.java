@@ -25,8 +25,8 @@ public class Scanner {
         }
     }
 
-    public Scanner(String fileName) throws IOException {
-        this(new BufferedReader(new FileReader(new File(fileName))));
+    public Scanner(File file) throws IOException {
+        this(new BufferedReader(new FileReader(file)));
     }
 
     private boolean scan() throws IOException {
