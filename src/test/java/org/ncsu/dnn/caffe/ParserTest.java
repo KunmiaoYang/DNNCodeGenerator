@@ -14,6 +14,7 @@ public class ParserTest extends TestCase {
         try {
             Scanner scanner = new Scanner(path.toFile());
             Parser parser = new Parser(scanner.getTokenList().iterator());
+            ASTNode root = parser.getRoot();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {

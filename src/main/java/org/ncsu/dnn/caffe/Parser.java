@@ -1,5 +1,6 @@
 package org.ncsu.dnn.caffe;
 
+import java.util.HashMap;
 import java.util.Iterator;
 
 import static org.ncsu.dnn.caffe.TokenName.*;
@@ -10,29 +11,32 @@ public class Parser {
 
     private Iterator<Token> it;
     private Token cur;
+    private ASTNode root;
 
     public Parser(Iterator<Token> it) {
+        this.root = new ASTNode();
         this.it = it;
         nextToken();
-        parse();
+        parse(root);
     }
 
-    private void parse() {
+    private void parse(ASTNode node) {
         switch (cur.getTokenName()) {
             case NAME:
             case EOF:
-                parseList();
+                parseList(node);
                 return;
         }
         throw new ParseException(EXCEPTION_PARSE + "Goal: " + cur);
     }
 
-    private void parseList() {
+    private void parseList(ASTNode node) {
         switch (cur.getTokenName()) {
             case NAME:
+                String name = cur.getVal();
                 nextToken();
-                parseObject();
-                parseList();
+                node.addChild(name, parseObject());
+                parseList(node);
             case RIGHT_BRACE:
             case EOF:
                 return;
@@ -40,31 +44,33 @@ public class Parser {
         throw new ParseException(EXCEPTION_PARSE + "List: " + cur);
     }
 
-    private void parseObject() {
+    private ASTNode parseObject() {
         switch (cur.getTokenName()) {
             case LEFT_BRACE:
                 nextToken();
-                parseList();
+                ASTNode node = new ASTNode();
+                parseList(node);
                 if (cur.getTokenName() != RIGHT_BRACE) break;
                 nextToken();
-                return;
+                return node;
             case COLON:
                 nextToken();
-                parseValue();
-                return;
+                return parseValue();
         }
         throw new ParseException(EXCEPTION_PARSE + "Object: " + cur);
     }
 
-    private void parseValue() {
+    private ASTNode parseValue() {
         switch (cur.getTokenName()) {
             case INTEGER:
             case FLOAT:
             case BOOLEAN:
             case STRING:
             case SPECIAL:
+                ASTNode node = new ASTNode();
+                node.addValue(cur);
                 nextToken();
-                return;
+                return node;
         }
         throw new ParseException(EXCEPTION_PARSE + "Value: " + cur);
     }
@@ -78,5 +84,9 @@ public class Parser {
             cur = it.next();
             if (cur.getTokenName() != SPACE) break;
         }
+    }
+
+    public ASTNode getRoot() {
+        return root;
     }
 }
