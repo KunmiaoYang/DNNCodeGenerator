@@ -3,8 +3,8 @@ package org.ncsu.dnn.caffe;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
+import static org.ncsu.dnn.caffe.Token.isSpecial;
 import static org.ncsu.dnn.caffe.TokenName.*;
-import static org.ncsu.dnn.caffe.Token.*;
 
 public class TokenTest extends TestCase {
     public void testIsString() {
@@ -150,17 +150,17 @@ public class TokenTest extends TestCase {
         token = Token.parseToken("\"abc\"");
         Assert.assertNotNull(token);
         Assert.assertEquals(STRING, token.getTokenName());
-        Assert.assertEquals("\"abc\"", token.getVal());
+        Assert.assertEquals("abc", token.getVal());
 
         token = Token.parseToken("\"a\\\"bc\"");
         Assert.assertNotNull(token);
         Assert.assertEquals(STRING, token.getTokenName());
-        Assert.assertEquals("\"a\\\"bc\"", token.getVal());
+        Assert.assertEquals("a\\\"bc", token.getVal());
 
         token = Token.parseToken("\"a bc\"");
         Assert.assertNotNull(token);
         Assert.assertEquals(STRING, token.getTokenName());
-        Assert.assertEquals("\"a bc\"", token.getVal());
+        Assert.assertEquals("a bc", token.getVal());
 
         token = Token.parseToken("_var0");
         Assert.assertNotNull(token);
@@ -216,5 +216,12 @@ public class TokenTest extends TestCase {
 
         Assert.assertFalse(isSpecial("AVEMAX"));
         Assert.assertFalse(isSpecial("name"));
+    }
+
+    public void testGetVal() {
+        Assert.assertEquals("abc", new Token(STRING, "\"abc\"").getVal());
+        Assert.assertEquals("abc", new Token(NAME, "abc").getVal());
+        Assert.assertEquals("MAX", new Token(SPECIAL, "MAX").getVal());
+        Assert.assertEquals("123", new Token(INTEGER, "123").getVal());
     }
 }

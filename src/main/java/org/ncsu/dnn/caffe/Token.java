@@ -29,7 +29,15 @@ public class Token {
     }
 
     public String getVal() {
-        return val;
+        return tokenName == STRING? val.substring(1, val.length() - 1): val;
+    }
+
+    @Override
+    public String toString() {
+        return "Token{" +
+                "tokenName=" + tokenName +
+                ", val='" + val + '\'' +
+                '}';
     }
 
     static Token parseToken(String str) {
@@ -100,14 +108,6 @@ public class Token {
 
     static boolean isSpecial(String s) {
         return SET_SPECIAL.contains(s);
-    }
-
-    @Override
-    public String toString() {
-        return "Token{" +
-                "tokenName=" + tokenName +
-                ", val='" + val + '\'' +
-                '}';
     }
 
     static boolean isSpace(String s) {

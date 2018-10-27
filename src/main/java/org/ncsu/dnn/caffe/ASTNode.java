@@ -22,4 +22,17 @@ public class ASTNode {
         List<ASTNode> childList = children.computeIfAbsent(key, k -> new ArrayList<>());
         childList.add(child);
     }
+
+    public List<ASTNode> get(String key) {
+        return children.get(key);
+    }
+
+    public ASTNode getFirst(String key) {
+        List<ASTNode> nodes = get(key);
+        return (null == nodes || nodes.isEmpty())? null: nodes.get(0);
+    }
+
+    public String getFirstValue(String key) {
+        return getFirst(key).val.getVal();
+    }
 }
