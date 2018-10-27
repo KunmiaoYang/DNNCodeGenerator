@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffd3e03a-225b-4aa1-a443-93ee904fe69f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ASTNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNNCodeGenerator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNNCodeGenerator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNNCodeGenerator.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/DNNCodeGenerator.ipr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNNCodeGenerator.iws" beforeDir="false" afterPath="$PROJECT_DIR$/DNNCodeGenerator.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ASTNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ASTNode.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -224,12 +218,12 @@
       <file leaf-file-name="ASTNode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ASTNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+            <state relative-caret-position="203">
+              <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#363#364#0" expanded="true" />
-                <element signature="e#388#389#0" expanded="true" />
+                <element signature="e#356#357#0" expanded="true" />
+                <element signature="e#381#382#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -239,7 +233,7 @@
         <entry file="file://$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ParserTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="304">
-              <caret line="16" column="37" lean-forward="true" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+              <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -348,8 +342,8 @@
         <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/TokenTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ASTNode.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ParserTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ASTNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Parser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ASTNode.java" />
       </list>
     </option>
   </component>
@@ -723,17 +717,11 @@
       <option name="presentableId" value="Default" />
       <updated>1540437465575</updated>
       <workItem from="1540437466744" duration="597000" />
-      <workItem from="1540493347411" duration="42709000" />
+      <workItem from="1540493347411" duration="43878000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TokenTest - 2018.10.26 at 21h 58m 48s.xml">
-      <configuration name="TokenTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TokenTest - 2018.10.26 at 21h 59m 05s.xml">
-      <configuration name="TokenTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TokenTest - 2018.10.26 at 22h 00m 12s.xml">
       <configuration name="TokenTest" configurationId="JUnit" />
     </history-entry>
@@ -758,9 +746,15 @@
     <history-entry file="Whole_project - 2018.10.26 at 23h 59m 41s.xml">
       <configuration name="Whole project" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Whole_project - 2018.10.27 at 10h 41m 15s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Whole_project - 2018.10.27 at 10h 41m 17s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43306000" />
+    <option name="totallyTimeSpent" value="44475000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -787,7 +781,7 @@
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.3295302" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.36752138" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36752138" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32905984" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -798,7 +792,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" sideWeight="0.5042194" side_tool="true" weight="0.24966443" />
-      <window_info active="true" anchor="bottom" id="Debug" order="4" visible="true" weight="0.3988604" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.3988604" />
       <window_info anchor="bottom" id="CVS" order="7" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -907,6 +901,11 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
+        <expression-string>root</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>parser</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -938,11 +937,6 @@
       </expression>
       <expression>
         <expression-string>Double.parseDouble(&quot;12.3e-1&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Double.parseDouble(&quot;12.3e1&quot;)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1112,12 +1106,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ASTNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+        <state relative-caret-position="203">
+          <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#363#364#0" expanded="true" />
-            <element signature="e#388#389#0" expanded="true" />
+            <element signature="e#356#357#0" expanded="true" />
+            <element signature="e#381#382#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1125,7 +1119,7 @@
     <entry file="file://$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ParserTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
-          <caret line="16" column="37" lean-forward="true" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+          <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

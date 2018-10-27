@@ -6,16 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 public class ASTNode {
-    List<Token> list;
+    Token val;
     Map<String, List<ASTNode>> children;
 
     public ASTNode() {
-        this.list = new ArrayList<>();
+        this.val = null;
         this.children = new HashMap<>();
     }
 
     public void addValue(Token val) {
-        list.add(val);
+        this.val = val;
     }
 
     public void addChild(String key, ASTNode child) {
