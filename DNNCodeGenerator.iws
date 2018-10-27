@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffd3e03a-225b-4aa1-a443-93ee904fe69f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Scanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Scanner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ParseException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Parser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNNCodeGenerator.iws" beforeDir="false" afterPath="$PROJECT_DIR$/DNNCodeGenerator.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/TokenName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/TokenName.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ScannerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ScannerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/TokenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/TokenTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -174,35 +181,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Token.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Token.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="69" column="23" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#445#446#0" expanded="true" />
-                <element signature="e#477#478#0" expanded="true" />
-                <element signature="e#507#508#0" expanded="true" />
-                <element signature="e#533#534#0" expanded="true" />
-                <element signature="method#parseToken#0;class#Token#0" />
-                <element signature="e#1453#1454#0" expanded="true" />
-                <element signature="e#1499#1500#0" expanded="true" />
-                <element signature="e#1541#1542#0" expanded="true" />
-                <element signature="e#1601#1602#0" expanded="true" />
-                <element signature="e#2371#2372#0" expanded="true" />
-                <element signature="e#2415#2416#0" expanded="true" />
-                <element signature="e#2455#2456#0" expanded="true" />
-                <element signature="e#2500#2501#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Scanner.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Scanner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
+            <state relative-caret-position="-304">
               <caret line="26" selection-start-line="26" selection-end-line="26" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -215,18 +197,49 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inception_v1.prototxt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/caffeModel/inception_v1.prototxt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="ScannerTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ScannerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ScannerTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="197">
-              <caret line="16" column="50" selection-start-line="15" selection-start-column="54" selection-end-line="16" selection-end-column="51" />
+              <caret line="13" column="50" lean-forward="true" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Parser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParserTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ParserTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParseException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ParseException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+              <folding>
+                <element signature="e#156#157#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -236,7 +249,22 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/TokenName.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="57">
-              <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+              <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Token.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Token.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#parseToken#0;class#Token#0" />
+                <element signature="e#2612#2613#0" expanded="true" />
+                <element signature="e#2645#2646#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -256,15 +284,17 @@
       <file leaf-file-name="TokenTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/TokenTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="178" column="46" selection-start-line="178" selection-start-column="46" selection-end-line="178" selection-end-column="46" />
+            <state relative-caret-position="281">
+              <caret line="98" column="47" selection-start-line="98" selection-start-column="47" selection-end-line="98" selection-end-column="47" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="method#testIsString#0;class#TokenTest#0" />
                 <element signature="method#testIsBoolean#0;class#TokenTest#0" />
                 <element signature="method#testIsInteger#0;class#TokenTest#0" />
                 <element signature="method#testIsFloat#0;class#TokenTest#0" />
-                <element signature="method#testIsName#0;class#TokenTest#0" />
+                <element signature="method#testParseToken#0;class#TokenTest#0" />
                 <element signature="method#testIsSpace#0;class#TokenTest#0" />
+                <element signature="method#testIsSpecial#0;class#TokenTest#0" />
               </folding>
             </state>
           </provider>
@@ -305,11 +335,14 @@
         <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/Interactive.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/App.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/TokenName.java" />
-        <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/TokenTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Token.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Scanner.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ScannerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ParseException.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ParserTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/TokenName.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Token.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/TokenTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Parser.java" />
       </list>
     </option>
   </component>
@@ -547,6 +580,29 @@
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
+    <configuration name="ParserTest.testParser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DNNCodeGenerator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ncsu.dnn.caffe.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.ncsu.dnn.caffe" />
+      <option name="MAIN_CLASS_NAME" value="org.ncsu.dnn.caffe.ParserTest" />
+      <option name="METHOD_NAME" value="testParser" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <patterns />
+    </configuration>
     <configuration name="TokenTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="DNNCodeGenerator" />
       <extension name="coverage">
@@ -613,11 +669,13 @@
       <item itemvalue="Application.App" />
       <item itemvalue="JUnit.TokenTest" />
       <item itemvalue="JUnit.Whole project" />
+      <item itemvalue="JUnit.ParserTest.testParser" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
         <item itemvalue="JUnit.TokenTest" />
+        <item itemvalue="JUnit.ParserTest.testParser" />
+        <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
   </component>
@@ -655,44 +713,44 @@
       <option name="presentableId" value="Default" />
       <updated>1540437465575</updated>
       <workItem from="1540437466744" duration="597000" />
-      <workItem from="1540493347411" duration="29600000" />
+      <workItem from="1540493347411" duration="36757000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Whole_project - 2018.10.26 at 01h 05m 04s.xml">
+    <history-entry file="ParserTest_testParser - 2018.10.26 at 21h 42m 36s.xml">
+      <configuration name="ParserTest.testParser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParserTest_testParser - 2018.10.26 at 21h 43m 21s.xml">
+      <configuration name="ParserTest.testParser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TokenTest - 2018.10.26 at 21h 56m 21s.xml">
+      <configuration name="TokenTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TokenTest - 2018.10.26 at 21h 56m 49s.xml">
+      <configuration name="TokenTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TokenTest - 2018.10.26 at 21h 58m 48s.xml">
+      <configuration name="TokenTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TokenTest - 2018.10.26 at 21h 59m 05s.xml">
+      <configuration name="TokenTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TokenTest - 2018.10.26 at 22h 00m 12s.xml">
+      <configuration name="TokenTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Whole_project - 2018.10.26 at 22h 00m 40s.xml">
       <configuration name="Whole project" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Whole_project - 2018.10.26 at 01h 19m 28s.xml">
+    <history-entry file="Whole_project - 2018.10.26 at 22h 01m 11s.xml">
       <configuration name="Whole project" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Whole_project - 2018.10.26 at 01h 19m 54s.xml">
-      <configuration name="Whole project" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Whole_project - 2018.10.26 at 01h 24m 34s.xml">
-      <configuration name="Whole project" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Whole_project - 2018.10.26 at 01h 25m 36s.xml">
-      <configuration name="Whole project" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Whole_project - 2018.10.26 at 01h 27m 44s.xml">
-      <configuration name="Whole project" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Whole_project - 2018.10.26 at 01h 31m 37s.xml">
-      <configuration name="Whole project" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Whole_project - 2018.10.26 at 01h 33m 39s.xml">
-      <configuration name="Whole project" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Whole_project - 2018.10.26 at 01h 37m 22s.xml">
-      <configuration name="Whole project" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Whole_project - 2018.10.26 at 01h 37m 38s.xml">
+    <history-entry file="Whole_project - 2018.10.26 at 22h 03m 56s.xml">
       <configuration name="Whole project" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30197000" />
+    <option name="totallyTimeSpent" value="37354000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -708,7 +766,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="7" />
@@ -720,7 +777,7 @@
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.3295302" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2991453" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36752138" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32905984" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -812,7 +869,7 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="16" />
+      <option name="time" value="18" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -828,6 +885,21 @@
       </expression>
     </expressions>
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>list.get(14768)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>list.get(14769)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>list.get(14770)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>Token.parseToken()line.substring(6,19)</expression-string>
         <language-id>JAVA</language-id>
@@ -855,26 +927,6 @@
       </expression>
       <expression>
         <expression-string>Double.parseDouble(&quot;12.3&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Double.parseDouble(&quot;12. 3&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Double.parseDouble(&quot;12E-3&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Double.parseDouble(&quot;12E -3&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Double.parseDouble(&quot;12E 3&quot;)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -956,57 +1008,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/TokenName.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/TokenTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="178" column="46" selection-start-line="178" selection-start-column="46" selection-end-line="178" selection-end-column="46" />
-          <folding>
-            <element signature="method#testIsString#0;class#TokenTest#0" />
-            <element signature="method#testIsBoolean#0;class#TokenTest#0" />
-            <element signature="method#testIsInteger#0;class#TokenTest#0" />
-            <element signature="method#testIsFloat#0;class#TokenTest#0" />
-            <element signature="method#testIsName#0;class#TokenTest#0" />
-            <element signature="method#testIsSpace#0;class#TokenTest#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/caffeModel/inception_v1.prototxt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Token.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ParseException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="69" column="23" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
+        <state relative-caret-position="57">
+          <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#445#446#0" expanded="true" />
-            <element signature="e#477#478#0" expanded="true" />
-            <element signature="e#507#508#0" expanded="true" />
-            <element signature="e#533#534#0" expanded="true" />
-            <element signature="method#parseToken#0;class#Token#0" />
-            <element signature="e#1453#1454#0" expanded="true" />
-            <element signature="e#1499#1500#0" expanded="true" />
-            <element signature="e#1541#1542#0" expanded="true" />
-            <element signature="e#1601#1602#0" expanded="true" />
-            <element signature="e#2371#2372#0" expanded="true" />
-            <element signature="e#2415#2416#0" expanded="true" />
-            <element signature="e#2455#2456#0" expanded="true" />
-            <element signature="e#2500#2501#0" expanded="true" />
+            <element signature="e#156#157#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Scanner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
+        <state relative-caret-position="-304">
           <caret line="26" selection-start-line="26" selection-end-line="26" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1018,10 +1035,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/TokenName.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ScannerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
-          <caret line="16" column="50" selection-start-line="15" selection-start-column="54" selection-end-line="16" selection-end-column="51" />
+          <caret line="13" column="50" lean-forward="true" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Token.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#parseToken#0;class#Token#0" />
+            <element signature="e#2612#2613#0" expanded="true" />
+            <element signature="e#2645#2646#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/TokenTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="98" column="47" selection-start-line="98" selection-start-column="47" selection-end-line="98" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#testIsString#0;class#TokenTest#0" />
+            <element signature="method#testIsBoolean#0;class#TokenTest#0" />
+            <element signature="method#testIsInteger#0;class#TokenTest#0" />
+            <element signature="method#testIsFloat#0;class#TokenTest#0" />
+            <element signature="method#testParseToken#0;class#TokenTest#0" />
+            <element signature="method#testIsSpace#0;class#TokenTest#0" />
+            <element signature="method#testIsSpecial#0;class#TokenTest#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

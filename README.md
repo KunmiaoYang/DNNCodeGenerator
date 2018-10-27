@@ -39,7 +39,7 @@
   <tr>
     <td>3</td>
     <td>EPSILON</td>
-    <td>EOF</td>
+    <td>RIGHT_BRACE, EOF</td>
   </tr>
   <tr>
     <td>4</td>
@@ -54,7 +54,7 @@
   </tr>
   <tr>
     <td>6</td>
-    <td rowspan="4">&lt;Value&gt;</td>
+    <td rowspan="5">&lt;Value&gt;</td>
     <td>INTEGER</td>
     <td>INTEGER</td>
   </tr>
@@ -72,5 +72,10 @@
     <td>9</td>
     <td>STRING</td>
     <td>STRING</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>SPECIAL</td>
+    <td>SPECIAL</td>
   </tr>
 </table>

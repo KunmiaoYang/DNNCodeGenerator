@@ -3,6 +3,9 @@ package org.ncsu.dnn.caffe;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
+import static org.ncsu.dnn.caffe.TokenName.*;
+import static org.ncsu.dnn.caffe.Token.*;
+
 public class TokenTest extends TestCase {
     public void testIsString() {
         Assert.assertTrue(Token.isString("\"abc\""));
@@ -101,73 +104,83 @@ public class TokenTest extends TestCase {
 
         token = Token.parseToken("{");
         Assert.assertNotNull(token);
-        Assert.assertEquals(TokenName.LEFT_BRACE, token.getTokenName());
+        Assert.assertEquals(LEFT_BRACE, token.getTokenName());
         Assert.assertEquals("{", token.getVal());
 
         token = Token.parseToken("}");
         Assert.assertNotNull(token);
-        Assert.assertEquals(TokenName.RIGHT_BRACE, token.getTokenName());
+        Assert.assertEquals(RIGHT_BRACE, token.getTokenName());
         Assert.assertEquals("}", token.getVal());
 
         token = Token.parseToken(":");
         Assert.assertNotNull(token);
-        Assert.assertEquals(TokenName.COLON, token.getTokenName());
+        Assert.assertEquals(COLON, token.getTokenName());
         Assert.assertEquals(":", token.getVal());
 
         token = Token.parseToken("0");
         Assert.assertNotNull(token);
-        Assert.assertEquals(TokenName.INTEGER, token.getTokenName());
+        Assert.assertEquals(INTEGER, token.getTokenName());
         Assert.assertEquals("0", token.getVal());
 
         token = Token.parseToken("123456789012345678901234567890");
         Assert.assertNotNull(token);
-        Assert.assertEquals(TokenName.INTEGER, token.getTokenName());
+        Assert.assertEquals(INTEGER, token.getTokenName());
         Assert.assertEquals("123456789012345678901234567890", token.getVal());
 
         token = Token.parseToken("0.");
         Assert.assertNotNull(token);
-        Assert.assertEquals(TokenName.FLOAT, token.getTokenName());
+        Assert.assertEquals(FLOAT, token.getTokenName());
         Assert.assertEquals("0.", token.getVal());
 
         token = Token.parseToken("10E12");
         Assert.assertNotNull(token);
-        Assert.assertEquals(TokenName.FLOAT, token.getTokenName());
+        Assert.assertEquals(FLOAT, token.getTokenName());
         Assert.assertEquals("10E12", token.getVal());
 
         token = Token.parseToken("true");
         Assert.assertNotNull(token);
-        Assert.assertEquals(TokenName.BOOLEAN, token.getTokenName());
+        Assert.assertEquals(BOOLEAN, token.getTokenName());
         Assert.assertEquals("true", token.getVal());
 
         token = Token.parseToken("false");
         Assert.assertNotNull(token);
-        Assert.assertEquals(TokenName.BOOLEAN, token.getTokenName());
+        Assert.assertEquals(BOOLEAN, token.getTokenName());
         Assert.assertEquals("false", token.getVal());
 
         token = Token.parseToken("\"abc\"");
         Assert.assertNotNull(token);
-        Assert.assertEquals(TokenName.STRING, token.getTokenName());
+        Assert.assertEquals(STRING, token.getTokenName());
         Assert.assertEquals("\"abc\"", token.getVal());
 
         token = Token.parseToken("\"a\\\"bc\"");
         Assert.assertNotNull(token);
-        Assert.assertEquals(TokenName.STRING, token.getTokenName());
+        Assert.assertEquals(STRING, token.getTokenName());
         Assert.assertEquals("\"a\\\"bc\"", token.getVal());
 
         token = Token.parseToken("\"a bc\"");
         Assert.assertNotNull(token);
-        Assert.assertEquals(TokenName.STRING, token.getTokenName());
+        Assert.assertEquals(STRING, token.getTokenName());
         Assert.assertEquals("\"a bc\"", token.getVal());
 
         token = Token.parseToken("_var0");
         Assert.assertNotNull(token);
-        Assert.assertEquals(TokenName.NAME, token.getTokenName());
+        Assert.assertEquals(NAME, token.getTokenName());
         Assert.assertEquals("_var0", token.getVal());
 
         token = Token.parseToken("trueName");
         Assert.assertNotNull(token);
-        Assert.assertEquals(TokenName.NAME, token.getTokenName());
+        Assert.assertEquals(NAME, token.getTokenName());
         Assert.assertEquals("trueName", token.getVal());
+
+        token = Token.parseToken("MAX");
+        Assert.assertNotNull(token);
+        Assert.assertEquals(SPECIAL, token.getTokenName());
+        Assert.assertEquals("MAX", token.getVal());
+
+        token = Token.parseToken("AVE");
+        Assert.assertNotNull(token);
+        Assert.assertEquals(SPECIAL, token.getTokenName());
+        Assert.assertEquals("AVE", token.getVal());
 
         Assert.assertNull(Token.parseToken("123var"));
         Assert.assertNull(Token.parseToken("123E"));
@@ -195,5 +208,13 @@ public class TokenTest extends TestCase {
         Assert.assertFalse(Token.isSpace(" abc"));
         Assert.assertFalse(Token.isSpace("abc "));
         Assert.assertFalse(Token.isSpace("ab c"));
+    }
+
+    public void testIsSpecial() {
+        Assert.assertTrue(isSpecial("MAX"));
+        Assert.assertTrue(isSpecial("AVE"));
+
+        Assert.assertFalse(isSpecial("AVEMAX"));
+        Assert.assertFalse(isSpecial("name"));
     }
 }
