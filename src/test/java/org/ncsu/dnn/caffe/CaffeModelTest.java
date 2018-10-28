@@ -9,7 +9,7 @@ import java.nio.file.Path;
 public class CaffeModelTest extends TestCase {
     public void testCaffeModel() {
         Path path = FileSystems.getDefault().getPath("src","test", "caffeModel", "inception_v1.prototxt").toAbsolutePath();
-        Scanner scanner = null;
+        Scanner scanner;
         try {
             scanner = new Scanner(path.toFile());
             Parser parser = new Parser(scanner.getTokenList().iterator());
