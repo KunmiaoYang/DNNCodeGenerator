@@ -1,6 +1,5 @@
 package org.ncsu.dnn.caffe;
 
-import java.util.HashMap;
 import java.util.Iterator;
 
 import static org.ncsu.dnn.caffe.TokenName.*;
@@ -76,7 +75,7 @@ public class Parser {
     }
 
     private void nextToken() {
-        assert cur.getTokenName() != EOF: "Attempt to get next token when iterator already reached the end!";
+        assert null == cur || cur.getTokenName() != EOF: "Attempt to get next token when iterator already reached the end!";
         if (!it.hasNext()) {
             throw new ParseException(EXCEPTION_NO_EOF_TOKEN);
         }

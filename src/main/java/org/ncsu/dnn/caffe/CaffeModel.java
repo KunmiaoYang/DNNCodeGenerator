@@ -53,6 +53,10 @@ public class CaffeModel {
 
         // Initialize the layers and store them in the map
         for (ASTNode node: nodeList) {
+            String top = node.getFirstValue(KEY_TOP);
+            if (!this.layerMap.containsKey(top)) {
+                addLayer(new Layer(top, Group));
+            }
             addLayer(new Layer(node));
 //            this.layerMap.put(node.getFirstValue(KEY_NAME), new Layer(node));
         }
@@ -62,7 +66,11 @@ public class CaffeModel {
             String name = node.getFirstValue(KEY_NAME);
             Layer layer = this.layerMap.get(name);
             layer.bottom = createLayerList(node.get(KEY_BOTTOM));
-            layer.top = createLayerList(node.get(KEY_TOP));
+            for (Layer prev: layer.bottom) {
+                prev.next.add(layer);
+            }
+            layer.top = this.layerMap.get(node.getFirstValue(KEY_TOP));
+            layer.top.group.add(layer);
         }
     }
 
@@ -80,14 +88,16 @@ public class CaffeModel {
             String parentName = name.substring(0, p);
             Layer parent = this.layerMap.get(parentName);
             if (null == parent) {
-                parent = new Layer(parentName, Branch);
+                parent = new Layer(parentName, Scope);
                 addLayer(parent);
             }
             parent.layerMap.put(name, layer);
         }
         Layer existingLayer = this.layerMap.get(name);
         if (null != existingLayer) {
-            if (existingLayer.getType() != Branch) throw new ParseException(EXCEPTION_DUPLICATE_NAME);
+            if (existingLayer.getType() != Group && existingLayer.getType() != Scope) {
+                throw new ParseException(EXCEPTION_DUPLICATE_NAME);
+            }
             layer.layerMap.putAll(existingLayer.layerMap);
         }
         this.layerMap.put(name, layer);
