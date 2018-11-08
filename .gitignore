@@ -35,3 +35,7 @@ buildNumber.properties
 ### Intellij ###
 .idea/
 *.md_*
+
+### Output ###
+output/
+*.py
