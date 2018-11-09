@@ -2,25 +2,25 @@ package org.ncsu.dnn.caffe;
 
 import java.util.*;
 
-import static org.ncsu.dnn.caffe.LayerType.*;
+import static org.ncsu.dnn.caffe.CaffeLayerType.*;
 
-public class Layer {
+public class CaffeLayer {
     private String name;
-    private LayerType type;
-    List<Layer> next;
-    List<Layer> bottom;
-    List<Layer> group;
-    Layer top;
-    Map<String, Layer> layerMap;
-    private Map<String, Token> paramMap;
+    public CaffeLayerType type;
+    public List<CaffeLayer> next;
+    List<CaffeLayer> bottom;
+    public List<CaffeLayer> group;
+    public CaffeLayer top;
+    public Map<String, CaffeLayer> layerMap;
+    public Map<String, Token> paramMap;
 
-    public Layer() {
+    public CaffeLayer() {
         this.next = new ArrayList<>();
         this.group = new ArrayList<>();
         this.layerMap = new LinkedHashMap<>();
     }
 
-    public Layer(String name, LayerType type) {
+    public CaffeLayer(String name, CaffeLayerType type) {
         this();
         this.name = name;
         this.type = type;
@@ -28,7 +28,7 @@ public class Layer {
         this.paramMap = null;
     }
 
-    public Layer(ASTNode node) {
+    public CaffeLayer(ASTNode node) {
         this();
         this.name = node.getFirstValue(CaffeModel.KEY_NAME);
         this.type = getType(node.getFirstValue(CaffeModel.KEY_TYPE));
@@ -36,7 +36,7 @@ public class Layer {
         parseParameters(node);
     }
 
-    private LayerType getType(String val) {
+    private CaffeLayerType getType(String val) {
         if (val.equalsIgnoreCase("Convolution")) return Convolution;
         if (val.equalsIgnoreCase("BatchNorm")) return BatchNorm;
         if (val.equalsIgnoreCase("Scale")) return Scale;
@@ -76,7 +76,11 @@ public class Layer {
         return name;
     }
 
-    LayerType getType() {
+    public String getRootName() {
+        return name.split("/")[0];
+    }
+
+    CaffeLayerType getType() {
         return type;
     }
 

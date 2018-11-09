@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.ncsu.dnn.caffe.LayerType.*;
+import static org.ncsu.dnn.caffe.CaffeLayerType.*;
 
 public class CaffeModel {
     static final String KEY_NAME = "name";
@@ -21,14 +21,14 @@ public class CaffeModel {
     private String name;
     private String input;
     private int[] inputShape;
-    private Map<String, Layer> layerMap;
+    private Map<String, CaffeLayer> layerMap;
 
     private CaffeModel(String name, String input) {
         this.name = name;
         this.input = input;
         this.inputShape = null;
         this.layerMap = new LinkedHashMap<>();
-        this.layerMap.put(input, new Layer(input, Input));
+        this.layerMap.put(input, new CaffeLayer(input, Input));
     }
 
     public CaffeModel(ASTNode root) {
@@ -55,18 +55,18 @@ public class CaffeModel {
         for (ASTNode node: nodeList) {
             String top = node.getFirstValue(KEY_TOP);
             if (!this.layerMap.containsKey(top)) {
-                addLayer(new Layer(top, Group));
+                addLayer(new CaffeLayer(top, Group));
             }
-            addLayer(new Layer(node));
+            addLayer(new CaffeLayer(node));
 //            this.layerMap.put(node.getFirstValue(KEY_NAME), new Layer(node));
         }
 
         // Connect layers
         for (ASTNode node: nodeList) {
             String name = node.getFirstValue(KEY_NAME);
-            Layer layer = this.layerMap.get(name);
+            CaffeLayer layer = this.layerMap.get(name);
             layer.bottom = createLayerList(node.get(KEY_BOTTOM));
-            for (Layer prev: layer.bottom) {
+            for (CaffeLayer prev: layer.bottom) {
                 prev.next.add(layer);
             }
             layer.top = this.layerMap.get(node.getFirstValue(KEY_TOP));
@@ -74,26 +74,26 @@ public class CaffeModel {
         }
     }
 
-    private List<Layer> createLayerList(List<ASTNode> nodeList) {
-        List<Layer> list = new ArrayList<>(nodeList.size());
+    private List<CaffeLayer> createLayerList(List<ASTNode> nodeList) {
+        List<CaffeLayer> list = new ArrayList<>(nodeList.size());
         for (ASTNode node: nodeList)
             list.add(this.layerMap.get(node.val.getVal()));
         return list;
     }
 
-    private void addLayer(Layer layer) {
+    private void addLayer(CaffeLayer layer) {
         String name = layer.getName();
         int p = name.lastIndexOf('/');
         if (p > -1) {
             String parentName = name.substring(0, p);
-            Layer parent = this.layerMap.get(parentName);
+            CaffeLayer parent = this.layerMap.get(parentName);
             if (null == parent) {
-                parent = new Layer(parentName, Scope);
+                parent = new CaffeLayer(parentName, Scope);
                 addLayer(parent);
             }
             parent.layerMap.put(name, layer);
         }
-        Layer existingLayer = this.layerMap.get(name);
+        CaffeLayer existingLayer = this.layerMap.get(name);
         if (null != existingLayer) {
             if (existingLayer.getType() != Group && existingLayer.getType() != Scope) {
                 throw new ParseException(EXCEPTION_DUPLICATE_NAME);
@@ -101,6 +101,10 @@ public class CaffeModel {
             layer.layerMap.putAll(existingLayer.layerMap);
         }
         this.layerMap.put(name, layer);
+    }
+
+    public Map<String, CaffeLayer> getLayerMap() {
+        return this.layerMap;
     }
 
     public String getName() {

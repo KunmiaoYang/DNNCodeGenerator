@@ -25,7 +25,7 @@ public class CodeGenerator {
         CodeGenerator codeGenerator = new CodeGenerator();
         PrintStream out = new PrintStream(new BufferedOutputStream(new FileOutputStream(test)));
         codeGenerator.appendFile(out, header);
-        out.printf(snippets.getString("layer.conv"), "\t\t", "\t\t", "\t\t");
+        out.printf(snippets.getString("layer.conv.snippet"), "\t\t", "\t\t", "\t\t");
         out.println();
         codeGenerator.appendFile(out, footer);
         out.close();

@@ -1,5 +1,5 @@
 package org.ncsu.dnn.caffe;
 
-public enum LayerType {
+public enum CaffeLayerType {
     Convolution, BatchNorm, Scale, ReLU, Pooling, Concat, Dropout, Reshape, Softmax, Invalid, Scope, Group, Input
 }

@@ -3,15 +3,14 @@ package org.ncsu.dnn.caffe;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 
 public class ParserTest extends TestCase {
     public void testParser() {
-        Path path = FileSystems.getDefault().getPath("src","test", "caffeModel", "inception_v1.prototxt").toAbsolutePath();
+        File protoTextFile = new File(CaffeModelTest.class.getResource("inception_v1.prototxt").getFile());
         try {
-            Scanner scanner = new Scanner(path.toFile());
+            Scanner scanner = new Scanner(protoTextFile);
             Parser parser = new Parser(scanner.getTokenList().iterator());
             ASTNode root = parser.getRoot();
         } catch (IOException e) {
