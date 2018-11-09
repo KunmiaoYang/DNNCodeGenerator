@@ -6,6 +6,8 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.ncsu.dnn.tf.CodeGenerator.*;
+
 public class TFScopeLayer extends TFLayer {
     List<TFLayer> layerList;
 
@@ -22,12 +24,22 @@ public class TFScopeLayer extends TFLayer {
     }
 
     @Override
-    String inlineCode() {
-        return null;
+    String inlineCode(PrintStream out, String indent, String scope) {
+        String inside = generateWithScope(out, indent, TFModel.TF_VARIABLE_SCOPE, scope);
+        for (TFLayer layer: layerList) {
+            layer.inlineCode(out, inside, "'" + layer.name + "'");
+        }
+        return indent;
     }
 
     @Override
-    void generateCode(PrintStream out, String input, String indent) {
-
+    public void setOutput(String output) {
+        super.setOutput(output);
+        String input = this.input;
+        for (TFLayer layer: layerList) {
+            layer.setInput(input);
+            layer.setOutput(this.output);
+            input = layer.output;
+        }
     }
 }

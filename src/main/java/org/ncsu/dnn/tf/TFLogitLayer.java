@@ -30,12 +30,12 @@ public class TFLogitLayer extends TFLayer {
     }
 
     @Override
-    String inlineCode() {
-        return null;
+    String inlineCode(PrintStream out, String indent, String scope) {
+        return indent;
     }
 
     @Override
-    void generateCode(PrintStream out, String input, String indent) {
+    void generateCode(PrintStream out, String indent) {
 
     }
 }

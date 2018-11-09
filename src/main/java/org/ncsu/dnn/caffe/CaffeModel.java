@@ -1,5 +1,7 @@
 package org.ncsu.dnn.caffe;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -35,6 +37,18 @@ public class CaffeModel {
         this(root.getFirstValue(KEY_NAME), root.getFirstValue(KEY_INPUT));
         parseShape(root.getFirst(KEY_INPUT_SHAPE));
         parseLayers(root.get(KEY_LAYER));
+    }
+
+    public static CaffeModel createFromFile(File file) {
+        Scanner scanner;
+        try {
+            scanner = new Scanner(file);
+            Parser parser = new Parser(scanner.getTokenList().iterator());
+            return new CaffeModel(parser.getRoot());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private void parseShape(ASTNode inputShapeNode) {

@@ -5,6 +5,7 @@ import org.ncsu.dnn.caffe.CaffeLayer;
 import java.io.PrintStream;
 
 public class TFConvLayer extends TFLayer {
+    private static final String INLINE = CodeGenerator.SNIPPETS.getString("layer.conv.inline");
     int numOutput;
     int kernelHeight, kernelWidth;
     int stride;
@@ -34,12 +35,9 @@ public class TFConvLayer extends TFLayer {
     }
 
     @Override
-    public String inlineCode() {
-        return null;
-    }
-
-    @Override
-    public void generateCode(PrintStream out, String input, String indent) {
-
+    public String inlineCode(PrintStream out, String indent, String scope) {
+        out.printf(INLINE, indent, output, input, outputShape[0], kernelHeight, kernelWidth,
+                stride > 1? ", stride=" + stride: "", scope);
+        return indent;
     }
 }

@@ -7,6 +7,7 @@ import org.ncsu.dnn.caffe.Token;
 import java.io.PrintStream;
 
 public class TFPoolLayer extends TFLayer {
+    private static final String INLINE = CodeGenerator.SNIPPETS.getString("layer.pool.inline");
     public static final int TYPE_MAX = 0;
     public static final int TYPE_AVE = 1;
     int type;
@@ -43,12 +44,14 @@ public class TFPoolLayer extends TFLayer {
     }
 
     @Override
-    public String inlineCode() {
-        return null;
-    }
-
-    @Override
-    public void generateCode(PrintStream out, String input, String indent) {
-
+    public String inlineCode(PrintStream out, String indent, String scope) {
+        String poolType = "";
+        switch (this.type) {
+            case TYPE_MAX: poolType = "max"; break;
+            case TYPE_AVE: poolType = "avg"; break;
+        }
+        out.printf(INLINE, indent, output, poolType, input, kernelHeight, kernelWidth,
+                stride > 1? ", stride=" + stride: "", scope);
+        return indent;
     }
 }
