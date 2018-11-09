@@ -7,6 +7,8 @@ import java.io.PrintStream;
 import java.util.*;
 
 import static org.ncsu.dnn.tf.CodeGenerator.*;
+import static org.ncsu.dnn.tf.TFLayer.KEY_INPUT;
+import static org.ncsu.dnn.tf.TFLayer.KEY_NAME;
 
 public class TFModel {
     public static final String MODEL_FUNCTION_SIGNATURE = SNIPPETS.getString("model.function.signature");
@@ -15,6 +17,7 @@ public class TFModel {
     public static final String SLIM_ARG_SCOPE = "slim.arg_scope";
     public static final String SLIM_ARG_SCOPE_PARAMETERS = "default_arg_scope(is_training)";
     public static final String INIT_POINTS = "end_points = {}\r\n";
+    static final String NAME_INPUT = "inputs";
     String name;
     String isTraining;
     String reuse;
@@ -34,28 +37,32 @@ public class TFModel {
         parseCaffeModel(caffeModel);
 
         TFLayer layer = layerList.get(0);
-        layer.setInput("inputs");
     }
     private void parseCaffeModel(CaffeModel caffeModel) {
         Map<String, CaffeLayer> layerMap = caffeModel.getLayerMap();
-        CaffeLayer caffeLayer = layerMap.get(caffeModel.getInput());
-        if (null == caffeLayer) return;
-        Deque<CaffeLayer> q = new ArrayDeque<>();
-        Set<CaffeLayer> visited = new HashSet<>();
-        q.offerLast(caffeLayer);
+        CaffeLayer caffeLayer;
+        Deque<String> q = new ArrayDeque<>();
+        Set<String> visited = new HashSet<>();
+        q.offerLast(caffeModel.getInput());
         TFLayerFactory layerFactory = new TFLayerFactory();
         int[] shape = this.inputShape.clone();
+        Map<String, String> param = new HashMap<>();
+        param.put(KEY_INPUT, NAME_INPUT);
         while (!q.isEmpty()) {
-            caffeLayer = q.pollFirst();
-            visited.add(caffeLayer);
-            TFLayer layer = layerFactory.create(caffeLayer, shape);
+            String layerName = q.pollFirst();
+            caffeLayer = layerMap.get(layerName);
+            if (null == caffeLayer) continue;
+            visited.add(layerName);
+            TFLayer layer = layerFactory.create(caffeLayer, shape, param);
             if (null != layer) {
                 this.layerList.add(layer);
                 shape = layer.outputShape;
+                param.put(KEY_INPUT, layer.output);
+                layer.name = layerName;
             }
-            Set<CaffeLayer> nextLayers = new HashSet<>();
+            Set<String> nextLayers = new HashSet<>();
             for (CaffeLayer next: caffeLayer.next) {
-                CaffeLayer nextRoot = layerMap.get(next.top.getRootName());
+                String nextRoot = next.getRootName();
                 if (visited.contains(nextRoot)) continue;
                 nextLayers.add(nextRoot);
             }

@@ -3,16 +3,19 @@ package org.ncsu.dnn.tf;
 import org.ncsu.dnn.caffe.CaffeLayer;
 
 import java.io.PrintStream;
+import java.util.Map;
 
 public class TFConvLayer extends TFLayer {
     private static final String INLINE = CodeGenerator.SNIPPETS.getString("layer.conv.inline");
+    private static final String OPTION_NO_ACTIVATION = ", activation_fn=None";
+    private static final String OPTION_NO_NORMALIZER = ", normalizer_fn=None";
     int numOutput;
     int kernelHeight, kernelWidth;
     int stride;
     boolean hasNormal, hasActivation;
 
-    public TFConvLayer(CaffeLayer caffeLayer, int[] shape) {
-        super(caffeLayer, shape);
+    public TFConvLayer(CaffeLayer caffeLayer, int[] shape, Map<String, String> param) {
+        super(caffeLayer, shape, param);
         this.numOutput = Integer.parseInt(caffeLayer.paramMap.get("convolution_param.num_output").getVal());
         this.kernelHeight = Integer.parseInt(caffeLayer.paramMap.get("convolution_param.kernel_size").getVal());
         this.kernelWidth = kernelHeight;
@@ -36,8 +39,11 @@ public class TFConvLayer extends TFLayer {
 
     @Override
     public String inlineCode(PrintStream out, String indent, String scope) {
+        String option = stride > 1? ", stride=" + stride: "";
+        if (!hasActivation) option += OPTION_NO_ACTIVATION;
+        if (!hasNormal) option += OPTION_NO_NORMALIZER;
         out.printf(INLINE, indent, output, input, outputShape[0], kernelHeight, kernelWidth,
-                stride > 1? ", stride=" + stride: "", scope);
+                option, scope);
         return indent;
     }
 }

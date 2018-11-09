@@ -5,6 +5,7 @@ import org.ncsu.dnn.caffe.ParseException;
 import org.ncsu.dnn.caffe.Token;
 
 import java.io.PrintStream;
+import java.util.Map;
 
 public class TFPoolLayer extends TFLayer {
     private static final String INLINE = CodeGenerator.SNIPPETS.getString("layer.pool.inline");
@@ -14,8 +15,8 @@ public class TFPoolLayer extends TFLayer {
     int kernelHeight, kernelWidth;
     int stride;
 
-    public TFPoolLayer(CaffeLayer caffeLayer, int[] shape) {
-        super(caffeLayer, shape);
+    public TFPoolLayer(CaffeLayer caffeLayer, int[] shape, Map<String, String> param) {
+        super(caffeLayer, shape, param);
         Token token = caffeLayer.paramMap.get("pooling_param.kernel_size");
         if (null != token) {
             this.kernelHeight = Integer.parseInt(token.getVal());

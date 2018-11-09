@@ -5,21 +5,23 @@ import org.ncsu.dnn.caffe.CaffeLayer;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.ncsu.dnn.tf.CodeGenerator.*;
 
 public class TFScopeLayer extends TFLayer {
     List<TFLayer> layerList;
 
-    TFScopeLayer(CaffeLayer caffeLayer, int[] shape) {
-        super(caffeLayer, shape);
+    TFScopeLayer(CaffeLayer caffeLayer, int[] shape, Map<String, String> param) {
+        super(caffeLayer, shape, param);
         this.layerList = new ArrayList<>();
         TFLayerFactory layerFactory = new TFLayerFactory();
         for (CaffeLayer branch: caffeLayer.layerMap.values()) {
             if (branch.top != branch) continue;
-            TFLayer layer = layerFactory.create(branch, this.outputShape);
+            TFLayer layer = layerFactory.create(branch, this.outputShape, param);
             this.layerList.add(layer);
             System.arraycopy(layer.outputShape, 0, this.outputShape, 0, 3);
+            param.put(KEY_INPUT, layer.output);
         }
     }
 
@@ -30,16 +32,5 @@ public class TFScopeLayer extends TFLayer {
             layer.inlineCode(out, inside, "'" + layer.name + "'");
         }
         return indent;
-    }
-
-    @Override
-    public void setOutput(String output) {
-        super.setOutput(output);
-        String input = this.input;
-        for (TFLayer layer: layerList) {
-            layer.setInput(input);
-            layer.setOutput(this.output);
-            input = layer.output;
-        }
     }
 }

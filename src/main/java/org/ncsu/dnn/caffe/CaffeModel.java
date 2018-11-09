@@ -75,7 +75,7 @@ public class CaffeModel {
 //            this.layerMap.put(node.getFirstValue(KEY_NAME), new Layer(node));
         }
 
-        // Connect layers
+        // Post-processing
         for (ASTNode node: nodeList) {
             String name = node.getFirstValue(KEY_NAME);
             CaffeLayer layer = this.layerMap.get(name);
@@ -85,6 +85,16 @@ public class CaffeModel {
             }
             layer.top = this.layerMap.get(node.getFirstValue(KEY_TOP));
             layer.top.group.add(layer);
+        }
+        for (Map.Entry<String, CaffeLayer> entry: layerMap.entrySet()) {
+            CaffeLayer layer = entry.getValue();
+            if (layer.type == Group && !layer.group.isEmpty()) {
+                String key = entry.getKey();
+                String newKey = layer.group.get(0).getRootName();
+                if (key != newKey) {
+                    layerMap.put(newKey, layer);
+                }
+            }
         }
     }
 
