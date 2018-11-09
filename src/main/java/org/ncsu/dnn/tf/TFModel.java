@@ -6,13 +6,12 @@ import org.ncsu.dnn.caffe.CaffeModel;
 import java.util.*;
 
 public class TFModel {
-    int numClasses;
     String name;
     String isTraining;
     String reuse;
     List<TFLayer> layerList;
-    int inputHeight;
-    int inputWidth;
+    int[] inputShape;
+    int[] outputShape;
 
     public TFModel() {
         this.layerList = new ArrayList<>();
@@ -22,9 +21,7 @@ public class TFModel {
         this.name = caffeModel.getName();
         this.isTraining = "True";
         this.reuse = "None";
-        int[] inputShape = caffeModel.getInputShape();
-        this.inputHeight = inputShape[2];
-        this.inputWidth = inputShape[3];
+        this.inputShape = Arrays.copyOfRange(caffeModel.getInputShape(), 1, 4);
         parseCaffeModel(caffeModel);
     }
     private void parseCaffeModel(CaffeModel caffeModel) {
@@ -35,15 +32,14 @@ public class TFModel {
         Set<CaffeLayer> visited = new HashSet<>();
         q.offerLast(caffeLayer);
         TFLayerFactory layerFactory = new TFLayerFactory();
-        int h = inputHeight, w = inputWidth;
+        int[] shape = this.inputShape.clone();
         while (!q.isEmpty()) {
             caffeLayer = q.pollFirst();
             visited.add(caffeLayer);
-            TFLayer layer = layerFactory.create(caffeLayer, h, w);
+            TFLayer layer = layerFactory.create(caffeLayer, shape);
             if (null != layer) {
                 this.layerList.add(layer);
-                h = layer.outputHeight;
-                w = layer.outputWidth;
+                shape = layer.outputShape;
             }
             Set<CaffeLayer> nextLayers = new HashSet<>();
             for (CaffeLayer next: caffeLayer.next) {
@@ -53,5 +49,6 @@ public class TFModel {
             }
             q.addAll(nextLayers);
         }
+        this.outputShape = shape;
     }
 }

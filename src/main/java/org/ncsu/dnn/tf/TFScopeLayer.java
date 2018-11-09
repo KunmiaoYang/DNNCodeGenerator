@@ -9,13 +9,15 @@ import java.util.List;
 public class TFScopeLayer extends TFLayer {
     List<TFLayer> layerList;
 
-    TFScopeLayer(CaffeLayer caffeLayer, int height, int width) {
-        super(caffeLayer, height, width);
+    TFScopeLayer(CaffeLayer caffeLayer, int[] shape) {
+        super(caffeLayer, shape);
         this.layerList = new ArrayList<>();
         TFLayerFactory layerFactory = new TFLayerFactory();
         for (CaffeLayer branch: caffeLayer.layerMap.values()) {
             if (branch.top != branch) continue;
-            this.layerList.add(layerFactory.create(branch, height, width));
+            TFLayer layer = layerFactory.create(branch, this.outputShape);
+            this.layerList.add(layer);
+            System.arraycopy(layer.outputShape, 0, this.outputShape, 0, 3);
         }
     }
 

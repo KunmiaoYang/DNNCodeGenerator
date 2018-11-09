@@ -6,8 +6,8 @@ import java.io.PrintStream;
 
 public class TFDropOutLayer extends TFLayer {
     double ratio;
-    TFDropOutLayer(CaffeLayer caffeLayer, int height, int width) {
-        super(caffeLayer, height, width);
+    TFDropOutLayer(CaffeLayer caffeLayer, int[] shape) {
+        super(caffeLayer, shape);
         this.ratio = 1.0 - Double.parseDouble(caffeLayer.paramMap.get("dropout_param.dropout_ratio").getVal());
     }
 

@@ -5,8 +5,8 @@ import org.ncsu.dnn.caffe.CaffeLayer;
 import java.io.PrintStream;
 
 public class TFSoftmaxLayer extends TFLayer {
-    TFSoftmaxLayer(CaffeLayer caffeLayer, int height, int width) {
-        super(caffeLayer, height, width);
+    TFSoftmaxLayer(CaffeLayer caffeLayer, int[] shape) {
+        super(caffeLayer, shape);
     }
 
     @Override

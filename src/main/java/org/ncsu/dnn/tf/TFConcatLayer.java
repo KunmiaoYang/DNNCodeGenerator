@@ -9,13 +9,16 @@ import java.util.List;
 public class TFConcatLayer extends TFLayer {
     List<TFLayer> branchList;
 
-    TFConcatLayer(CaffeLayer caffeLayer, int height, int width) {
-        super(caffeLayer, height, width);
+    TFConcatLayer(CaffeLayer caffeLayer, int[] shape) {
+        super(caffeLayer, shape);
         this.branchList = new ArrayList<>();
         TFLayerFactory layerFactory = new TFLayerFactory();
+        this.outputShape[0] = 0;
         for (CaffeLayer branch: caffeLayer.layerMap.values()) {
             if (branch.top != branch) continue;
-            this.branchList.add(layerFactory.create(branch, height, width));
+            TFLayer layer = layerFactory.create(branch, shape);
+            this.branchList.add(layer);
+            this.outputShape[0] += layer.outputShape[0];
         }
     }
 

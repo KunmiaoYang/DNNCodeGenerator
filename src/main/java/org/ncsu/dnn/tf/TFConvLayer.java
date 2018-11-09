@@ -10,14 +10,15 @@ public class TFConvLayer extends TFLayer {
     int stride;
     boolean hasNormal, hasActivation;
 
-    public TFConvLayer(CaffeLayer caffeLayer, int height, int width) {
-        super(caffeLayer, height, width);
+    public TFConvLayer(CaffeLayer caffeLayer, int[] shape) {
+        super(caffeLayer, shape);
         this.numOutput = Integer.parseInt(caffeLayer.paramMap.get("convolution_param.num_output").getVal());
         this.kernelHeight = Integer.parseInt(caffeLayer.paramMap.get("convolution_param.kernel_size").getVal());
         this.kernelWidth = kernelHeight;
         this.stride = Integer.parseInt(caffeLayer.paramMap.get("convolution_param.stride").getVal());
-        this.outputHeight /= stride;
-        this.outputWidth /= stride;
+        this.outputShape[0] = numOutput;
+        this.outputShape[1] /= stride;
+        this.outputShape[2] /= stride;
         this.hasNormal = false;
         this.hasActivation = false;
         for (CaffeLayer subLayer: caffeLayer.group) {
