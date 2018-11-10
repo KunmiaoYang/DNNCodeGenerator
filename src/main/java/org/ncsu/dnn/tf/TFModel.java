@@ -6,24 +6,23 @@ import org.ncsu.dnn.caffe.CaffeModel;
 import java.io.PrintStream;
 import java.util.*;
 
-import static org.ncsu.dnn.tf.CodeGenerator.*;
+import static org.ncsu.dnn.tf.SimpleCodeGenerator.*;
 import static org.ncsu.dnn.tf.TFLayer.KEY_INPUT;
-import static org.ncsu.dnn.tf.TFLayer.KEY_NAME;
 
 public class TFModel {
-    public static final String MODEL_FUNCTION_SIGNATURE = SNIPPETS.getString("model.function.signature");
-    public static final String TF_VARIABLE_SCOPE = "tf.variable_scope";
-    public static final String TF_VARIABLE_SCOPE_PARAMETERS = "scope, \"Model\", reuse=reuse";
-    public static final String SLIM_ARG_SCOPE = "slim.arg_scope";
-    public static final String SLIM_ARG_SCOPE_PARAMETERS = "default_arg_scope(is_training)";
-    public static final String INIT_POINTS = "end_points = {}\r\n";
-    static final String NAME_INPUT = "inputs";
-    String name;
-    String isTraining;
-    String reuse;
-    List<TFLayer> layerList;
+    private static final String MODEL_FUNCTION_SIGNATURE = SNIPPETS.getString("model.function.signature");
+    private static final String MODEL_FUNCTION_RETURN = SNIPPETS.getString("model.function.return");
+    static final String TF_VARIABLE_SCOPE = "tf.variable_scope";
+    private static final String TF_VARIABLE_SCOPE_PARAMETERS = "scope, \"Model\", reuse=reuse";
+    private static final String SLIM_ARG_SCOPE = "slim.arg_scope";
+    private static final String SLIM_ARG_SCOPE_PARAMETERS = "default_arg_scope(is_training)";
+    private static final String INIT_POINTS = "end_points = {}\r\n";
+    private static final String NAME_INPUT = "inputs";
+    private String name;
+    private List<TFLayer> layerList;
+    private TFLayer lastLayer;
     int[] inputShape;
-    int[] outputShape;
+    private int[] outputShape;
 
     public TFModel() {
         this.layerList = new ArrayList<>();
@@ -31,12 +30,12 @@ public class TFModel {
     public TFModel(CaffeModel caffeModel) {
         this();
         this.name = caffeModel.getName();
-        this.isTraining = "True";
-        this.reuse = "None";
         this.inputShape = Arrays.copyOfRange(caffeModel.getInputShape(), 1, 4);
         parseCaffeModel(caffeModel);
+        if (this.layerList.isEmpty()) return;
 
-        TFLayer layer = layerList.get(0);
+        lastLayer = layerList.get(layerList.size() - 1);
+        this.outputShape = lastLayer.outputShape;
     }
     private void parseCaffeModel(CaffeModel caffeModel) {
         Map<String, CaffeLayer> layerMap = caffeModel.getLayerMap();
@@ -68,12 +67,11 @@ public class TFModel {
             }
             q.addAll(nextLayers);
         }
-        this.outputShape = shape;
     }
 
-    public void generateCode(PrintStream out, String indentation) {
+    public void generateCode(PrintStream out, String indentation, String funcName) {
         out.print(indentation);
-        out.printf(MODEL_FUNCTION_SIGNATURE, this.outputShape[0], this.name);
+        out.printf(MODEL_FUNCTION_SIGNATURE, funcName, this.outputShape[0], this.name);
         indentation += INDENT_STRING;
 
         out.println();
@@ -87,5 +85,7 @@ public class TFModel {
             layer.generateCode(out, insideIndent);
             out.println();
         }
+        out.print(indentation);
+        out.printf(MODEL_FUNCTION_RETURN, this.lastLayer.output, this.name);
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class TFSqueezeLayer extends TFLayer {
-    private static final String INLINE = CodeGenerator.SNIPPETS.getString("layer.squeeze.inline");
+    private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.squeeze.inline");
     List<Integer> axis = new ArrayList<>();
     TFSqueezeLayer(CaffeLayer caffeLayer, int[] shape, Map<String, String> param) {
         super(caffeLayer, shape, param);

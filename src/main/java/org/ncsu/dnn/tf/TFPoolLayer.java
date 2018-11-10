@@ -8,7 +8,7 @@ import java.io.PrintStream;
 import java.util.Map;
 
 public class TFPoolLayer extends TFLayer {
-    private static final String INLINE = CodeGenerator.SNIPPETS.getString("layer.pool.inline");
+    private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.pool.inline");
     public static final int TYPE_MAX = 0;
     public static final int TYPE_AVE = 1;
     int type;
@@ -51,8 +51,8 @@ public class TFPoolLayer extends TFLayer {
             case TYPE_MAX: poolType = "max"; break;
             case TYPE_AVE: poolType = "avg"; break;
         }
-        out.printf(INLINE, indent, output, poolType, input, kernelHeight, kernelWidth,
-                stride > 1? ", stride=" + stride: "", scope);
+        out.printf(INLINE, indent, output, poolType, input,
+                kernelHeight, kernelWidth, stride, scope);
         return indent;
     }
 }

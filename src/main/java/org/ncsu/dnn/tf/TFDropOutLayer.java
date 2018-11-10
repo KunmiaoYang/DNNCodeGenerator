@@ -6,7 +6,7 @@ import java.io.PrintStream;
 import java.util.Map;
 
 public class TFDropOutLayer extends TFLayer {
-    private static final String INLINE = CodeGenerator.SNIPPETS.getString("layer.dropout.inline");
+    private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.dropout.inline");
     double ratio;
     TFDropOutLayer(CaffeLayer caffeLayer, int[] shape, Map<String, String> param) {
         super(caffeLayer, shape, param);

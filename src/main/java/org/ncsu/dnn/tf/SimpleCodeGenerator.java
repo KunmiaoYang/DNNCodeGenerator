@@ -5,16 +5,17 @@ import org.ncsu.dnn.caffe.CaffeModel;
 import java.io.*;
 import java.util.ResourceBundle;
 
-public class CodeGenerator {
-    public static final ResourceBundle SNIPPETS;
-    public static final String INDENT_STRING;
-    public static final String PY_WITH_SCOPE;
+public class SimpleCodeGenerator {
+    static final ResourceBundle SNIPPETS;
+    static final String INDENT_STRING = "  ";   // Indent with 2 spaces
+    private static final String PY_WITH_SCOPE;
+    private static final String SNIPPET_CHANGE_IMAGE_SIZE;
     static {
         SNIPPETS = ResourceBundle.getBundle("org.ncsu.dnn.tf.template.snippets");
-        INDENT_STRING = SNIPPETS.getString("indent");
         PY_WITH_SCOPE = SNIPPETS.getString("py.with.scope");
+        SNIPPET_CHANGE_IMAGE_SIZE = SNIPPETS.getString("model.changeImageSize");
     }
-    public static void appendFile(PrintStream out, File file) {
+    private static void appendFile(PrintStream out, File file) {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             for (String line = reader.readLine(); null != line; line = reader.readLine()) {
                 out.println(line);
@@ -25,14 +26,14 @@ public class CodeGenerator {
         }
     }
 
-    public static String generateWithScope(PrintStream out, String indentation, String func, String scope) {
+    static String generateWithScope(PrintStream out, String indentation, String func, String scope) {
         out.printf(PY_WITH_SCOPE, indentation, func, scope);
-        return indentation + CodeGenerator.INDENT_STRING;
+        return indentation + SimpleCodeGenerator.INDENT_STRING;
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        File header = new File(CodeGenerator.class.getResource("template/simpleHeader.txt").getFile());
-        File footer = new File(CodeGenerator.class.getResource("template/simpleFooter.txt").getFile());
+        File header = new File(SimpleCodeGenerator.class.getResource("template/simpleHeader.txt").getFile());
+        File footer = new File(SimpleCodeGenerator.class.getResource("template/simpleFooter.txt").getFile());
         File test = new File("./output/test.py");
         CaffeModel caffeModel = CaffeModel.createFromFile(new File(args[0]));
         if (null == caffeModel) throw new FileNotFoundException("Caffe model file not found!");
@@ -40,8 +41,11 @@ public class CodeGenerator {
         PrintStream out = new PrintStream(new BufferedOutputStream(new FileOutputStream(test)));
         appendFile(out, header);
         out.println();
-        tfModel.generateCode(System.out, "");
+        String funcName = args.length > 1? args[1]: "inception_v1";
+        tfModel.generateCode(out, "", funcName);
         out.println();
+        out.printf(SNIPPET_CHANGE_IMAGE_SIZE, funcName, tfModel.inputShape[1]);
+
         appendFile(out, footer);
         out.close();
     }

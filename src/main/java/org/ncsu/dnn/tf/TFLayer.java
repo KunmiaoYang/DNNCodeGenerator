@@ -9,8 +9,8 @@ import java.util.Map;
 public abstract class TFLayer {
     static final String KEY_INPUT = "input";
     static final String KEY_OUTPUT = "output";
-    private static final String SNIPPET_INIT = CodeGenerator.SNIPPETS.getString("layer.snippet.init");
-    private static final String SNIPPET_ADD = CodeGenerator.SNIPPETS.getString("layer.snippet.add");
+    private static final String SNIPPET_INIT = SimpleCodeGenerator.SNIPPETS.getString("layer.snippet.init");
+    private static final String SNIPPET_ADD = SimpleCodeGenerator.SNIPPETS.getString("layer.snippet.add");
     private static final String END_POINT = "end_point";
     private static final String DEFAULT_INPUT = "net";
     private static final String DEFAULT_OUTPUT = "net";

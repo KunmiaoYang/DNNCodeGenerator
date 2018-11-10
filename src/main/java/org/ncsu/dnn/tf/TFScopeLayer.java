@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.ncsu.dnn.tf.CodeGenerator.*;
+import static org.ncsu.dnn.tf.SimpleCodeGenerator.*;
 
 public class TFScopeLayer extends TFLayer {
     List<TFLayer> layerList;

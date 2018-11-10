@@ -8,10 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.ncsu.dnn.tf.CodeGenerator.generateWithScope;
+import static org.ncsu.dnn.tf.SimpleCodeGenerator.generateWithScope;
 
 public class TFConcatLayer extends TFLayer {
-    private static final String INLINE = CodeGenerator.SNIPPETS.getString("layer.concat.inline");
+    private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.concat.inline");
     private static final String BRANCH_PREFIX = "branch_";
     List<TFLayer> branchList;
     List<String> branchOutputs;

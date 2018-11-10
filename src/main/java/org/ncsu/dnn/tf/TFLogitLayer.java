@@ -5,7 +5,7 @@ import org.ncsu.dnn.caffe.CaffeLayer;
 import java.io.PrintStream;
 import java.util.Map;
 
-import static org.ncsu.dnn.tf.CodeGenerator.generateWithScope;
+import static org.ncsu.dnn.tf.SimpleCodeGenerator.generateWithScope;
 
 public class TFLogitLayer extends TFLayer {
     private static final String DEFAULT_OUTPUT = "logits";
