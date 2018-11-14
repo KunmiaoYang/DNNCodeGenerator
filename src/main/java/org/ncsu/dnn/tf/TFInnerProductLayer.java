@@ -44,13 +44,11 @@ public class TFInnerProductLayer extends TFLayer {
         if (!hasNormal) option += OPTION_NO_NORMALIZER;
         String outputClasses = this == lastOuputNumber ? "num_classes": String.valueOf(outputShape[0]);
         String indent = context.get(KEY_INDENT);
-        out.printf(INLINE, indent + INDENT_STRING, output, input,
+        out.printf(INLINE, indent, output, input,
                 outputClasses, kernelHeight, kernelWidth, option);
 
-        context.put(KEY_INDENT, indent + INDENT_STRING);
         squeezeLayer.inlineCode(out,context);
 
-        context.put(KEY_INDENT, indent);
         context.put(KEY_SCOPE_PATH, super.getParaentScope());
     }
 

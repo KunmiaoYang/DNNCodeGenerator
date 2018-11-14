@@ -3,6 +3,8 @@ package org.ncsu.dnn.tf;
 import java.io.PrintStream;
 import java.util.Map;
 
+import static org.ncsu.dnn.tf.TFModel.KEY_INDENT_STRING;
+
 public class TFSoftmaxLayer extends TFLayer {
     private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.softmax.inline");
     TFSoftmaxLayer(Param param) {
@@ -15,6 +17,11 @@ public class TFSoftmaxLayer extends TFLayer {
 
     @Override
     void generateCode(PrintStream out, Map<String, String> context) {
-        out.printf(INLINE, context.get(KEY_INDENT), name, input, name);
+        String indent = context.get(KEY_INDENT_BASE);
+        String indentString = context.get(KEY_INDENT_STRING);
+        for (char c: name.toCharArray()) {
+            if (c == '/') indent += indentString;
+        }
+        out.printf(INLINE, indent, name, input, name);
     }
 }
