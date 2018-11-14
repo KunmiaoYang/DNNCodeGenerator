@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TFSqueezeLayer extends TFLayer {
+    public static final String DEFAULT_SQUEEZE_NAME = "SpatialSqueeze";
     private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.squeeze.inline");
     List<Integer> axis = new ArrayList<>();
     TFSqueezeLayer(Param param) {
@@ -24,10 +25,5 @@ public class TFSqueezeLayer extends TFLayer {
     String inlineCode(PrintStream out, String indent, String scope) {
         out.printf(INLINE, indent, output, input, axis.toString(), name);
         return indent;
-    }
-
-    @Override
-    void generateCode(PrintStream out, String indent) {
-
     }
 }

@@ -79,12 +79,12 @@ public class CaffeModel {
         for (ASTNode node: nodeList) {
             String name = node.getFirstValue(KEY_NAME);
             CaffeLayer layer = this.layerMap.get(name);
-            layer.bottom = createLayerList(node.get(KEY_BOTTOM));
-            for (CaffeLayer prev: layer.bottom) {
-                prev.next.add(layer);
-            }
             layer.top = this.layerMap.get(node.getFirstValue(KEY_TOP));
             layer.top.group.add(layer);
+            layer.bottom = createLayerList(node.get(KEY_BOTTOM));
+            for (CaffeLayer prev: layer.bottom) {
+                if (prev != layer.top) prev.next.add(layer.top);
+            }
         }
         for (Map.Entry<String, CaffeLayer> entry: layerMap.entrySet()) {
             CaffeLayer layer = entry.getValue();
@@ -141,5 +141,9 @@ public class CaffeModel {
 
     public int[] getInputShape() {
         return inputShape;
+    }
+
+    public CaffeLayer getInputLayer() {
+        return layerMap.get(input);
     }
 }

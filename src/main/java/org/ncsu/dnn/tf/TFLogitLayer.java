@@ -31,7 +31,7 @@ public class TFLogitLayer extends TFLayer {
                     break;
                 case Reshape:
                     this.squeezeLayer = new TFSqueezeLayer(subParam);
-                    this.squeezeLayer.name = "SpatialSqueeze";
+                    this.squeezeLayer.name = TFSqueezeLayer.DEFAULT_SQUEEZE_NAME;
                     this.outputShape = squeezeLayer.outputShape;
                     this.output = squeezeLayer.output;
                     break;

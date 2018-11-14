@@ -7,8 +7,10 @@ import java.io.PrintStream;
 import java.util.*;
 
 import static org.ncsu.dnn.tf.SimpleCodeGenerator.*;
+import static org.ncsu.dnn.tf.TFConcatLayer.BRANCH_PREFIX;
 import static org.ncsu.dnn.tf.TFLayer.KEY_INPUT;
 import static org.ncsu.dnn.tf.TFLayer.KEY_NAME;
+import static org.ncsu.dnn.tf.TFLayer.KEY_OUTPUT;
 
 public class TFModel {
     private static final String MODEL_FUNCTION_SIGNATURE = SNIPPETS.getString("model.function.signature");
@@ -19,7 +21,6 @@ public class TFModel {
     private static final String SLIM_ARG_SCOPE_PARAMETERS = "default_arg_scope(is_training)";
     private static final String INIT_POINTS = "end_points = {}\r\n";
     private static final String NAME_INPUT = "inputs";
-    private static final String BRANCH_PREFIX = "Branch_";
     private String name;
     Map<String, TFLayer> layers;
     private TFLayer lastLayer;
@@ -41,15 +42,40 @@ public class TFModel {
     private void parseCaffeModel(CaffeModel caffeModel) {
         Deque<Param> q = new ArrayDeque<>();
         Set<String> visited = new HashSet<>();
-        TFLayerFactory layerFactory = new TFLayerFactory();
         Param param = new Param(this);
         param.layerMap = caffeModel.getLayerMap();
         param.shape = this.inputShape.clone();
         param.put(KEY_INPUT, NAME_INPUT);
-        q.offerLast(caffeModel.getInput());
+        param.caffeLayer = caffeModel.getInputLayer();
+        param.layerFactory = new TFLayerFactory(this);
+        q.offerLast(param);
         while (!q.isEmpty()) {
-            int size = q.size();
-            addLayer(q, param, visited, layerFactory);
+            param = q.pollFirst();
+            System.out.println(param.getName());
+            if (null == param.caffeLayer) return;
+            visited.add(param.getName());
+            TFLayer layer = param.layerFactory.create(param);
+            if (null != layer) {
+                this.layers.put(layer.name, layer);
+                param.shape = layer.outputShape;
+                param.put(KEY_INPUT, layer.output);
+                layer.name = param.getName();
+                this.lastLayer = layer;
+            }
+            int nextCount = param.caffeLayer.next.size();
+            if (nextCount == 1) {
+                param.caffeLayer = param.caffeLayer.next.get(0);
+                if (!layers.containsKey(param.caffeLayer.getName()))
+                    q.offerLast(param);
+            } else if (nextCount > 1){
+                for (int i = 0; i < nextCount; i++) {
+                    Param branchParam = new Param(param);
+                    branchParam.caffeLayer = param.caffeLayer.next.get(i);
+                    branchParam.put(KEY_OUTPUT, BRANCH_PREFIX + i);
+                    if (!layers.containsKey(branchParam.caffeLayer.getName()))
+                        q.offerLast(branchParam);
+                }
+            }
         }
     }
 

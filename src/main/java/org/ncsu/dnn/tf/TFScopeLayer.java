@@ -15,12 +15,11 @@ public class TFScopeLayer extends TFLayer {
     TFScopeLayer(Param param) {
         super(param);
         this.layerList = new ArrayList<>();
-        TFLayerFactory layerFactory = new TFLayerFactory();
         Param subParam = new Param(param);
         for (CaffeLayer branch: param.caffeLayer.layerMap.values()) {
             if (branch.top != branch) continue;
             subParam.caffeLayer = branch;
-            TFLayer layer = layerFactory.create(subParam);
+            TFLayer layer = param.layerFactory.create(subParam);
             this.layerList.add(layer);
             System.arraycopy(layer.outputShape, 0, this.outputShape, 0, 3);
             param.put(KEY_INPUT, layer.output);

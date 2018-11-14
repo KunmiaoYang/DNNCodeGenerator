@@ -38,6 +38,7 @@ public class CaffeLayer {
 
     private CaffeLayerType getType(String val) {
         if (val.equalsIgnoreCase("Convolution")) return Convolution;
+        if (val.equalsIgnoreCase("InnerProduct")) return InnerProduct;
         if (val.equalsIgnoreCase("BatchNorm")) return BatchNorm;
         if (val.equalsIgnoreCase("Scale")) return Scale;
         if (val.equalsIgnoreCase("ReLU")) return ReLU;
