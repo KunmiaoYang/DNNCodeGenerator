@@ -13,6 +13,6 @@ public class TFDropOutLayer extends TFLayer {
 
     @Override
     void inlineCode(PrintStream out, Map<String, String> context) {
-        out.printf(INLINE, context.get(KEY_INDENT), output, input, String.valueOf(ratio), name);
+        out.printf(INLINE, context.get(KEY_INDENT), output, input, String.valueOf(ratio), context.get(KEY_SCOPE_STRING));
     }
 }

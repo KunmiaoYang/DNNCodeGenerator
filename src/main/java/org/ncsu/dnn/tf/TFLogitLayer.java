@@ -22,11 +22,11 @@ public class TFLogitLayer extends TFLayer {
                     this.output = dropOutLayer.output;
                     break;
                 case Convolution:
-                    param.put(KEY_OUTPUT, DEFAULT_OUTPUT);
+                    subParam.put(KEY_OUTPUT, DEFAULT_OUTPUT);
                     this.convLayer = new TFConvLayer(subParam);
                     this.outputShape = convLayer.outputShape;
                     this.output = convLayer.output;
-                    param.put(KEY_INPUT, convLayer.output);
+                    subParam.put(KEY_INPUT, convLayer.output);
                     break;
                 case Reshape:
                     this.squeezeLayer = new TFSqueezeLayer(subParam);
@@ -38,11 +38,24 @@ public class TFLogitLayer extends TFLayer {
         }
     }
 
+    String getRelativeScope(String parent, String scope) {
+        if (parent.equals("")) return scope;
+        return scope.substring(parent.length() + 1);
+    }
+
     @Override
     void inlineCode(PrintStream out, Map<String, String> context) {
-//        String inside = generateWithScope(out, indent, TFModel.TF_VARIABLE_SCOPE, scope);
+        context.put(KEY_SCOPE_STRING, getRelativeScope(name, dropOutLayer.name));
         dropOutLayer.inlineCode(out, context);
+        context.put(KEY_SCOPE_STRING, addQuotes(getRelativeScope(name, convLayer.name)));
         convLayer.inlineCode(out,context);
         squeezeLayer.inlineCode(out, context);
+
+        context.put(KEY_SCOPE_PATH, super.getParaentScope());
+    }
+
+    @Override
+    String getParaentScope() {
+        return this.name;
     }
 }

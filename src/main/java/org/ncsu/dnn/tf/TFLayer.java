@@ -47,7 +47,7 @@ public abstract class TFLayer {
             context.put(KEY_SCOPE_STRING, END_POINT);
         } else {
             changeScope(out, context, parentScope);
-            context.put(KEY_SCOPE_STRING, this.name.substring(this.name.lastIndexOf('/') + 1));
+            context.put(KEY_SCOPE_STRING, addQuotes(this.name.substring(this.name.lastIndexOf('/') + 1)));
         }
         this.inlineCode(out, context);
         if (context.get(KEY_SCOPE_PATH).equals(""))
@@ -96,6 +96,10 @@ public abstract class TFLayer {
             if (c == '/') indent += indentString;
         }
         return indent;
+    }
+
+    String addQuotes(String s) {
+        return "'" + s + "'";
     }
 
     @Override
