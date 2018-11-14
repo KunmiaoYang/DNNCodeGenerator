@@ -3,8 +3,8 @@ package org.ncsu.dnn.tf;
 import org.ncsu.dnn.caffe.CaffeLayer;
 
 import java.io.PrintStream;
+import java.util.Map;
 
-import static com.sun.xml.internal.messaging.saaj.packaging.mime.internet.MimeBodyPart.INLINE;
 import static org.ncsu.dnn.tf.TFConvLayer.*;
 
 public class TFInnerProductLayer extends TFLayer {
@@ -36,14 +36,14 @@ public class TFInnerProductLayer extends TFLayer {
     }
 
     @Override
-    String inlineCode(PrintStream out, String indent, String scope) {
+    void inlineCode(PrintStream out, Map<String, String> context) {
         String option = "";
         if (!hasActivation) option += OPTION_NO_ACTIVATION;
         if (!hasNormal) option += OPTION_NO_NORMALIZER;
         String outputClasses = this == lastOuputNumber ? "num_classes": String.valueOf(outputShape[0]);
-        out.printf(TFConvLayer.INLINE, indent, output, input, outputClasses, kernelHeight, kernelWidth,
-                option, scope);
-        squeezeLayer.inlineCode(out, indent, scope);
-        return indent;
+        out.printf(TFConvLayer.INLINE, context.get(KEY_INDENT),
+                output, input, outputClasses, kernelHeight, kernelWidth,
+                option, context.get(KEY_SCOPE_STRING));
+        squeezeLayer.inlineCode(out,context);
     }
 }

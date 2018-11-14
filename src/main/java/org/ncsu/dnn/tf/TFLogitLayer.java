@@ -3,8 +3,7 @@ package org.ncsu.dnn.tf;
 import org.ncsu.dnn.caffe.CaffeLayer;
 
 import java.io.PrintStream;
-
-import static org.ncsu.dnn.tf.SimpleCodeGenerator.generateWithScope;
+import java.util.Map;
 
 public class TFLogitLayer extends TFLayer {
     private static final String DEFAULT_OUTPUT = "logits";
@@ -40,11 +39,10 @@ public class TFLogitLayer extends TFLayer {
     }
 
     @Override
-    String inlineCode(PrintStream out, String indent, String scope) {
-        String inside = generateWithScope(out, indent, TFModel.TF_VARIABLE_SCOPE, scope);
-        dropOutLayer.inlineCode(out, inside, "'" + dropOutLayer.name + "'");
-        convLayer.inlineCode(out, inside, "'" + convLayer.name + "'");
-        squeezeLayer.inlineCode(out, inside, scope);
-        return inside;
+    void inlineCode(PrintStream out, Map<String, String> context) {
+//        String inside = generateWithScope(out, indent, TFModel.TF_VARIABLE_SCOPE, scope);
+        dropOutLayer.inlineCode(out, context);
+        convLayer.inlineCode(out,context);
+        squeezeLayer.inlineCode(out, context);
     }
 }

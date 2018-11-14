@@ -1,10 +1,10 @@
 package org.ncsu.dnn.tf;
 
-import org.ncsu.dnn.caffe.CaffeLayer;
 import org.ncsu.dnn.caffe.ParseException;
 import org.ncsu.dnn.caffe.Token;
 
 import java.io.PrintStream;
+import java.util.Map;
 
 public class TFPoolLayer extends TFLayer {
     private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.pool.inline");
@@ -44,14 +44,13 @@ public class TFPoolLayer extends TFLayer {
     }
 
     @Override
-    public String inlineCode(PrintStream out, String indent, String scope) {
+    public void inlineCode(PrintStream out, Map<String, String> context) {
         String poolType = "";
         switch (this.type) {
             case TYPE_MAX: poolType = "max"; break;
             case TYPE_AVE: poolType = "avg"; break;
         }
-        out.printf(INLINE, indent, output, poolType, input,
-                kernelHeight, kernelWidth, stride, scope);
-        return indent;
+        out.printf(INLINE, context.get(KEY_INDENT), output, poolType, input,
+                kernelHeight, kernelWidth, stride, context.get(KEY_SCOPE_STRING));
     }
 }

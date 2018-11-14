@@ -1,11 +1,10 @@
 package org.ncsu.dnn.tf;
 
-import org.ncsu.dnn.caffe.CaffeLayer;
-
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class TFSqueezeLayer extends TFLayer {
     public static final String DEFAULT_SQUEEZE_NAME = "SpatialSqueeze";
@@ -22,8 +21,7 @@ public class TFSqueezeLayer extends TFLayer {
     }
 
     @Override
-    String inlineCode(PrintStream out, String indent, String scope) {
-        out.printf(INLINE, indent, output, input, axis.toString(), name);
-        return indent;
+    void inlineCode(PrintStream out, Map<String, String> context) {
+        out.printf(INLINE, context.get(KEY_INDENT), output, input, axis.toString(), name);
     }
 }

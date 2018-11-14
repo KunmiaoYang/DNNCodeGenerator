@@ -5,8 +5,9 @@ import org.ncsu.dnn.caffe.CaffeLayer;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import static org.ncsu.dnn.tf.SimpleCodeGenerator.generateWithScope;
+import static org.ncsu.dnn.tf.TFModel.KEY_INDENT_STRING;
 
 public class TFConcatLayer extends TFLayer {
     private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.concat.inline");
@@ -32,13 +33,14 @@ public class TFConcatLayer extends TFLayer {
     }
 
     @Override
-    String inlineCode(PrintStream out, String indent, String scope) {
-        String inside = generateWithScope(out, indent, TFModel.TF_VARIABLE_SCOPE, scope);
-//        for (TFLayer branch: branchList) {
-//            branch.inlineCode(out, inside, "'" + branch.name + "'");
-//        }
-        out.printf(INLINE, inside, output, outputShape.length, branchOutputs.toString());
-        return indent;
+    void inlineCode(PrintStream out, Map<String, String> context) {
+//        String inside = generateWithScope(out, indent, TFModel.TF_VARIABLE_SCOPE, scope);
+        out.printf(INLINE, context.get(KEY_INDENT) + context.get(KEY_INDENT_STRING),
+                output, outputShape.length, branchOutputs.toString());
     }
 
+    @Override
+    String getParaentScope() {
+        return this.name;
+    }
 }

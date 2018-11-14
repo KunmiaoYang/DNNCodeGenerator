@@ -1,6 +1,7 @@
 package org.ncsu.dnn.tf;
 
 import java.io.PrintStream;
+import java.util.Map;
 
 public class TFInputLayer extends TFLayer {
     TFInputLayer(Param param) {
@@ -9,7 +10,6 @@ public class TFInputLayer extends TFLayer {
     }
 
     @Override
-    String inlineCode(PrintStream out, String indent, String scope) {
-        return null;
+    void inlineCode(PrintStream out, Map<String, String> context) {
     }
 }

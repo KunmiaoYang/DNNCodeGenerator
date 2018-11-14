@@ -8,18 +8,19 @@ import java.util.*;
 
 import static org.ncsu.dnn.tf.SimpleCodeGenerator.*;
 import static org.ncsu.dnn.tf.TFConcatLayer.BRANCH_PREFIX;
-import static org.ncsu.dnn.tf.TFLayer.KEY_INPUT;
-import static org.ncsu.dnn.tf.TFLayer.KEY_OUTPUT;
+import static org.ncsu.dnn.tf.TFLayer.*;
 
 public class TFModel {
     private static final String MODEL_FUNCTION_SIGNATURE = SNIPPETS.getString("model.function.signature");
     private static final String MODEL_FUNCTION_RETURN = SNIPPETS.getString("model.function.return");
+    private static final String PY_WITH_SCOPE = SNIPPETS.getString("py.with.scope");
     static final String TF_VARIABLE_SCOPE = "tf.variable_scope";
     private static final String TF_VARIABLE_SCOPE_PARAMETERS = "scope, \"Model\", reuse=reuse";
     private static final String SLIM_ARG_SCOPE = "slim.arg_scope";
     private static final String SLIM_ARG_SCOPE_PARAMETERS = "default_arg_scope(is_training)";
     private static final String INIT_POINTS = "end_points = {}\r\n";
     private static final String NAME_INPUT = "inputs";
+    static final String KEY_INDENT_STRING = "indentString";
     private String name;
     Map<String, TFLayer> layers;
     private TFLayer lastLayer;
@@ -107,11 +108,20 @@ public class TFModel {
         out.println();
         out.println(insideIndent + INIT_POINTS);
 
+        Map<String, String> context = new HashMap<>();
+        context.put(KEY_INDENT_BASE, insideIndent);
+        context.put(KEY_INDENT_STRING, INDENT_STRING);
+        context.put(KEY_SCOPE_PATH, "");
         for (TFLayer layer: this.layers.values()) {
-            layer.generateCode(out, insideIndent);
+            layer.generateCode(out, context);
             out.println();
         }
         out.print(indentation);
         out.printf(MODEL_FUNCTION_RETURN, this.lastLayer.output, this.name);
+    }
+
+    static String generateWithScope(PrintStream out, String indentation, String func, String scope) {
+        out.printf(PY_WITH_SCOPE, indentation, func, scope);
+        return indentation + SimpleCodeGenerator.INDENT_STRING;
     }
 }

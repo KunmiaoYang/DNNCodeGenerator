@@ -5,9 +5,7 @@ import org.ncsu.dnn.caffe.CaffeLayer;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.ncsu.dnn.caffe.CaffeLayerType.Concat;
-import static org.ncsu.dnn.tf.SimpleCodeGenerator.generateWithScope;
+import java.util.Map;
 
 public class TFScopeLayer extends TFLayer {
     List<TFLayer> layerList;
@@ -42,11 +40,10 @@ public class TFScopeLayer extends TFLayer {
 //    }
 
     @Override
-    String inlineCode(PrintStream out, String indent, String scope) {
-        String inside = generateWithScope(out, indent, TFModel.TF_VARIABLE_SCOPE, scope);
-        for (TFLayer layer: layerList) {
-            layer.inlineCode(out, inside, "'" + layer.name + "'");
-        }
-        return indent;
+    void inlineCode(PrintStream out, Map<String, String> context) {
+//        String inside = generateWithScope(out, indent, TFModel.TF_VARIABLE_SCOPE, scope);
+//        for (TFLayer layer: layerList) {
+//            layer.inlineCode(out, context);
+//        }
     }
 }

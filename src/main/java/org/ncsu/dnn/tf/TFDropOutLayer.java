@@ -1,8 +1,7 @@
 package org.ncsu.dnn.tf;
 
-import org.ncsu.dnn.caffe.CaffeLayer;
-
 import java.io.PrintStream;
+import java.util.Map;
 
 public class TFDropOutLayer extends TFLayer {
     private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.dropout.inline");
@@ -13,8 +12,7 @@ public class TFDropOutLayer extends TFLayer {
     }
 
     @Override
-    String inlineCode(PrintStream out, String indent, String scope) {
-        out.printf(INLINE, indent, output, input, String.valueOf(ratio), name);
-        return indent;
+    void inlineCode(PrintStream out, Map<String, String> context) {
+        out.printf(INLINE, context.get(KEY_INDENT), output, input, String.valueOf(ratio), name);
     }
 }

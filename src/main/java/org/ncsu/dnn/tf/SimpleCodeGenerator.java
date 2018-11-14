@@ -8,11 +8,9 @@ import java.util.ResourceBundle;
 public class SimpleCodeGenerator {
     static final ResourceBundle SNIPPETS;
     static final String INDENT_STRING = "  ";   // Indent with 2 spaces
-    private static final String PY_WITH_SCOPE;
     private static final String SNIPPET_CHANGE_IMAGE_SIZE;
     static {
         SNIPPETS = ResourceBundle.getBundle("org.ncsu.dnn.tf.template.snippets");
-        PY_WITH_SCOPE = SNIPPETS.getString("py.with.scope");
         SNIPPET_CHANGE_IMAGE_SIZE = SNIPPETS.getString("model.changeImageSize");
     }
     private static void appendFile(PrintStream out, File file) {
@@ -24,11 +22,6 @@ public class SimpleCodeGenerator {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    static String generateWithScope(PrintStream out, String indentation, String func, String scope) {
-        out.printf(PY_WITH_SCOPE, indentation, func, scope);
-        return indentation + SimpleCodeGenerator.INDENT_STRING;
     }
 
     public static void main(String[] args) throws FileNotFoundException {
