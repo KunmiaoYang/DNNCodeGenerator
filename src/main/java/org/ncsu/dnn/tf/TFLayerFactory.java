@@ -15,6 +15,7 @@ public class TFLayerFactory {
             case Convolution: return new TFConvLayer(param);
             case Dropout: return new TFDropOutLayer(param);
             case InnerProduct: return new TFInnerProductLayer(param);
+            case Input: return new TFInputLayer(param);
             case Group: return new TFLogitLayer(param);
             case Pooling: return new TFPoolLayer(param);
             case Scope: return new TFScopeLayer(param);

@@ -32,17 +32,18 @@ public class TFConcatLayer extends TFLayer {
 //            layer.setOutput(branchOutput);
             this.branchList.add(layer);
             this.outputShape[0] += layer.outputShape[0];
-            param.model.layers.remove(layer.name);
+//            param.model.layers.remove(layer.name);
         }
         this.output = DEFAULT_OUTPUT;
+        param.put(KEY_OUTPUT, DEFAULT_OUTPUT);
     }
 
     @Override
     String inlineCode(PrintStream out, String indent, String scope) {
         String inside = generateWithScope(out, indent, TFModel.TF_VARIABLE_SCOPE, scope);
-        for (TFLayer branch: branchList) {
-            branch.inlineCode(out, inside, "'" + branch.name + "'");
-        }
+//        for (TFLayer branch: branchList) {
+//            branch.inlineCode(out, inside, "'" + branch.name + "'");
+//        }
         out.printf(INLINE, inside, output, outputShape.length, branchOutputs.toString());
         return indent;
     }
