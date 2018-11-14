@@ -48,9 +48,9 @@ public class TFModel {
         param.put(KEY_INPUT, NAME_INPUT);
         param.caffeLayer = caffeModel.getInputLayer();
         param.layerFactory = new TFLayerFactory(this);
-        q.offerLast(param);
+        q.push(param);
         while (!q.isEmpty()) {
-            param = q.pollFirst();
+            param = q.pop();
             System.out.println(param.getName());
             if (null == param.caffeLayer) return;
             if (param.visited.contains(param.caffeLayer.getName()) || !checkBottom(param)) continue;
@@ -68,15 +68,21 @@ public class TFModel {
             if (nextCount == 1) {
                 param.caffeLayer = param.caffeLayer.next.get(0);
                 if (layers.containsKey(param.caffeLayer.getName())) continue;
-                q.offerLast(param);
+                q.push(param);
             } else if (nextCount > 1){
-                for (int i = 0; i < nextCount; i++) {
+                // Use a temporary stack to reverse the next layers before push them into q
+                // If we directly push them reversely into q, the branch index would be reversed,
+                // so I need to give them branch index before I reverse them.Therefore I need to
+                // store them after give them index and then reverse them. Thus I used this stack.
+                Deque<Param> stack = new ArrayDeque<>(nextCount);
+                for (CaffeLayer nextLayer: param.caffeLayer.next) {
                     Param branchParam = new Param(param);
-                    branchParam.caffeLayer = param.caffeLayer.next.get(i);
+                    branchParam.caffeLayer = nextLayer;
                     branchParam.put(KEY_OUTPUT, BRANCH_PREFIX + branchIndex++);
                     if (layers.containsKey(branchParam.caffeLayer.getName())) continue;
-                    q.offerLast(branchParam);
+                    stack.push(branchParam);
                 }
+                while (!stack.isEmpty()) q.push(stack.pop());
             }
         }
     }
