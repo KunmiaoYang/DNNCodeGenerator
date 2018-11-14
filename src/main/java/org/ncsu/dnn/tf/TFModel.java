@@ -8,6 +8,7 @@ import java.util.*;
 
 import static org.ncsu.dnn.tf.SimpleCodeGenerator.*;
 import static org.ncsu.dnn.tf.TFLayer.KEY_INPUT;
+import static org.ncsu.dnn.tf.TFLayer.KEY_NAME;
 
 public class TFModel {
     private static final String MODEL_FUNCTION_SIGNATURE = SNIPPETS.getString("model.function.signature");
@@ -18,54 +19,72 @@ public class TFModel {
     private static final String SLIM_ARG_SCOPE_PARAMETERS = "default_arg_scope(is_training)";
     private static final String INIT_POINTS = "end_points = {}\r\n";
     private static final String NAME_INPUT = "inputs";
+    private static final String BRANCH_PREFIX = "Branch_";
     private String name;
-    private List<TFLayer> layerList;
+    Map<String, TFLayer> layers;
     private TFLayer lastLayer;
     int[] inputShape;
     private int[] outputShape;
 
     public TFModel() {
-        this.layerList = new ArrayList<>();
+        this.layers = new LinkedHashMap<>();
     }
     public TFModel(CaffeModel caffeModel) {
         this();
         this.name = caffeModel.getName();
         this.inputShape = Arrays.copyOfRange(caffeModel.getInputShape(), 1, 4);
         parseCaffeModel(caffeModel);
-        if (this.layerList.isEmpty()) return;
+        if (this.layers.isEmpty()) return;
 
-        lastLayer = layerList.get(layerList.size() - 1);
         this.outputShape = lastLayer.outputShape;
     }
     private void parseCaffeModel(CaffeModel caffeModel) {
-        Map<String, CaffeLayer> layerMap = caffeModel.getLayerMap();
-        CaffeLayer caffeLayer;
-        Deque<String> q = new ArrayDeque<>();
+        Deque<Param> q = new ArrayDeque<>();
         Set<String> visited = new HashSet<>();
-        q.offerLast(caffeModel.getInput());
         TFLayerFactory layerFactory = new TFLayerFactory();
-        int[] shape = this.inputShape.clone();
-        Map<String, String> param = new HashMap<>();
+        Param param = new Param(this);
+        param.layerMap = caffeModel.getLayerMap();
+        param.shape = this.inputShape.clone();
         param.put(KEY_INPUT, NAME_INPUT);
+        q.offerLast(caffeModel.getInput());
         while (!q.isEmpty()) {
+            int size = q.size();
+            addLayer(q, param, visited, layerFactory);
+        }
+    }
+
+    void addLayer(Deque<String> q, Param param, Set<String> visited, TFLayerFactory layerFactory) {
+        String layerName = q.pollFirst();
+        param.caffeLayer = param.layerMap.get(layerName);
+        if (null == param.caffeLayer) return;
+        visited.add(layerName);
+        TFLayer layer = layerFactory.create(param);
+        if (null != layer) {
+            this.layers.put(layer.name, layer);
+            param.shape = layer.outputShape;
+            param.put(KEY_INPUT, layer.output);
+            layer.name = layerName;
+            this.lastLayer = layer;
+        }
+        for (CaffeLayer next: param.caffeLayer.next) {
+            if (visited.contains(next.getName())) return;
+            q.add(next.getName());
+        }
+    }
+
+    @Deprecated
+    void addBranch(Deque<String> q, Param param) {
+        int i, size = q.size();
+        Param subParam = new Param(param);
+        for (i = 0; i < size; i++) {
             String layerName = q.pollFirst();
-            caffeLayer = layerMap.get(layerName);
-            if (null == caffeLayer) continue;
-            visited.add(layerName);
-            TFLayer layer = layerFactory.create(caffeLayer, shape, param);
-            if (null != layer) {
-                this.layerList.add(layer);
-                shape = layer.outputShape;
-                param.put(KEY_INPUT, layer.output);
-                layer.name = layerName;
-            }
-            Set<String> nextLayers = new HashSet<>();
-            for (CaffeLayer next: caffeLayer.next) {
-                String nextRoot = next.getRootName();
-                if (visited.contains(nextRoot)) continue;
-                nextLayers.add(nextRoot);
-            }
-            q.addAll(nextLayers);
+            subParam.caffeLayer = param.layerMap.get(layerName);
+            String nextName = subParam.caffeLayer.getName();
+            String[] path = nextName.split("/");
+            String branchName = path.length > 1? path[1]: BRANCH_PREFIX + i;
+            subParam.put(KEY_NAME, branchName);
+            TFScopeLayer branchLayer = new TFScopeLayer(subParam);
+            this.layers.put(branchName, branchLayer);
         }
     }
 
@@ -81,7 +100,7 @@ public class TFModel {
         out.println();
         out.println(insideIndent + INIT_POINTS);
 
-        for (TFLayer layer: this.layerList) {
+        for (TFLayer layer: this.layers.values()) {
             layer.generateCode(out, insideIndent);
             out.println();
         }

@@ -1,9 +1,9 @@
 package org.ncsu.dnn.tf;
 
 import org.ncsu.dnn.caffe.CaffeLayer;
+import org.ncsu.dnn.caffe.Token;
 
 import java.io.PrintStream;
-import java.util.Map;
 
 public class TFConvLayer extends TFLayer {
     private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.conv.inline");
@@ -14,18 +14,24 @@ public class TFConvLayer extends TFLayer {
     private int stride;
     private boolean hasNormal, hasActivation;
 
-    TFConvLayer(CaffeLayer caffeLayer, int[] shape, Map<String, String> param) {
-        super(caffeLayer, shape, param);
+    TFConvLayer(Param param) {
+        super(param);
         last = this;
-        this.kernelHeight = Integer.parseInt(caffeLayer.paramMap.get("convolution_param.kernel_size").getVal());
-        this.kernelWidth = kernelHeight;
-        this.stride = Integer.parseInt(caffeLayer.paramMap.get("convolution_param.stride").getVal());
-        this.outputShape[0] = Integer.parseInt(caffeLayer.paramMap.get("convolution_param.num_output").getVal());
+        Token kernelSize = param.caffeLayer.paramMap.get("convolution_param.kernel_size");
+        if (kernelSize != null) {
+            this.kernelHeight = Integer.parseInt(kernelSize.getVal());
+            this.kernelWidth = kernelHeight;
+        } else {
+            this.kernelHeight = Integer.parseInt(param.caffeLayer.paramMap.get("convolution_param.kernel_h").getVal());
+            this.kernelWidth = Integer.parseInt(param.caffeLayer.paramMap.get("convolution_param.kernel_w").getVal());
+        }
+        this.stride = Integer.parseInt(param.caffeLayer.paramMap.get("convolution_param.stride").getVal());
+        this.outputShape[0] = Integer.parseInt(param.caffeLayer.paramMap.get("convolution_param.num_output").getVal());
         this.outputShape[1] /= stride;
         this.outputShape[2] /= stride;
         this.hasNormal = false;
         this.hasActivation = false;
-        for (CaffeLayer subLayer: caffeLayer.group) {
+        for (CaffeLayer subLayer: param.caffeLayer.group) {
             switch (subLayer.type) {
                 case BatchNorm:
                     hasNormal = true;

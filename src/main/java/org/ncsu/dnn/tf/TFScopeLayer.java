@@ -5,25 +5,42 @@ import org.ncsu.dnn.caffe.CaffeLayer;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import static org.ncsu.dnn.tf.SimpleCodeGenerator.*;
+import static org.ncsu.dnn.caffe.CaffeLayerType.Concat;
+import static org.ncsu.dnn.tf.SimpleCodeGenerator.generateWithScope;
 
 public class TFScopeLayer extends TFLayer {
     List<TFLayer> layerList;
 
-    TFScopeLayer(CaffeLayer caffeLayer, int[] shape, Map<String, String> param) {
-        super(caffeLayer, shape, param);
+    TFScopeLayer(Param param) {
+        super(param);
         this.layerList = new ArrayList<>();
         TFLayerFactory layerFactory = new TFLayerFactory();
-        for (CaffeLayer branch: caffeLayer.layerMap.values()) {
+        Param subParam = new Param(param);
+        for (CaffeLayer branch: param.caffeLayer.layerMap.values()) {
             if (branch.top != branch) continue;
-            TFLayer layer = layerFactory.create(branch, this.outputShape, param);
+            subParam.caffeLayer = branch;
+            TFLayer layer = layerFactory.create(subParam);
             this.layerList.add(layer);
             System.arraycopy(layer.outputShape, 0, this.outputShape, 0, 3);
             param.put(KEY_INPUT, layer.output);
         }
     }
+
+//    TFScopeLayer (Param param) {
+//        super(param);
+//        this.layerList = new ArrayList<>();
+//        TFLayerFactory layerFactory = new TFLayerFactory();
+//        while (null != param.caffeLayer && Concat != param.caffeLayer.type) {
+//            TFLayer layer = layerFactory.create(param);
+//            if (null == layer) break;
+//            this.layerList.add(layer);
+//            param.shape = layer.outputShape;
+//            param.put(KEY_INPUT, layer.output);
+//            if (param.caffeLayer.next.size() > 1) layerList.add(TFModel.addBranch(param));
+//
+//        }
+//    }
 
     @Override
     String inlineCode(PrintStream out, String indent, String scope) {

@@ -8,7 +8,7 @@ public class CaffeLayer {
     private String name;
     public CaffeLayerType type;
     public List<CaffeLayer> next;
-    List<CaffeLayer> bottom;
+    public List<CaffeLayer> bottom;
     public List<CaffeLayer> group;
     public CaffeLayer top;
     public Map<String, CaffeLayer> layerMap;

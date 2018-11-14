@@ -1,12 +1,10 @@
 package org.ncsu.dnn.tf;
 
-import org.ncsu.dnn.caffe.CaffeLayer;
-
 import java.io.PrintStream;
 import java.util.Arrays;
-import java.util.Map;
 
 public abstract class TFLayer {
+    static final String KEY_NAME = "name";
     static final String KEY_INPUT = "input";
     static final String KEY_OUTPUT = "output";
     private static final String SNIPPET_INIT = SimpleCodeGenerator.SNIPPETS.getString("layer.snippet.init");
@@ -19,14 +17,14 @@ public abstract class TFLayer {
     int[] outputShape;
     abstract String inlineCode(PrintStream out, String indent, String scope);
 
-    TFLayer(CaffeLayer caffeLayer, int[] shape, Map<String, String> param) {
+    TFLayer(Param param) {
         this.input = param.getOrDefault(KEY_INPUT, DEFAULT_INPUT);
         this.output = param.getOrDefault(KEY_OUTPUT, DEFAULT_OUTPUT);
-        this.name = caffeLayer.getName();
+        this.name = param.getOrDefault(KEY_NAME, param.caffeLayer.getName());
         if (this.name.contains("/")) {
             this.name = this.name.substring(this.name.lastIndexOf('/') + 1);
         }
-        this.outputShape = shape.clone();
+        this.outputShape = param.shape.clone();
     }
 
     void generateCode(PrintStream out, String indent) {

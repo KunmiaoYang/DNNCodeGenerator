@@ -5,7 +5,6 @@ import org.ncsu.dnn.caffe.ParseException;
 import org.ncsu.dnn.caffe.Token;
 
 import java.io.PrintStream;
-import java.util.Map;
 
 public class TFPoolLayer extends TFLayer {
     private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.pool.inline");
@@ -15,26 +14,26 @@ public class TFPoolLayer extends TFLayer {
     int kernelHeight, kernelWidth;
     int stride;
 
-    public TFPoolLayer(CaffeLayer caffeLayer, int[] shape, Map<String, String> param) {
-        super(caffeLayer, shape, param);
-        Token token = caffeLayer.paramMap.get("pooling_param.kernel_size");
+    public TFPoolLayer(Param param) {
+        super(param);
+        Token token = param.caffeLayer.paramMap.get("pooling_param.kernel_size");
         if (null != token) {
             this.kernelHeight = Integer.parseInt(token.getVal());
             this.kernelWidth = kernelHeight;
-        } else if ((token = caffeLayer.paramMap.get("pooling_param.global_pooling")) != null && token.getVal().equals("true")) {
-            this.kernelHeight = shape[1];
-            this.kernelWidth = shape[2];
+        } else if ((token = param.caffeLayer.paramMap.get("pooling_param.global_pooling")) != null && token.getVal().equals("true")) {
+            this.kernelHeight = param.shape[1];
+            this.kernelWidth = param.shape[2];
         } else {
             throw new ParseException("Invalid pooling layer");
         }
-        token = caffeLayer.paramMap.get("pooling_param.stride");
+        token = param.caffeLayer.paramMap.get("pooling_param.stride");
         this.stride = 1;
         if (null != token) {
             this.stride = Integer.parseInt(token.getVal());
             this.outputShape[1] /= stride;
             this.outputShape[2] /= stride;
         }
-        String poolType = caffeLayer.paramMap.get("pooling_param.pool").getVal();
+        String poolType = param.caffeLayer.paramMap.get("pooling_param.pool").getVal();
         if ("MAX".equals(poolType)) {
             this.type = TYPE_MAX;
         } else if ("AVE".equals(poolType)) {

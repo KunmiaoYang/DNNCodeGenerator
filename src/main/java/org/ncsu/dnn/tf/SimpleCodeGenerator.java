@@ -34,7 +34,7 @@ public class SimpleCodeGenerator {
     public static void main(String[] args) throws FileNotFoundException {
         File header = new File(SimpleCodeGenerator.class.getResource("template/simpleHeader.txt").getFile());
         File footer = new File(SimpleCodeGenerator.class.getResource("template/simpleFooter.txt").getFile());
-        File test = new File("./output/test.py");
+        File test = new File("./output/test_V3.py");
         CaffeModel caffeModel = CaffeModel.createFromFile(new File(args[0]));
         if (null == caffeModel) throw new FileNotFoundException("Caffe model file not found!");
         TFModel tfModel = new TFModel(caffeModel);

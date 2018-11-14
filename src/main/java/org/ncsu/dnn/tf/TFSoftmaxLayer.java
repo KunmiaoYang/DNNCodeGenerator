@@ -3,12 +3,11 @@ package org.ncsu.dnn.tf;
 import org.ncsu.dnn.caffe.CaffeLayer;
 
 import java.io.PrintStream;
-import java.util.Map;
 
 public class TFSoftmaxLayer extends TFLayer {
     private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.softmax.inline");
-    TFSoftmaxLayer(CaffeLayer caffeLayer, int[] shape, Map<String, String> param) {
-        super(caffeLayer, shape, param);
+    TFSoftmaxLayer(Param param) {
+        super(param);
     }
 
     @Override

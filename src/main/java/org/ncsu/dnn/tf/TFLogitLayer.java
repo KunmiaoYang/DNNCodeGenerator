@@ -3,7 +3,6 @@ package org.ncsu.dnn.tf;
 import org.ncsu.dnn.caffe.CaffeLayer;
 
 import java.io.PrintStream;
-import java.util.Map;
 
 import static org.ncsu.dnn.tf.SimpleCodeGenerator.generateWithScope;
 
@@ -13,23 +12,25 @@ public class TFLogitLayer extends TFLayer {
     TFConvLayer convLayer;
     TFSqueezeLayer squeezeLayer;
 
-    TFLogitLayer(CaffeLayer caffeLayer, int[] shape, Map<String, String> param) {
-        super(caffeLayer, shape, param);
-        for (CaffeLayer subLayer: caffeLayer.group) {
+    TFLogitLayer(Param param) {
+        super(param);
+        Param subParam = new Param(param);
+        for (CaffeLayer subLayer: param.caffeLayer.group) {
+            subParam.caffeLayer = subLayer;
             switch (subLayer.type) {
                 case Dropout:
-                    this.dropOutLayer = new TFDropOutLayer(subLayer, this.outputShape, param);
+                    this.dropOutLayer = new TFDropOutLayer(subParam);
                     this.output = dropOutLayer.output;
                     break;
                 case Convolution:
                     param.put(KEY_OUTPUT, DEFAULT_OUTPUT);
-                    this.convLayer = new TFConvLayer(subLayer, this.outputShape, param);
+                    this.convLayer = new TFConvLayer(subParam);
                     this.outputShape = convLayer.outputShape;
                     this.output = convLayer.output;
                     param.put(KEY_INPUT, convLayer.output);
                     break;
                 case Reshape:
-                    this.squeezeLayer = new TFSqueezeLayer(subLayer, this.outputShape, param);
+                    this.squeezeLayer = new TFSqueezeLayer(subParam);
                     this.squeezeLayer.name = "SpatialSqueeze";
                     this.outputShape = squeezeLayer.outputShape;
                     this.output = squeezeLayer.output;
