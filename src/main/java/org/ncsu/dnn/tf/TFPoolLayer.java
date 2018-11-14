@@ -51,6 +51,7 @@ public class TFPoolLayer extends TFLayer {
             case TYPE_AVE: poolType = "avg"; break;
         }
         out.printf(INLINE, context.get(KEY_INDENT), output, poolType, input,
-                kernelHeight, kernelWidth, stride, context.get(KEY_SCOPE_STRING));
+                kernelHeight, kernelWidth, stride > 1? ", stride=" + stride: "",
+                context.get(KEY_SCOPE_STRING));
     }
 }
