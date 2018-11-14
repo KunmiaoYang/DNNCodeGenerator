@@ -1,17 +1,14 @@
 package org.ncsu.dnn.tf;
 
 import org.ncsu.dnn.caffe.CaffeLayer;
-import org.ncsu.dnn.caffe.CaffeLayerType;
 import org.ncsu.dnn.caffe.CaffeModel;
 
 import java.io.PrintStream;
 import java.util.*;
 
-import static org.ncsu.dnn.caffe.CaffeLayerType.*;
 import static org.ncsu.dnn.tf.SimpleCodeGenerator.*;
 import static org.ncsu.dnn.tf.TFConcatLayer.BRANCH_PREFIX;
 import static org.ncsu.dnn.tf.TFLayer.KEY_INPUT;
-import static org.ncsu.dnn.tf.TFLayer.KEY_NAME;
 import static org.ncsu.dnn.tf.TFLayer.KEY_OUTPUT;
 
 public class TFModel {
@@ -28,6 +25,7 @@ public class TFModel {
     private TFLayer lastLayer;
     int[] inputShape;
     private int[] outputShape;
+    int branchIndex;
 
     public TFModel() {
         this.layers = new LinkedHashMap<>();
@@ -42,6 +40,7 @@ public class TFModel {
         this.outputShape = lastLayer.outputShape;
     }
     private void parseCaffeModel(CaffeModel caffeModel) {
+        this.branchIndex = 0;
         Deque<Param> q = new ArrayDeque<>();
         Param param = new Param(this);
         param.layerMap = caffeModel.getLayerMap();
@@ -74,7 +73,7 @@ public class TFModel {
                 for (int i = 0; i < nextCount; i++) {
                     Param branchParam = new Param(param);
                     branchParam.caffeLayer = param.caffeLayer.next.get(i);
-                    branchParam.put(KEY_OUTPUT, BRANCH_PREFIX + i);
+                    branchParam.put(KEY_OUTPUT, BRANCH_PREFIX + branchIndex++);
                     if (layers.containsKey(branchParam.caffeLayer.getName())) continue;
                     q.offerLast(branchParam);
                 }
