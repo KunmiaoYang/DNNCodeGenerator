@@ -43,13 +43,17 @@ public abstract class TFLayer {
             context.put(KEY_INDENT, context.get(KEY_INDENT_BASE));
             out.printf(SNIPPET_INIT, context.get(KEY_INDENT_BASE), this.name.contains("/")?
                     this.name.substring(0, this.name.indexOf('/')): this.name);
-            changeScope(out, context, parentScope);
+        }
+
+        changeScope(out, context, parentScope);
+
+        if (context.get(KEY_SCOPE_PATH).equals("")) {
             context.put(KEY_SCOPE_STRING, END_POINT);
         } else {
-            changeScope(out, context, parentScope);
             context.put(KEY_SCOPE_STRING, addQuotes(this.name.substring(this.name.lastIndexOf('/') + 1)));
         }
         this.inlineCode(out, context);
+
         if (context.get(KEY_SCOPE_PATH).equals(""))
             out.printf(SNIPPET_ADD, context.get(KEY_INDENT), this.output);
     }
@@ -58,15 +62,19 @@ public abstract class TFLayer {
         return this.name.contains("/")? this.name.substring(0, this.name.lastIndexOf('/')): "";
     }
 
+    String getRelativeScope(String parent, String scope) {
+        if (parent.equals("")) return scope;
+        return scope.substring(parent.length() + 1);
+    }
+
     String changeScope(PrintStream out, Map<String, String> context, String target) {
         String cur = context.get(KEY_SCOPE_PATH);
         if (target.equals(cur)) {
             return target;
         } else if (target.startsWith(cur)) {
             String indent = context.get(KEY_INDENT);
-            String[] pathTarget = target.split("/");
-            int i = "".equals(cur)? 0: cur.split("/").length;
-            for (; i < pathTarget.length; i++) {
+            String[] pathTarget = getRelativeScope(cur, target).split("/");
+            for (int i = 0; i < pathTarget.length; i++) {
                 if (cur.equals("") && 0 == i) pathTarget[0] = END_POINT;
                 else pathTarget[i] = "'" + pathTarget[i] + "'";
                 TFModel.generateWithScope(out, indent, TF_VARIABLE_SCOPE, pathTarget[i]);

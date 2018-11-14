@@ -38,11 +38,6 @@ public class TFLogitLayer extends TFLayer {
         }
     }
 
-    String getRelativeScope(String parent, String scope) {
-        if (parent.equals("")) return scope;
-        return scope.substring(parent.length() + 1);
-    }
-
     @Override
     void inlineCode(PrintStream out, Map<String, String> context) {
         context.put(KEY_SCOPE_STRING, getRelativeScope(name, dropOutLayer.name));
