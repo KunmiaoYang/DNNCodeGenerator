@@ -12,4 +12,9 @@ public class TFInputLayer extends TFLayer {
     @Override
     void inlineCode(PrintStream out, Map<String, String> context) {
     }
+
+    @Override
+    void generateCode(PrintStream out, Map<String, String> context) {
+        // Output nothing
+    }
 }

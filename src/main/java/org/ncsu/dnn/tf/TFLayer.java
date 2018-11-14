@@ -40,17 +40,18 @@ public abstract class TFLayer {
     void generateCode(PrintStream out, Map<String, String> context) {
         String parentScope = getParaentScope();
         if (context.get(KEY_SCOPE_PATH).equals("")) {
-            out.printf(SNIPPET_INIT, context.get(KEY_INDENT), this.name);
+            context.put(KEY_INDENT, context.get(KEY_INDENT_BASE));
+            out.printf(SNIPPET_INIT, context.get(KEY_INDENT_BASE), this.name.contains("/")?
+                    this.name.substring(0, this.name.indexOf('/')): this.name);
             changeScope(out, context, parentScope);
             context.put(KEY_SCOPE_STRING, END_POINT);
-            this.inlineCode(out, context);
-            out.printf(SNIPPET_ADD, context.get(KEY_INDENT), this.output);
         } else {
             changeScope(out, context, parentScope);
-            context.put(KEY_SCOPE_STRING, this.name.contains("/")?
-                    this.name.substring(this.name.lastIndexOf('/') + 1): this.name);
-            this.inlineCode(out, context);
+            context.put(KEY_SCOPE_STRING, this.name.substring(this.name.lastIndexOf('/') + 1));
         }
+        this.inlineCode(out, context);
+        if (context.get(KEY_SCOPE_PATH).equals(""))
+            out.printf(SNIPPET_ADD, context.get(KEY_INDENT_BASE), this.output);
     }
 
     String getParaentScope() {
@@ -63,17 +64,22 @@ public abstract class TFLayer {
             return target;
         } else if (target.startsWith(cur)) {
             String indent = context.get(KEY_INDENT);
-            String[] scopes = target.substring(cur.length()).split("/");
-            for (int i = 0; i < scopes.length; i++) {
-                if (cur.equals("") && 0 == i) scopes[0] = END_POINT;
-                else scopes[i] = "'" + scopes[i] + "'";
-                TFModel.generateWithScope(out, indent, TF_VARIABLE_SCOPE, scopes[i]);
-                indent += context.get(KEY_INDENT_BASE);
+            String[] pathTarget = target.split("/");
+            int i = "".equals(cur)? 0: cur.split("/").length;
+            for (; i < pathTarget.length; i++) {
+                if (cur.equals("") && 0 == i) pathTarget[0] = END_POINT;
+                else pathTarget[i] = "'" + pathTarget[i] + "'";
+                TFModel.generateWithScope(out, indent, TF_VARIABLE_SCOPE, pathTarget[i]);
+                indent += context.get(KEY_INDENT_STRING);
             }
         } else if (!cur.startsWith(target)) {
-            int i = 0, j = 0;
-            for (; i < cur.length() && j < target.length() && cur.charAt(i) == target.charAt(j); i++, j++) {}
-            changeScope(out, context, cur.substring(0, i));
+            String[] pathCur = cur.split("/");
+            String[] pathTarget = target.split("/");
+            StringBuilder pathCommon = new StringBuilder();
+            for (int i = 0; i < pathCur.length && i < pathTarget.length && pathCur[i].equals(pathTarget[i]); i++) {
+                pathCommon.append('/').append(pathCur[i]);
+            }
+            changeScope(out, context, pathCommon.substring(1));
             return changeScope(out, context, target);
         }
         context.put(KEY_INDENT, getIndent(context, target));
@@ -84,6 +90,8 @@ public abstract class TFLayer {
     String getIndent(Map<String, String> context, String path) {
         String indent = context.get(KEY_INDENT_BASE);
         String indentString = context.get(KEY_INDENT_STRING);
+        if (path.equals("")) return indent;
+        else indent += indentString;
         for (char c: path.toCharArray()) {
             if (c == '/') indent += indentString;
         }

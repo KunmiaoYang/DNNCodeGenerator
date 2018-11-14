@@ -34,9 +34,9 @@ public class TFConcatLayer extends TFLayer {
 
     @Override
     void inlineCode(PrintStream out, Map<String, String> context) {
-//        String inside = generateWithScope(out, indent, TFModel.TF_VARIABLE_SCOPE, scope);
         out.printf(INLINE, context.get(KEY_INDENT) + context.get(KEY_INDENT_STRING),
                 output, outputShape.length, branchOutputs.toString());
+        context.put(KEY_SCOPE_PATH, super.getParaentScope());
     }
 
     @Override

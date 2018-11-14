@@ -114,7 +114,7 @@ public class TFModel {
         context.put(KEY_SCOPE_PATH, "");
         for (TFLayer layer: this.layers.values()) {
             layer.generateCode(out, context);
-            out.println();
+//            out.println();
         }
         out.print(indentation);
         out.printf(MODEL_FUNCTION_RETURN, this.lastLayer.output, this.name);

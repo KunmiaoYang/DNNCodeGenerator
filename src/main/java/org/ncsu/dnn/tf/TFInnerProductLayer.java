@@ -5,9 +5,11 @@ import org.ncsu.dnn.caffe.CaffeLayer;
 import java.io.PrintStream;
 import java.util.Map;
 
+import static org.ncsu.dnn.tf.SimpleCodeGenerator.INDENT_STRING;
 import static org.ncsu.dnn.tf.TFConvLayer.*;
 
 public class TFInnerProductLayer extends TFLayer {
+    static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.innerProduct.inline");
     private int kernelHeight, kernelWidth;
     private boolean hasNormal, hasActivation;
     TFSqueezeLayer squeezeLayer;
@@ -41,9 +43,19 @@ public class TFInnerProductLayer extends TFLayer {
         if (!hasActivation) option += OPTION_NO_ACTIVATION;
         if (!hasNormal) option += OPTION_NO_NORMALIZER;
         String outputClasses = this == lastOuputNumber ? "num_classes": String.valueOf(outputShape[0]);
-        out.printf(TFConvLayer.INLINE, context.get(KEY_INDENT),
-                output, input, outputClasses, kernelHeight, kernelWidth,
-                option, context.get(KEY_SCOPE_STRING));
+        String indent = context.get(KEY_INDENT);
+        out.printf(INLINE, indent + INDENT_STRING, output, input,
+                outputClasses, kernelHeight, kernelWidth, option);
+
+        context.put(KEY_INDENT, indent + INDENT_STRING);
         squeezeLayer.inlineCode(out,context);
+
+        context.put(KEY_INDENT, indent);
+        context.put(KEY_SCOPE_PATH, super.getParaentScope());
+    }
+
+    @Override
+    String getParaentScope() {
+        return this.name;
     }
 }
