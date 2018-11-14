@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.ncsu.dnn.tf.TFModel.KEY_INDENT_STRING;
-
 public class TFConcatLayer extends TFLayer {
     private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.concat.inline");
     static final String BRANCH_PREFIX = "branch_";
@@ -36,11 +34,13 @@ public class TFConcatLayer extends TFLayer {
     void inlineCode(PrintStream out, Map<String, String> context) {
         out.printf(INLINE, context.get(KEY_INDENT),
                 output, outputShape.length, branchOutputs.toString());
-        context.put(KEY_SCOPE_PATH, super.getParaentScope());
+        String parentScope = super.getParentScope();
+        context.put(KEY_SCOPE_PATH, parentScope);
+        context.put(KEY_INDENT, getIndent(context, parentScope));
     }
 
     @Override
-    String getParaentScope() {
+    String getParentScope() {
         return this.name;
     }
 }

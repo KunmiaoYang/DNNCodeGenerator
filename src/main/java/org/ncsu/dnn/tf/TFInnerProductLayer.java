@@ -5,7 +5,6 @@ import org.ncsu.dnn.caffe.CaffeLayer;
 import java.io.PrintStream;
 import java.util.Map;
 
-import static org.ncsu.dnn.tf.SimpleCodeGenerator.INDENT_STRING;
 import static org.ncsu.dnn.tf.TFConvLayer.*;
 
 public class TFInnerProductLayer extends TFLayer {
@@ -49,11 +48,13 @@ public class TFInnerProductLayer extends TFLayer {
 
         squeezeLayer.inlineCode(out,context);
 
-        context.put(KEY_SCOPE_PATH, super.getParaentScope());
+        String parentScope = super.getParentScope();
+        context.put(KEY_SCOPE_PATH, parentScope);
+        context.put(KEY_INDENT, getIndent(context, parentScope));
     }
 
     @Override
-    String getParaentScope() {
+    String getParentScope() {
         return this.name;
     }
 }

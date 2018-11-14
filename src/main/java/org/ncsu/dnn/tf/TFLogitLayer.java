@@ -51,11 +51,11 @@ public class TFLogitLayer extends TFLayer {
         convLayer.inlineCode(out,context);
         squeezeLayer.inlineCode(out, context);
 
-        context.put(KEY_SCOPE_PATH, super.getParaentScope());
+        context.put(KEY_SCOPE_PATH, super.getParentScope());
     }
 
     @Override
-    String getParaentScope() {
+    String getParentScope() {
         return this.name;
     }
 }

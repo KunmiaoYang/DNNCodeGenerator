@@ -38,7 +38,7 @@ public abstract class TFLayer {
     }
 
     void generateCode(PrintStream out, Map<String, String> context) {
-        String parentScope = getParaentScope();
+        String parentScope = getParentScope();
         if (context.get(KEY_SCOPE_PATH).equals("")) {
             context.put(KEY_INDENT, context.get(KEY_INDENT_BASE));
             out.printf(SNIPPET_INIT, context.get(KEY_INDENT_BASE), this.name.contains("/")?
@@ -51,10 +51,10 @@ public abstract class TFLayer {
         }
         this.inlineCode(out, context);
         if (context.get(KEY_SCOPE_PATH).equals(""))
-            out.printf(SNIPPET_ADD, context.get(KEY_INDENT_BASE), this.output);
+            out.printf(SNIPPET_ADD, context.get(KEY_INDENT), this.output);
     }
 
-    String getParaentScope() {
+    String getParentScope() {
         return this.name.contains("/")? this.name.substring(0, this.name.lastIndexOf('/')): "";
     }
 
