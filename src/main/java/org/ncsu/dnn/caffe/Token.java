@@ -13,7 +13,7 @@ public class Token {
     private static final String REGEX_NAME = "^[A-Za-z_]\\w*(\\.[A-Za-z_]\\w*)*";
     private static final String REGEX_SPACE = "^\\s+$";
     private static final String REGEX_NO_SPACE = "[^\\s]+";
-    private static final Set<String> SET_SPECIAL = new HashSet<>(Arrays.asList("MAX", "AVE"));
+    private static final Set<String> SET_SPECIAL = new HashSet<>(Arrays.asList("MAX", "AVE", "SUM"));
     public static final Token EOF = new Token(TokenName.EOF, "");
 
     private TokenName tokenName;
