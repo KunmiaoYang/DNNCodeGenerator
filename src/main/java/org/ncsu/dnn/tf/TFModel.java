@@ -61,7 +61,7 @@ public class TFModel {
                 this.layers.put(layer.name, layer);
                 param.shape = layer.outputShape;
                 param.put(KEY_INPUT, layer.output);
-                layer.name = param.getName();
+//                layer.name = param.getName();
                 this.lastLayer = layer;
             }
 

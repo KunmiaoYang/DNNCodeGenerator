@@ -38,6 +38,7 @@ public class TFLogitLayer extends TFLayer {
                     break;
             }
         }
+        this.name = convLayer.getParentScope();
     }
 
     @Override
