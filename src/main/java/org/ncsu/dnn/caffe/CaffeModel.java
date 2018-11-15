@@ -135,6 +135,10 @@ public class CaffeModel {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getInput() {
         return input;
     }

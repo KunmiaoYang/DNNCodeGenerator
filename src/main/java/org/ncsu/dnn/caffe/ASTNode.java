@@ -33,6 +33,7 @@ public class ASTNode {
     }
 
     public String getFirstValue(String key) {
-        return getFirst(key).val.getVal();
+        ASTNode node = getFirst(key);
+        return null == node? null: node.val.getVal();
     }
 }
