@@ -1,11 +1,14 @@
 package org.ncsu.dnn.tf;
 
+import org.ncsu.dnn.SimpleCodeGenerator;
 import org.ncsu.dnn.caffe.CaffeLayer;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static org.ncsu.dnn.tf.TFModel.KEY_INDENT;
 
 public class TFConcatLayer extends TFLayer {
     private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.concat.inline");

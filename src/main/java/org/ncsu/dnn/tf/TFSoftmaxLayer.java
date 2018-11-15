@@ -1,5 +1,7 @@
 package org.ncsu.dnn.tf;
 
+import org.ncsu.dnn.SimpleCodeGenerator;
+
 import java.io.PrintStream;
 import java.util.Map;
 

@@ -1,11 +1,14 @@
 package org.ncsu.dnn.tf;
 
+import org.ncsu.dnn.SimpleCodeGenerator;
 import org.ncsu.dnn.caffe.CaffeLayer;
 
 import java.io.PrintStream;
 import java.util.Map;
 
-import static org.ncsu.dnn.tf.TFConvLayer.*;
+import static org.ncsu.dnn.tf.TFConvLayer.OPTION_NO_ACTIVATION;
+import static org.ncsu.dnn.tf.TFConvLayer.OPTION_NO_NORMALIZER;
+import static org.ncsu.dnn.tf.TFModel.KEY_INDENT;
 
 public class TFInnerProductLayer extends TFLayer {
     static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.innerProduct.inline");

@@ -1,10 +1,13 @@
 package org.ncsu.dnn.tf;
 
+import org.ncsu.dnn.SimpleCodeGenerator;
 import org.ncsu.dnn.caffe.ParseException;
 import org.ncsu.dnn.caffe.Token;
 
 import java.io.PrintStream;
 import java.util.Map;
+
+import static org.ncsu.dnn.tf.TFModel.KEY_INDENT;
 
 public class TFPoolLayer extends TFLayer {
     private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.pool.inline");

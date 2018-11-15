@@ -6,11 +6,12 @@ import org.ncsu.dnn.caffe.CaffeModel;
 import java.io.PrintStream;
 import java.util.*;
 
-import static org.ncsu.dnn.tf.SimpleCodeGenerator.*;
+import static org.ncsu.dnn.SimpleCodeGenerator.SNIPPETS;
 import static org.ncsu.dnn.tf.TFConcatLayer.BRANCH_PREFIX;
 import static org.ncsu.dnn.tf.TFLayer.*;
 
 public class TFModel {
+    static final String INDENT_STRING = "  ";   // Indent with 2 spaces
     private static final String MODEL_FUNCTION_SIGNATURE = SNIPPETS.getString("model.function.signature");
     private static final String MODEL_FUNCTION_RETURN = SNIPPETS.getString("model.function.return");
     private static final String PY_WITH_SCOPE = SNIPPETS.getString("py.with.scope");
@@ -20,11 +21,13 @@ public class TFModel {
     private static final String SLIM_ARG_SCOPE_PARAMETERS = "default_arg_scope(is_training)";
     private static final String INIT_POINTS = "end_points = {}\r\n";
     private static final String NAME_INPUT = "inputs";
+    public static final String KEY_FUNC = "func";
+    public static final String KEY_INDENT = "indent";
     static final String KEY_INDENT_STRING = "indentString";
     private String name;
     Map<String, TFLayer> layers;
     private TFLayer lastLayer;
-    int[] inputShape;
+    public int[] inputShape;
     private int[] outputShape;
     int branchIndex;
 
@@ -96,10 +99,16 @@ public class TFModel {
         return true;
     }
 
-    public void generateCode(PrintStream out, String indentation, String funcName) {
+    public void generateFuncDef(PrintStream out, Map<String, String> context) {
+        String indentation = context.get(KEY_INDENT);
+        String funcName = context.get(KEY_FUNC);
         out.print(indentation);
         out.printf(MODEL_FUNCTION_SIGNATURE, funcName, this.outputShape[0], this.name);
-        indentation += INDENT_STRING;
+        context.put(KEY_INDENT, indentation + INDENT_STRING);
+    }
+
+    public void generateCode(PrintStream out, Map<String, String> context) {
+        String indentation = context.get(KEY_INDENT);
 
         out.println();
         String insideIndent = generateWithScope(out, indentation, TF_VARIABLE_SCOPE, TF_VARIABLE_SCOPE_PARAMETERS);
@@ -108,7 +117,6 @@ public class TFModel {
         out.println();
         out.println(insideIndent + INIT_POINTS);
 
-        Map<String, String> context = new HashMap<>();
         context.put(KEY_INDENT_BASE, insideIndent);
         context.put(KEY_INDENT_STRING, INDENT_STRING);
         context.put(KEY_SCOPE_PATH, "");
@@ -122,6 +130,7 @@ public class TFModel {
 
     static String generateWithScope(PrintStream out, String indentation, String func, String scope) {
         out.printf(PY_WITH_SCOPE, indentation, func, scope);
-        return indentation + SimpleCodeGenerator.INDENT_STRING;
+        return indentation + INDENT_STRING;
     }
+
 }

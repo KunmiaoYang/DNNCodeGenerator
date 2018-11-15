@@ -1,9 +1,12 @@
 package org.ncsu.dnn.tf;
 
+import org.ncsu.dnn.SimpleCodeGenerator;
+
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Map;
 
+import static org.ncsu.dnn.tf.TFModel.KEY_INDENT;
 import static org.ncsu.dnn.tf.TFModel.KEY_INDENT_STRING;
 import static org.ncsu.dnn.tf.TFModel.TF_VARIABLE_SCOPE;
 
@@ -11,7 +14,6 @@ public abstract class TFLayer {
     static final String KEY_NAME = "name";
     static final String KEY_INPUT = "input";
     static final String KEY_OUTPUT = "output";
-    static final String KEY_INDENT = "indent";
     static final String KEY_INDENT_BASE = "indentBase";
     static final String KEY_SCOPE_STRING = "scopeString";
     static final String KEY_SCOPE_PATH = "scopePath";

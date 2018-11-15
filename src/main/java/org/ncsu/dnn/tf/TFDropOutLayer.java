@@ -1,7 +1,11 @@
 package org.ncsu.dnn.tf;
 
+import org.ncsu.dnn.SimpleCodeGenerator;
+
 import java.io.PrintStream;
 import java.util.Map;
+
+import static org.ncsu.dnn.tf.TFModel.KEY_INDENT;
 
 public class TFDropOutLayer extends TFLayer {
     private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.dropout.inline");

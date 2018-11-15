@@ -1,10 +1,14 @@
 package org.ncsu.dnn.tf;
 
+import org.ncsu.dnn.SimpleCodeGenerator;
+
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import static org.ncsu.dnn.tf.TFModel.KEY_INDENT;
 
 public class TFSqueezeLayer extends TFLayer {
     public static final String DEFAULT_SQUEEZE_NAME = "SpatialSqueeze";
