@@ -32,6 +32,7 @@ public class MultiCodeGenerator {
         Map<String, String> context = new HashMap<>();
         context.put(KEY_INDENT, "");
         context.put(KEY_FUNC, modelName);
+        context.put(KEY_MULTIPLEX, "True");
 
         appendFile(out, header, context);
         out.println();

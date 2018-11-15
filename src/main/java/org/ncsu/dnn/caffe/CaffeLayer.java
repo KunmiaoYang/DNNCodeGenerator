@@ -85,6 +85,16 @@ public class CaffeLayer {
         return type;
     }
 
+    public CaffeLayer getNextConcat() {
+        if (Concat == this.type) return this;
+        if (null == this.next) return null;
+        for (CaffeLayer layer: this.next) {
+            CaffeLayer nextConcat = layer.getNextConcat();
+            if (null != nextConcat) return nextConcat;
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         return "Layer{" +

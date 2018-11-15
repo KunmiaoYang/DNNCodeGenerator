@@ -1,14 +1,11 @@
 package org.ncsu.dnn.tf;
 
-import org.ncsu.dnn.SimpleCodeGenerator;
-
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Map;
 
-import static org.ncsu.dnn.tf.TFModel.KEY_INDENT;
-import static org.ncsu.dnn.tf.TFModel.KEY_INDENT_STRING;
-import static org.ncsu.dnn.tf.TFModel.TF_VARIABLE_SCOPE;
+import static org.ncsu.dnn.SimpleCodeGenerator.SNIPPETS;
+import static org.ncsu.dnn.tf.TFModel.*;
 
 public abstract class TFLayer {
     static final String KEY_NAME = "name";
@@ -17,34 +14,44 @@ public abstract class TFLayer {
     static final String KEY_INDENT_BASE = "indentBase";
     static final String KEY_SCOPE_STRING = "scopeString";
     static final String KEY_SCOPE_PATH = "scopePath";
-    private static final String SNIPPET_INIT = SimpleCodeGenerator.SNIPPETS.getString("layer.snippet.init");
-    private static final String SNIPPET_ADD = SimpleCodeGenerator.SNIPPETS.getString("layer.snippet.add");
+    static final String KEY_CONCAT_NAME = "concatName";
+
+    private static final String SNIPPET_INIT = SNIPPETS.getString("layer.snippet.init");
+    private static final String SNIPPET_ADD = SNIPPETS.getString("layer.snippet.add");
+    private static final String MULTIPLEX_SELECT_INPUT = SNIPPETS.getString("multiplex.selectinput");
     static final String END_POINT = "end_point";
     private static final String DEFAULT_INPUT = "net";
     static final String DEFAULT_OUTPUT = "net";
     static TFLayer lastOuputNumber;
-    String name;
+    String name, concatName;
     protected String input, output;
     int[] outputShape;
+    boolean canPrune;
     abstract void inlineCode(PrintStream out, Map<String, String> context);
 
     TFLayer(Param param) {
         this.input = param.getOrDefault(KEY_INPUT, DEFAULT_INPUT);
         this.output = param.getOrDefault(KEY_OUTPUT, DEFAULT_OUTPUT);
         this.name = param.getOrDefault(KEY_NAME, param.caffeLayer.getName());
-//        if (this.name.contains("/")) {
-//            this.name = this.name.substring(this.name.lastIndexOf('/') + 1);
-//        }
         this.outputShape = param.shape.clone();
-        param.param.remove(KEY_NAME); // In case the name is incorrectly passed to other layer
+        this.concatName = param.get(KEY_CONCAT_NAME);
+        this.canPrune = false;
+
+        // In case these parameters are incorrectly passed to other layer
+        param.param.remove(KEY_NAME);
+        param.param.remove(KEY_CONCAT_NAME);
     }
 
     void generateCode(PrintStream out, Map<String, String> context) {
         String parentScope = getParentScope();
         if (context.get(KEY_SCOPE_PATH).equals("")) {
             context.put(KEY_INDENT, context.get(KEY_INDENT_BASE));
-            out.printf(SNIPPET_INIT, context.get(KEY_INDENT_BASE), this.name.contains("/")?
-                    this.name.substring(0, this.name.indexOf('/')): this.name);
+            if (null != this.concatName && context.containsKey(KEY_MULTIPLEX)) {
+                context.put(KEY_CONCAT_NAME, this.concatName);
+                generateMultiplex(out, context);
+            } else {
+                out.printf(SNIPPET_INIT, context.get(KEY_INDENT_BASE), getRootScope());
+            }
         }
 
         changeScope(out, context, parentScope);
@@ -58,6 +65,10 @@ public abstract class TFLayer {
 
         if (context.get(KEY_SCOPE_PATH).equals(""))
             out.printf(SNIPPET_ADD, context.get(KEY_INDENT), this.output);
+    }
+
+    String getRootScope() {
+        return this.name.contains("/")? this.name.substring(0, this.name.indexOf('/')): this.name;
     }
 
     String getParentScope() {
@@ -110,6 +121,18 @@ public abstract class TFLayer {
 
     String addQuotes(String s) {
         return "'" + s + "'";
+    }
+
+    public void generateMultiplex(PrintStream out, Map<String, String> context) {
+        String indent = context.get(KEY_INDENT);
+        String concatName = context.get(KEY_CONCAT_NAME);
+        if (concatName.equals(this.getRootScope())) {
+            out.printf(SNIPPET_INIT, context.get(KEY_INDENT_BASE), getRootScope());
+            out.printf(MULTIPLEX_SELECT_INPUT, indent, indent, END_POINT, indent);
+        } else {
+            out.printf(MULTIPLEX_SELECT_INPUT, indent, indent, addQuotes(concatName), indent);
+            out.printf(SNIPPET_INIT, context.get(KEY_INDENT_BASE), getRootScope());
+        }
     }
 
     @Override

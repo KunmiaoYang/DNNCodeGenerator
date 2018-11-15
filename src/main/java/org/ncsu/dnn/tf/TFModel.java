@@ -21,6 +21,7 @@ public class TFModel {
     private static final String SLIM_ARG_SCOPE_PARAMETERS = "default_arg_scope(is_training)";
     private static final String INIT_POINTS = "end_points = {}\r\n";
     private static final String NAME_INPUT = "inputs";
+    public static final String KEY_MULTIPLEX = "multiplex";
     public static final String KEY_FUNC = "func";
     public static final String KEY_INDENT = "indent";
     static final String KEY_INDENT_STRING = "indentString";
@@ -74,6 +75,7 @@ public class TFModel {
                 if (layers.containsKey(param.caffeLayer.getName())) continue;
                 q.push(param);
             } else if (nextCount > 1){
+                CaffeLayer nextConcat = param.caffeLayer.getNextConcat();
                 // Use a temporary stack to reverse the next layers before push them into q
                 // If we directly push them reversely into q, the branch index would be reversed,
                 // so I need to give them branch index before I reverse them.Therefore I need to
@@ -81,6 +83,8 @@ public class TFModel {
                 Deque<Param> stack = new ArrayDeque<>(nextCount);
                 for (CaffeLayer nextLayer: param.caffeLayer.next) {
                     Param branchParam = new Param(param);
+                    if (branchIndex == 0 && null != nextConcat)
+                        branchParam.put(KEY_CONCAT_NAME, nextConcat.getName());
                     branchParam.caffeLayer = nextLayer;
                     branchParam.put(KEY_OUTPUT, BRANCH_PREFIX + branchIndex++);
                     if (layers.containsKey(branchParam.caffeLayer.getName())) continue;
@@ -100,11 +104,11 @@ public class TFModel {
     }
 
     public void generateFuncDef(PrintStream out, Map<String, String> context) {
-        String indentation = context.get(KEY_INDENT);
+        String indent = context.get(KEY_INDENT);
         String funcName = context.get(KEY_FUNC);
-        out.print(indentation);
+        out.print(indent);
         out.printf(MODEL_FUNCTION_SIGNATURE, funcName, this.outputShape[0], this.name);
-        context.put(KEY_INDENT, indentation + INDENT_STRING);
+        context.put(KEY_INDENT, indent + INDENT_STRING);
     }
 
     public void generateCode(PrintStream out, Map<String, String> context) {
