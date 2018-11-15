@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffd3e03a-225b-4aa1-a443-93ee904fe69f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLogitLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLogitLayer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -173,14 +172,14 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.54443055">
+    <splitter split-orientation="horizontal" split-proportion="0.42866084">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="TFModel.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFModel.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="246">
-                  <caret line="115" selection-start-line="115" selection-end-line="115" />
+                <state relative-caret-position="-180">
+                  <caret line="40" selection-start-line="40" selection-end-line="40" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#1203#1204#0" expanded="true" />
@@ -202,11 +201,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TFLogitLayer.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="TFLogitLayer.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLogitLayer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="338">
-                  <caret line="39" selection-start-line="39" selection-end-line="39" />
+                <state relative-caret-position="492">
+                  <caret line="40" selection-start-line="40" selection-end-line="40" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#1726#1727#0" expanded="true" />
@@ -219,27 +218,10 @@
           <file leaf-file-name="TFDropOutLayer.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFDropOutLayer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="285">
+                <state relative-caret-position="342">
                   <caret line="15" column="117" selection-start-line="15" selection-start-column="117" selection-end-line="15" selection-end-column="117" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="TFLayer.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLayer.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="405">
-                  <caret line="78" column="32" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
-                  <folding>
-                    <element signature="e#2718#2719#0" expanded="true" />
-                    <element signature="e#2820#2821#0" expanded="true" />
-                    <element signature="e#4666#4667#0" expanded="true" />
-                    <element signature="e#4702#4703#0" expanded="true" />
-                    <element signature="e#4748#4749#0" expanded="true" />
-                    <element signature="e#4822#4823#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -253,6 +235,15 @@
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="TFLayer.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLayer.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="98">
+                  <caret line="41" selection-start-line="41" selection-end-line="41" />
                 </state>
               </provider>
             </entry>
@@ -282,10 +273,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TFConvLayer.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="TFConvLayer.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFConvLayer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="528">
+                <state relative-caret-position="325">
                   <caret line="47" column="24" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -319,11 +310,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TFInnerProductLayer.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="TFInnerProductLayer.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFInnerProductLayer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
+                <state relative-caret-position="439">
+                  <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#2080#2081#0" expanded="true" />
@@ -446,8 +437,8 @@
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFInnerProductLayer.java" />
         <option value="$PROJECT_DIR$/src/main/resources/org/ncsu/dnn/tf/template/snippets.properties" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFPoolLayer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLogitLayer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLayer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLogitLayer.java" />
       </list>
     </option>
   </component>
@@ -1015,7 +1006,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="179537000" />
+    <option name="totallyTimeSpent" value="180337000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1047,7 +1038,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.24183007" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4957806" visible="true" weight="0.14818764" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4957806" weight="0.14818764" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="right" id="SciView" order="0" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1055,7 +1046,7 @@
       <window_info id="UI Designer" order="3" />
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info id="Favorites" order="4" sideWeight="0.5042194" side_tool="true" weight="0.24966443" />
-      <window_info anchor="bottom" x="5" y="184" width="1866" height="642" id="Debug" order="4" weight="0.38344225" />
+      <window_info anchor="bottom" x="5" y="184" width="1866" height="642" id="Debug" order="4" weight="0.37363833" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32905984" />
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4957806" visible="true" weight="0.20522387" />
@@ -1213,25 +1204,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLogitLayer.java</url>
-          <line>43</line>
+          <line>45</line>
           <properties />
           <option name="timeStamp" value="131" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <condition expression="name.equalsIgnoreCase(&quot;Logits&quot;)" language="JAVA" />
-          <url>file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLayer.java</url>
-          <line>41</line>
+          <url>file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFInnerProductLayer.java</url>
+          <line>34</line>
           <properties />
-          <option name="timeStamp" value="132" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLayer.java</url>
-          <line>71</line>
-          <properties />
-          <option name="timeStamp" value="134" />
+          <option name="timeStamp" value="139" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="135" />
+      <option name="time" value="140" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1649,18 +1633,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="115" selection-start-line="115" selection-end-line="115" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1203#1204#0" expanded="true" />
-            <element signature="e#1254#1255#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/SimpleCodeGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
@@ -1692,28 +1664,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFDropOutLayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="117" selection-start-line="15" selection-start-column="117" selection-end-line="15" selection-end-column="117" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFInnerProductLayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2080#2081#0" expanded="true" />
-            <element signature="e#2112#2113#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFConcatLayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
@@ -1731,16 +1681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFConvLayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="47" column="24" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFPoolLayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="515">
@@ -1751,10 +1691,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFDropOutLayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="15" column="117" selection-start-line="15" selection-start-column="117" selection-end-line="15" selection-end-column="117" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-180">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1203#1204#0" expanded="true" />
+            <element signature="e#1254#1255#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLogitLayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="492">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1726#1727#0" expanded="true" />
@@ -1763,17 +1732,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLayer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFConvLayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="78" column="32" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
+        <state relative-caret-position="325">
+          <caret line="47" column="24" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
           <folding>
-            <element signature="e#2718#2719#0" expanded="true" />
-            <element signature="e#2820#2821#0" expanded="true" />
-            <element signature="e#4666#4667#0" expanded="true" />
-            <element signature="e#4702#4703#0" expanded="true" />
-            <element signature="e#4748#4749#0" expanded="true" />
-            <element signature="e#4822#4823#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFInnerProductLayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2080#2081#0" expanded="true" />
+            <element signature="e#2112#2113#0" expanded="true" />
           </folding>
         </state>
       </provider>

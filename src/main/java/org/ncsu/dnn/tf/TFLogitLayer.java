@@ -27,12 +27,14 @@ public class TFLogitLayer extends TFLayer {
                     this.outputShape = convLayer.outputShape;
                     this.output = convLayer.output;
                     subParam.put(KEY_INPUT, convLayer.output);
+                    subParam.shape = convLayer.outputShape;
                     break;
                 case Reshape:
                     this.squeezeLayer = new TFSqueezeLayer(subParam);
                     this.squeezeLayer.name = TFSqueezeLayer.DEFAULT_SQUEEZE_NAME;
                     this.outputShape = squeezeLayer.outputShape;
                     this.output = squeezeLayer.output;
+                    subParam.shape = squeezeLayer.outputShape;
                     break;
             }
         }
