@@ -17,11 +17,13 @@ public class Param {
     Map<String, CaffeLayer> layerMap;
     Set<String> visited;
     int[] shape;
+    int branch;
 
     public Param(TFModel model) {
         this.param = new HashMap<>();
         this.visited = new HashSet<>();
         this.model = model;
+        this.branch = -1;
     }
 
     Param(Param input) {
@@ -31,6 +33,7 @@ public class Param {
         this.model = input.model;
         this.layerFactory = input.layerFactory;
         this.visited = input.visited;
+        this.branch = input.branch;
     }
 
     String get(String key) {

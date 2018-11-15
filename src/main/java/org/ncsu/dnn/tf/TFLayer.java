@@ -15,6 +15,7 @@ public abstract class TFLayer {
     static final String KEY_SCOPE_STRING = "scopeString";
     static final String KEY_SCOPE_PATH = "scopePath";
     static final String KEY_CONCAT_NAME = "concatName";
+    static final String KEY_START_BRANCH = "branch";
 
     private static final String SNIPPET_INIT = SNIPPETS.getString("layer.snippet.init");
     private static final String SNIPPET_ADD = SNIPPETS.getString("layer.snippet.add");
@@ -26,7 +27,7 @@ public abstract class TFLayer {
     String name, concatName;
     protected String input, output;
     int[] outputShape;
-    boolean canPrune;
+    boolean canPrune, startBranch;
     abstract void inlineCode(PrintStream out, Map<String, String> context);
 
     TFLayer(Param param) {
@@ -35,22 +36,26 @@ public abstract class TFLayer {
         this.name = param.getOrDefault(KEY_NAME, param.caffeLayer.getName());
         this.outputShape = param.shape.clone();
         this.concatName = param.get(KEY_CONCAT_NAME);
-        this.canPrune = false;
+        this.canPrune = param.branch >= 0;
+        this.startBranch = param.param.containsKey(KEY_START_BRANCH);
+
+        // Add branch layer to concat scope if it is not in the concat scope
+        if (null != concatName && !getRootScope().equals(concatName))
+            this.name = concatName + "/" + this.name;
 
         // In case these parameters are incorrectly passed to other layer
         param.param.remove(KEY_NAME);
-        param.param.remove(KEY_CONCAT_NAME);
+        param.param.remove(KEY_START_BRANCH);
     }
 
     void generateCode(PrintStream out, Map<String, String> context) {
         String parentScope = getParentScope();
         if (context.get(KEY_SCOPE_PATH).equals("")) {
             context.put(KEY_INDENT, context.get(KEY_INDENT_BASE));
+            out.printf(SNIPPET_INIT, context.get(KEY_INDENT_BASE), getRootScope());
+
             if (null != this.concatName && context.containsKey(KEY_MULTIPLEX)) {
-                context.put(KEY_CONCAT_NAME, this.concatName);
                 generateMultiplex(out, context);
-            } else {
-                out.printf(SNIPPET_INIT, context.get(KEY_INDENT_BASE), getRootScope());
             }
         }
 
@@ -100,7 +105,7 @@ public abstract class TFLayer {
             for (int i = 0; i < pathCur.length && i < pathTarget.length && pathCur[i].equals(pathTarget[i]); i++) {
                 pathCommon.append('/').append(pathCur[i]);
             }
-            changeScope(out, context, pathCommon.substring(1));
+            changeScope(out, context, pathCommon.length() == 0? "": pathCommon.substring(1));
             return changeScope(out, context, target);
         }
         context.put(KEY_INDENT, getIndent(context, target));
@@ -125,14 +130,7 @@ public abstract class TFLayer {
 
     public void generateMultiplex(PrintStream out, Map<String, String> context) {
         String indent = context.get(KEY_INDENT);
-        String concatName = context.get(KEY_CONCAT_NAME);
-        if (concatName.equals(this.getRootScope())) {
-            out.printf(SNIPPET_INIT, context.get(KEY_INDENT_BASE), getRootScope());
-            out.printf(MULTIPLEX_SELECT_INPUT, indent, indent, END_POINT, indent);
-        } else {
-            out.printf(MULTIPLEX_SELECT_INPUT, indent, indent, addQuotes(concatName), indent);
-            out.printf(SNIPPET_INIT, context.get(KEY_INDENT_BASE), getRootScope());
-        }
+        out.printf(MULTIPLEX_SELECT_INPUT, indent, indent, END_POINT, indent);
     }
 
     @Override

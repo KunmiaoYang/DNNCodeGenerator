@@ -27,9 +27,12 @@ public class TFConcatLayer extends TFLayer {
             branchOutputs.add(layer.output);
             this.branchList.add(layer);
             this.outputShape[0] += layer.outputShape[0];
+            layer.canPrune = false;
         }
         this.output = DEFAULT_OUTPUT;
         param.put(KEY_OUTPUT, DEFAULT_OUTPUT);
+        param.param.remove(KEY_CONCAT_NAME);
+        param.branch = -1;
         param.model.branchIndex = 0;
     }
 

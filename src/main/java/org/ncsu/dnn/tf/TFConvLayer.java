@@ -8,9 +8,11 @@ import java.io.PrintStream;
 import java.util.Map;
 
 import static org.ncsu.dnn.tf.TFModel.KEY_INDENT;
+import static org.ncsu.dnn.tf.TFModel.KEY_MULTIPLEX;
 
 public class TFConvLayer extends TFLayer {
     static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.conv.inline");
+    static final String SELECT_DEPTH = SimpleCodeGenerator.SNIPPETS.getString("layer.conv.selectdepth");
     static final String OPTION_NO_ACTIVATION = ", activation_fn=None";
     static final String OPTION_NO_NORMALIZER = ", normalizer_fn=None";
     private int kernelHeight, kernelWidth;
@@ -51,7 +53,10 @@ public class TFConvLayer extends TFLayer {
         String option = stride > 1? ", stride=" + stride: "";
         if (!hasActivation) option += OPTION_NO_ACTIVATION;
         if (!hasNormal) option += OPTION_NO_NORMALIZER;
-        String outputClasses = this == lastOuputNumber ? "num_classes": String.valueOf(outputShape[0]);
+        String outputClasses = String.valueOf(outputShape[0]);
+        if (canPrune && context.containsKey(KEY_MULTIPLEX))
+            outputClasses = String.format(SELECT_DEPTH, outputShape[0]);
+        if (this == lastOuputNumber) outputClasses = "num_classes";
         out.printf(INLINE, context.get(KEY_INDENT), output, input, outputClasses, kernelHeight, kernelWidth,
                 option, context.get(KEY_SCOPE_STRING));
     }
