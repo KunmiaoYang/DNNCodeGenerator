@@ -39,9 +39,11 @@ public abstract class TFLayer {
         this.canPrune = param.branch >= 0;
         this.startBranch = param.param.containsKey(KEY_START_BRANCH);
 
-        // Add branch layer to concat scope if it is not in the concat scope
-        if (null != concatName && !getRootScope().equals(concatName))
-            this.name = concatName + "/" + this.name;
+        // Add branch layer to scope if it is not in the concat scope
+        if (param.branch >= 0 && null != concatName &&
+            !getRootScope().equals(concatName) && !name.contains("/")) {
+            this.name = concatName + "/" + BRANCH_SCOPE_PREFIX + param.branch + "/" + this.name;
+        }
 
         // In case these parameters are incorrectly passed to other layer
         param.param.remove(KEY_NAME);

@@ -12,6 +12,7 @@ import static org.ncsu.dnn.tf.TFLayer.*;
 
 public class TFModel {
     static final String INDENT_STRING = "  ";   // Indent with 2 spaces
+    static final String BRANCH_SCOPE_PREFIX = "Branch_";
     private static final String MODEL_FUNCTION_SIGNATURE = SNIPPETS.getString("model.function.signature");
     private static final String MODEL_FUNCTION_RETURN = SNIPPETS.getString("model.function.return");
     private static final String PY_WITH_SCOPE = SNIPPETS.getString("py.with.scope");
@@ -56,7 +57,7 @@ public class TFModel {
         q.push(param);
         while (!q.isEmpty()) {
             param = q.pop();
-            System.out.println(param.getName());
+//            System.out.println(param.getName());
             if (null == param.caffeLayer) return;
             if (param.visited.contains(param.caffeLayer.getName()) || !checkBottom(param)) continue;
             param.visited.add(param.caffeLayer.getName());
