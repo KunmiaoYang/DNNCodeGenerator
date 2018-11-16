@@ -1,12 +1,14 @@
 package org.ncsu.dnn.tf;
 
 import org.ncsu.dnn.SimpleCodeGenerator;
+import org.ncsu.dnn.caffe.CaffeLayer;
 import org.ncsu.dnn.caffe.ParseException;
 import org.ncsu.dnn.caffe.Token;
 
 import java.io.PrintStream;
 import java.util.Map;
 
+import static org.ncsu.dnn.caffe.CaffeLayerType.Dropout;
 import static org.ncsu.dnn.tf.TFModel.KEY_INDENT;
 
 public class TFPoolLayer extends TFLayer {
@@ -16,6 +18,7 @@ public class TFPoolLayer extends TFLayer {
     int type;
     int kernelHeight, kernelWidth;
     int stride;
+    TFDropOutLayer dropOutLayer;
 
     public TFPoolLayer(Param param) {
         super(param);
@@ -44,6 +47,14 @@ public class TFPoolLayer extends TFLayer {
             this.outputShape[1] = 1;
             this.outputShape[2] = 1;
         }
+        this.dropOutLayer = null;
+        for (CaffeLayer caffeLayer: param.caffeLayer.group) {
+            if (caffeLayer.type == Dropout) {
+                Param subParam = new Param(param);
+                subParam.caffeLayer = caffeLayer;
+                this.dropOutLayer = (TFDropOutLayer) param.layerFactory.create(subParam);
+            }
+        }
     }
 
     @Override
@@ -56,5 +67,9 @@ public class TFPoolLayer extends TFLayer {
         out.printf(INLINE, context.get(KEY_INDENT), output, poolType, input,
                 kernelHeight, kernelWidth, ", stride=" + stride,
                 context.get(KEY_SCOPE_STRING));
+        if (null != dropOutLayer) {
+            context.put(KEY_SCOPE_STRING, dropOutLayer.name);
+            dropOutLayer.inlineCode(out, context);
+        }
     }
 }
