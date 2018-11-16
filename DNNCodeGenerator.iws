@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ffd3e03a-225b-4aa1-a443-93ee904fe69f" name="Default" comment="" />
+    <list default="true" id="ffd3e03a-225b-4aa1-a443-93ee904fe69f" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/DNNCodeGenerator.iws" beforeDir="false" afterPath="$PROJECT_DIR$/DNNCodeGenerator.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.txt" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -183,17 +186,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Readme.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Readme.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Readme.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+            <state relative-caret-position="517">
+              <caret line="142" column="60" selection-start-line="142" selection-start-column="60" selection-end-line="142" selection-end-column="60" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="genSimpleCode.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/genSimpleCode.sh">
+        <entry file="file://$PROJECT_DIR$/genSimpleCode.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <caret column="77" selection-start-column="77" selection-end-column="77" />
@@ -201,11 +204,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="genMultiplexingCode.sh" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/genMultiplexingCode.sh">
+      <file leaf-file-name="genMultiplexingCode.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/genMultiplexingCode.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="84" selection-start-column="84" selection-end-column="84" />
+              <caret column="38" selection-start-column="38" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -383,9 +386,9 @@
         <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/MultiCodeGeneratorTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/SimpleCodeGenerator.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/MultiCodeGenerator.java" />
-        <option value="$PROJECT_DIR$/Readme.txt" />
         <option value="$PROJECT_DIR$/src/genSimpleCode.sh" />
         <option value="$PROJECT_DIR$/src/genMultiplexingCode.sh" />
+        <option value="$PROJECT_DIR$/Readme.txt" />
       </list>
     </option>
   </component>
@@ -494,6 +497,105 @@
             <path>
               <item name="DNNCodeGenerator" type="b2602c69:ProjectViewProjectNode" />
               <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DNNCodeGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DNNCodeGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="dnn" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DNNCodeGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="caffe" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DNNCodeGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="tf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DNNCodeGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DNNCodeGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DNNCodeGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DNNCodeGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DNNCodeGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="dnn" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DNNCodeGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="caffe" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DNNCodeGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DNNCodeGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="caffe" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DNNCodeGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -535,6 +637,7 @@
       <recent name="org.ncsu.dnn.caffe" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Code\Java\DNNCodeGenerator" />
       <recent name="C:\Code\Java\DNNCodeGenerator\src\test\resources\org\ncsu\dnn\caffe" />
       <recent name="C:\Code\Java\DNNCodeGenerator\src\main\resources\org\ncsu\dnn\tf\template" />
       <recent name="C:\Code\Java\DNNCodeGenerator\src\main\resources\org.ncsu.dnn.tf" />
@@ -901,7 +1004,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215560000" />
+    <option name="totallyTimeSpent" value="219676000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -917,6 +1020,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-518" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="10" />
       <window_info anchor="bottom" id="TODO" order="13" />
@@ -1545,24 +1649,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Readme.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/genSimpleCode.sh">
+    <entry file="file://$PROJECT_DIR$/genSimpleCode.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="77" selection-start-column="77" selection-end-column="77" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/genMultiplexingCode.sh">
+    <entry file="file://$PROJECT_DIR$/genMultiplexingCode.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="84" selection-start-column="84" selection-end-column="84" />
+          <caret column="38" selection-start-column="38" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Readme.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="142" column="60" selection-start-line="142" selection-start-column="60" selection-end-line="142" selection-end-column="60" />
         </state>
       </provider>
     </entry>
