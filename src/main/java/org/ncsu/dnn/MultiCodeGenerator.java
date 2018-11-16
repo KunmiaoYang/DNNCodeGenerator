@@ -27,6 +27,10 @@ public class MultiCodeGenerator {
         InputStream multiFunc = MultiCodeGenerator.class.getResourceAsStream("tf/template/multiplexingFunc.py");
 
         File outputFile = new File(args.length > 1? args[1]: ("./" + modelName + "_multiplexing.py"));
+        File directory = outputFile.getParentFile();
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
         PrintStream out = new PrintStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
 
         Map<String, String> context = new HashMap<>();

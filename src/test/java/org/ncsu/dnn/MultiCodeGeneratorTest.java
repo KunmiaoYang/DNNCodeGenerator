@@ -5,6 +5,10 @@ import junit.framework.TestCase;
 import java.io.FileNotFoundException;
 
 public class MultiCodeGeneratorTest extends TestCase {
+    public void setUp() throws Exception {
+        super.setUp();
+    }
+
     public void testInceptionV1() {
         String protoTextFile = MultiCodeGeneratorTest.class
                 .getResource("caffe/inception_v1.prototxt").getFile();

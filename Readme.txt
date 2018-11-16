@@ -1,5 +1,5 @@
 ******************** Install ********************
-1. Java 8:
+1. Java 1.7 or higher:
     Installation instruction: https://www.java.com/en/download/help/download_options.xml
 
 2. Maven 3.0.5 or higher:

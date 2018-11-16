@@ -17,7 +17,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="DNNCodeGenerator" target="8" />
+      <module name="DNNCodeGenerator" target="1.7" />
     </bytecodeTargetLevel>
   </component>
   <component name="Encoding">
@@ -205,7 +205,7 @@
       <module fileurl="file://$PROJECT_DIR$/DNNCodeGenerator.iml" filepath="$PROJECT_DIR$/DNNCodeGenerator.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="1.8" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_9" default="false" project-jdk-name="1.7" project-jdk-type="JavaSDK" />
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
   </component>

@@ -46,6 +46,10 @@ public class SimpleCodeGenerator {
         InputStream footer = SimpleCodeGenerator.class.getResourceAsStream("tf/template/simpleFooter.py");
 
         File outputFile = new File(args.length > 1? args[1]: ("./" + modelName + "_simple.py"));
+        File directory = outputFile.getParentFile();
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
         PrintStream out = new PrintStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
 
         Map<String, String> context = new HashMap<>();

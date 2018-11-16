@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffd3e03a-225b-4aa1-a443-93ee904fe69f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNNCodeGenerator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNNCodeGenerator.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNNCodeGenerator.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/DNNCodeGenerator.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DNNCodeGenerator.iws" beforeDir="false" afterPath="$PROJECT_DIR$/DNNCodeGenerator.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/MultiCodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/MultiCodeGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/SimpleCodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/SimpleCodeGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ASTNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ASTNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/Param.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/Param.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/MultiCodeGeneratorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/MultiCodeGeneratorTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -190,8 +194,8 @@
       <file leaf-file-name="SimpleCodeGenerator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/SimpleCodeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="34" column="48" lean-forward="true" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+            <state relative-caret-position="262">
+              <caret line="48" column="51" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -199,36 +203,54 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Readme.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Readme.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Readme.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="95">
-              <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+              <caret line="5" column="57" selection-start-line="5" selection-start-column="57" selection-end-line="5" selection-end-column="57" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inception_v4.simple.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/output/inception_v4.simple.py">
+      <file leaf-file-name="MultiCodeGeneratorTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/ncsu/dnn/MultiCodeGeneratorTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4389" />
+            <state relative-caret-position="80">
+              <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ASTNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ASTNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+              <folding>
+                <element signature="e#686#687#0" expanded="true" />
+                <element signature="e#726#727#0" expanded="true" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+            <state relative-caret-position="323">
+              <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MultiCodeGenerator.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MultiCodeGenerator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/MultiCodeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="28" column="95" selection-start-line="28" selection-start-column="95" selection-end-line="28" selection-end-column="95" />
+            <state relative-caret-position="135">
+              <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -239,8 +261,8 @@
       <file leaf-file-name="TFLayer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
+            <state relative-caret-position="123">
+              <caret line="30" column="75" selection-start-line="30" selection-start-column="75" selection-end-line="30" selection-end-column="75" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3417#3418#0" expanded="true" />
@@ -258,20 +280,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CaffeModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/CaffeModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="45" selection-start-line="45" selection-end-line="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4816#4817#0" expanded="true" />
-                <element signature="e#4848#4849#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TFModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFModel.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -279,6 +287,22 @@
               <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
               <folding>
                 <element signature="method#generateWithScope#0;class#TFModel#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Param.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/Param.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="692">
+              <caret line="48" column="15" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="15" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1060#1061#0" expanded="true" />
+                <element signature="e#1111#1112#0" expanded="true" />
+                <element signature="e#1217#1218#0" expanded="true" />
+                <element signature="e#1290#1291#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -305,6 +329,7 @@
       <find>CaffeLayer caffeLayer, int[] shape,</find>
       <find>create</find>
       <find>layer</find>
+      <find>getOrDefault</find>
     </findStrings>
     <replaceStrings>
       <replace>ig</replace>
@@ -352,7 +377,6 @@
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFInputLayer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFSoftmaxLayer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLogitLayer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ASTNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/SimpleCodeGenerator.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/CaffeModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Token.java" />
@@ -363,18 +387,19 @@
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFPoolLayer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFMultiplexSelectLayer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/CaffeLayer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/Param.java" />
         <option value="$PROJECT_DIR$/src/main/resources/org/ncsu/dnn/tf/template/snippets.properties" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFConvLayer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFConcatLayer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLayer.java" />
-        <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/MultiCodeGeneratorTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFModel.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/SimpleCodeGeneratorTest.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/MultiCodeGenerator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/SimpleCodeGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ASTNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/Param.java" />
         <option value="$PROJECT_DIR$/Readme.txt" />
+        <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/MultiCodeGeneratorTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/SimpleCodeGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/MultiCodeGenerator.java" />
       </list>
     </option>
   </component>
@@ -502,9 +527,9 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -542,7 +567,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Whole project">
+  <component name="RunManager" selected="Application.SimpleCodeGeneratorV1">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
@@ -847,9 +872,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Whole_project - 2018.11.09 at 18h 37m 13s.xml">
-      <configuration name="Whole project" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Whole_project - 2018.11.09 at 18h 40m 30s.xml">
       <configuration name="Whole project" configurationId="JUnit" />
     </history-entry>
@@ -877,9 +899,12 @@
     <history-entry file="Whole_project - 2018.11.15 at 18h 48m 07s.xml">
       <configuration name="Whole project" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Whole_project - 2018.11.15 at 20h 03m 49s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208734000" />
+    <option name="totallyTimeSpent" value="212102000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -904,23 +929,23 @@
       <window_info id="Image Layers" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32905984" />
-      <window_info anchor="right" id="Maven Projects" order="6" visible="true" weight="0.26066098" />
+      <window_info anchor="right" id="Maven Projects" order="6" weight="0.26066098" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="12" />
-      <window_info anchor="bottom" x="3027" y="-458" width="795" height="907" id="Run" order="2" weight="0.2701525" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3278867" />
+      <window_info anchor="bottom" x="3027" y="-458" width="795" height="907" id="Run" order="2" weight="0.31045753" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3278867" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4957806" visible="true" weight="0.14072494" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49333334" visible="true" weight="0.14072494" />
       <window_info anchor="right" id="Database" order="5" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32763532" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3267974" />
       <window_info anchor="right" id="SciView" order="0" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info id="UI Designer" order="3" />
       <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info id="Favorites" order="4" sideWeight="0.5042194" side_tool="true" weight="0.24966443" />
-      <window_info anchor="bottom" x="5" y="184" width="1866" height="642" id="Debug" order="4" weight="0.42877492" />
+      <window_info active="true" id="Favorites" order="4" sideWeight="0.50666666" side_tool="true" visible="true" weight="0.14072494" />
+      <window_info anchor="bottom" x="5" y="184" width="1866" height="642" id="Debug" order="4" visible="true" weight="0.42810458" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32905984" />
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4957806" visible="true" weight="0.20522387" />
@@ -1024,12 +1049,6 @@
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/SimpleCodeGenerator.java</url>
-          <line>41</line>
-          <properties />
-          <option name="timeStamp" value="142" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Parser.java</url>
           <line>73</line>
           <properties />
@@ -1037,23 +1056,21 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/MultiCodeGenerator.java</url>
-          <line>41</line>
+          <line>45</line>
           <properties />
           <option name="timeStamp" value="146" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/MultiCodeGenerator.java</url>
-          <line>29</line>
+          <line>33</line>
           <properties />
           <option name="timeStamp" value="153" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/output/inception_v3.multiplexing.py</url>
-          <line>7</line>
-          <option name="timeStamp" value="156" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="157" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="159" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1115,6 +1132,16 @@
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>directory.mkdir()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>directory.exists()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>!getRootScope().equals(name)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -1146,16 +1173,6 @@
       </expression>
       <expression>
         <expression-string>caffeModelFile.getName()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>caffeModelFile.getPath()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>convLayer.getParentScope()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1218,13 +1235,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ASTNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="338">
@@ -1252,6 +1262,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#2882#2883#0" expanded="true" />
+            <element signature="e#2928#2929#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1373,16 +1387,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/Param.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/CaffeModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -1399,26 +1403,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
           <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3417#3418#0" expanded="true" />
-            <element signature="e#3522#3523#0" expanded="true" />
-            <element signature="e#3553#3554#0" expanded="true" />
-            <element signature="e#3655#3656#0" expanded="true" />
-            <element signature="method#getRelativeScope#0;class#TFLayer#0" />
-            <element signature="method#getIndent#0;class#TFLayer#0" />
-            <element signature="e#5665#5666#0" expanded="true" />
-            <element signature="e#5701#5702#0" expanded="true" />
-            <element signature="e#5964#5965#0" expanded="true" />
-            <element signature="e#6038#6039#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1442,16 +1426,6 @@
           <caret line="7" selection-start-line="7" selection-end-line="7" />
           <folding>
             <element signature="e#213#251#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/ncsu/dnn/MultiCodeGeneratorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1485,32 +1459,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output/inception_v4.simple.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4389" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/inception_v4.multiplexing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1976">
           <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/MultiCodeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="28" column="95" selection-start-line="28" selection-start-column="95" selection-end-line="28" selection-end-column="95" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1524,12 +1476,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/SimpleCodeGenerator.java">
+    <entry file="file://$PROJECT_DIR$/output/inception_v4.simple.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="34" column="48" lean-forward="true" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+        <state relative-caret-position="-4389" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFLayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="30" column="75" selection-start-line="30" selection-start-column="75" selection-end-line="30" selection-end-column="75" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3417#3418#0" expanded="true" />
+            <element signature="e#3522#3523#0" expanded="true" />
+            <element signature="e#3553#3554#0" expanded="true" />
+            <element signature="e#3655#3656#0" expanded="true" />
+            <element signature="method#getRelativeScope#0;class#TFLayer#0" />
+            <element signature="method#getIndent#0;class#TFLayer#0" />
+            <element signature="e#5665#5666#0" expanded="true" />
+            <element signature="e#5701#5702#0" expanded="true" />
+            <element signature="e#5964#5965#0" expanded="true" />
+            <element signature="e#6038#6039#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/ASTNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+          <folding>
+            <element signature="e#686#687#0" expanded="true" />
+            <element signature="e#726#727#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/Param.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="692">
+          <caret line="48" column="15" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1060#1061#0" expanded="true" />
+            <element signature="e#1111#1112#0" expanded="true" />
+            <element signature="e#1217#1218#0" expanded="true" />
+            <element signature="e#1290#1291#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1537,7 +1536,37 @@
     <entry file="file://$PROJECT_DIR$/Readme.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
-          <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+          <caret line="5" column="57" selection-start-line="5" selection-start-column="57" selection-end-line="5" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/ncsu/dnn/MultiCodeGeneratorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/SimpleCodeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="48" column="51" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/MultiCodeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1558,7 +1587,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>No facets are configured</last-edited>
+          <last-edited />
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1606,7 +1635,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: junit:junit:4.12</last-edited>
+          <last-edited />
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -40,12 +40,12 @@ public class Param {
         return param.get(key);
     }
     String getOrDefault(String key, String val) {
-        return param.getOrDefault(key, val);
+        return param.containsKey(key)? param.get(key): val;
     }
     String put(String key, String val) {
         return param.put(key, val);
     }
     String getName() {
-        return param.getOrDefault(KEY_NAME, caffeLayer.getName());
+        return getOrDefault(KEY_NAME, caffeLayer.getName());
     }
 }

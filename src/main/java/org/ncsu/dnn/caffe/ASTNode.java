@@ -19,7 +19,12 @@ public class ASTNode {
     }
 
     public void addChild(String key, ASTNode child) {
-        List<ASTNode> childList = children.computeIfAbsent(key, k -> new ArrayList<>());
+//        List<ASTNode> childList = children.computeIfAbsent(key, k -> new ArrayList<>());
+        List<ASTNode> childList = children.get(key);
+        if (null == childList) {
+            childList = new ArrayList<>();
+            children.put(key, childList);
+        }
         childList.add(child);
     }
 
