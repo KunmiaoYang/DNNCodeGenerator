@@ -18,9 +18,9 @@ public class SimpleCodeGenerator {
         SNIPPETS = ResourceBundle.getBundle("org.ncsu.dnn.tf.template.snippets");
         SNIPPET_CHANGE_IMAGE_SIZE = SNIPPETS.getString("model.changeImageSize");
     }
-    static void appendFile(PrintStream out, File file, Map<String, String> context) {
+    static void appendFile(PrintStream out, InputStream file, Map<String, String> context) {
         String indent = context.get(KEY_INDENT);
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file))) {
             for (String line = reader.readLine(); null != line; line = reader.readLine()) {
                 out.print(indent);
                 out.println(line);
@@ -42,10 +42,10 @@ public class SimpleCodeGenerator {
         if (null == caffeModel.getName()) caffeModel.setName(modelName);
         TFModel tfModel = new TFModel(caffeModel);
 
-        File header = new File(SimpleCodeGenerator.class.getResource("tf/template/simpleHeader.py").getFile());
-        File footer = new File(SimpleCodeGenerator.class.getResource("tf/template/simpleFooter.py").getFile());
+        InputStream header = SimpleCodeGenerator.class.getResourceAsStream("tf/template/simpleHeader.py");
+        InputStream footer = SimpleCodeGenerator.class.getResourceAsStream("tf/template/simpleFooter.py");
 
-        File outputFile = new File(args.length > 1? args[1]: ("./" + modelName + ".py"));
+        File outputFile = new File(args.length > 1? args[1]: ("./" + modelName + "_simple.py"));
         PrintStream out = new PrintStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
 
         Map<String, String> context = new HashMap<>();

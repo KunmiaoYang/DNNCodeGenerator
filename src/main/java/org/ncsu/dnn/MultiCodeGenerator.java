@@ -22,11 +22,11 @@ public class MultiCodeGenerator {
         if (null == caffeModel.getName()) caffeModel.setName(modelName);
         TFModel tfModel = new TFModel(caffeModel);
 
-        File header = new File(SimpleCodeGenerator.class.getResource("tf/template/simpleHeader.py").getFile());
-        File footer = new File(SimpleCodeGenerator.class.getResource("tf/template/simpleFooter.py").getFile());
-        File multiFunc = new File(SimpleCodeGenerator.class.getResource("tf/template/multiplexingFunc.py").getFile());
+        InputStream header = MultiCodeGenerator.class.getResourceAsStream("tf/template/simpleHeader.py");
+        InputStream footer = MultiCodeGenerator.class.getResourceAsStream("tf/template/simpleFooter.py");
+        InputStream multiFunc = MultiCodeGenerator.class.getResourceAsStream("tf/template/multiplexingFunc.py");
 
-        File outputFile = new File(args.length > 1? args[1]: ("./" + modelName + ".py"));
+        File outputFile = new File(args.length > 1? args[1]: ("./" + modelName + "_multiplexing.py"));
         PrintStream out = new PrintStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
 
         Map<String, String> context = new HashMap<>();
