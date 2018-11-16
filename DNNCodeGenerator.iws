@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ffd3e03a-225b-4aa1-a443-93ee904fe69f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/genSimpleCode.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNNCodeGenerator.iws" beforeDir="false" afterPath="$PROJECT_DIR$/DNNCodeGenerator.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.txt" afterDir="false" />
-    </list>
+    <list default="true" id="ffd3e03a-225b-4aa1-a443-93ee904fe69f" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -175,15 +171,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TFConvLayer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/tf/TFConvLayer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="931">
-              <caret line="57" column="11" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SimpleCodeGenerator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/SimpleCodeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -205,11 +192,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="genSimpleCode.sh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="genSimpleCode.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/genSimpleCode.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="35" selection-start-column="35" selection-end-column="35" />
+              <caret column="77" selection-start-column="77" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="genMultiplexingCode.sh" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/genMultiplexingCode.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="84" selection-start-column="84" selection-end-column="84" />
             </state>
           </provider>
         </entry>
@@ -339,7 +335,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/TokenName.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/ASTNode.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/TokenTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/ncsu/dnn/caffe/LayerTest.java" />
@@ -390,6 +385,7 @@
         <option value="$PROJECT_DIR$/src/main/java/org/ncsu/dnn/MultiCodeGenerator.java" />
         <option value="$PROJECT_DIR$/Readme.txt" />
         <option value="$PROJECT_DIR$/src/genSimpleCode.sh" />
+        <option value="$PROJECT_DIR$/src/genMultiplexingCode.sh" />
       </list>
     </option>
   </component>
@@ -495,6 +491,11 @@
               <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="DNNCodeGenerator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DNNCodeGenerator" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -546,6 +547,7 @@
       <recent name="junit.framework.TestCase" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Code\Java\DNNCodeGenerator\src" />
       <recent name="C:\Code\Java\DNNCodeGenerator\src\test\resources" />
       <recent name="C:\Code\Java\DNNCodeGenerator\src\test\caffeModel" />
     </key>
@@ -899,7 +901,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215056000" />
+    <option name="totallyTimeSpent" value="215560000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -915,7 +917,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-518" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="10" />
       <window_info anchor="bottom" id="TODO" order="13" />
@@ -1174,13 +1175,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/output/inception_v1_simple.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/test.py" />
     <entry file="file://$PROJECT_DIR$/output/test_V3.py" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org/ncsu/dnn/caffe/CaffeLayerType.java">
@@ -1561,7 +1555,14 @@
     <entry file="file://$PROJECT_DIR$/src/genSimpleCode.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="35" selection-start-column="35" selection-end-column="35" />
+          <caret column="77" selection-start-column="77" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/genMultiplexingCode.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="84" selection-start-column="84" selection-end-column="84" />
         </state>
       </provider>
     </entry>
