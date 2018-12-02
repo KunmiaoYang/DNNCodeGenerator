@@ -10,6 +10,8 @@ import java.util.Map;
 
 import static org.ncsu.dnn.caffe.CaffeLayerType.Dropout;
 import static org.ncsu.dnn.tf.TFModel.KEY_INDENT;
+import static org.ncsu.dnn.tf.TFModel.SHAPE_H;
+import static org.ncsu.dnn.tf.TFModel.SHAPE_W;
 
 public class TFPoolLayer extends TFLayer {
     private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.pool.inline");
@@ -27,8 +29,10 @@ public class TFPoolLayer extends TFLayer {
             this.kernelHeight = Integer.parseInt(token.getVal());
             this.kernelWidth = kernelHeight;
         } else if ((token = param.caffeLayer.paramMap.get("pooling_param.global_pooling")) != null && token.getVal().equals("true")) {
-            this.kernelHeight = param.shape[1];
-            this.kernelWidth = param.shape[2];
+            this.kernelHeight = param.shape[SHAPE_H];
+            this.kernelWidth = param.shape[SHAPE_W];
+            this.outputShape[SHAPE_H] = 1;
+            this.outputShape[SHAPE_W] = 1;
         } else {
             throw new ParseException("Invalid pooling layer");
         }
@@ -36,16 +40,14 @@ public class TFPoolLayer extends TFLayer {
         this.stride = 1;
         if (null != token) {
             this.stride = Integer.parseInt(token.getVal());
-            this.outputShape[1] /= stride;
-            this.outputShape[2] /= stride;
+            this.outputShape[SHAPE_H] /= stride;
+            this.outputShape[SHAPE_W] /= stride;
         }
         String poolType = param.caffeLayer.paramMap.get("pooling_param.pool").getVal();
         if ("MAX".equals(poolType)) {
             this.type = TYPE_MAX;
         } else if ("AVE".equals(poolType)) {
             this.type = TYPE_AVE;
-            this.outputShape[1] = 1;
-            this.outputShape[2] = 1;
         }
         this.dropOutLayer = null;
         for (CaffeLayer caffeLayer: param.caffeLayer.group) {

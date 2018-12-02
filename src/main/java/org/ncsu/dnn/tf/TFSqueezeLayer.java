@@ -17,7 +17,8 @@ public class TFSqueezeLayer extends TFLayer {
     TFSqueezeLayer(Param param) {
         super(param);
         int len = 0;
-        for (int i = 0; i < param.shape.length; i++) {
+        this.outputShape[len++] = 1;
+        for (int i = 1; i < param.shape.length; i++) {
             if (1 == param.shape[i]) axis.add(i);
             else this.outputShape[len++] = this.outputShape[i];
         }

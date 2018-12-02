@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.ncsu.dnn.tf.TFModel.KEY_INDENT;
+import static org.ncsu.dnn.tf.TFModel.SHAPE_C;
 
 public class TFConcatLayer extends TFLayer {
     private static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.concat.inline");
@@ -20,13 +21,13 @@ public class TFConcatLayer extends TFLayer {
         super(param);
         this.branchList = new ArrayList<>();
         this.branchOutputs = new ArrayList<>();
-        this.outputShape[0] = 0;
+        this.outputShape[SHAPE_C] = 0;
         for (CaffeLayer branch: param.caffeLayer.bottom) {
             if (branch.top != branch) continue;
             TFLayer layer = param.model.layers.get(branch.getName());
             branchOutputs.add(layer.output);
             this.branchList.add(layer);
-            this.outputShape[0] += layer.outputShape[0];
+            this.outputShape[SHAPE_C] += layer.outputShape[SHAPE_C];
             layer.canPrune = false;
         }
         this.output = DEFAULT_OUTPUT;
@@ -39,7 +40,7 @@ public class TFConcatLayer extends TFLayer {
     @Override
     void inlineCode(PrintStream out, Map<String, String> context) {
         out.printf(INLINE, context.get(KEY_INDENT),
-                output, outputShape.length, branchOutputs.toString());
+                output, SHAPE_C, branchOutputs.toString());
         String parentScope = super.getParentScope();
         context.put(KEY_SCOPE_PATH, parentScope);
         context.put(KEY_INDENT, getIndent(context, parentScope));

@@ -11,6 +11,10 @@ import static org.ncsu.dnn.tf.TFConcatLayer.BRANCH_PREFIX;
 import static org.ncsu.dnn.tf.TFLayer.*;
 
 public class TFModel {
+    static final int SHAPE_N = 0;
+    static final int SHAPE_H = 1;
+    static final int SHAPE_W = 2;
+    static final int SHAPE_C = 3;
     static final String INDENT_STRING = "  ";   // Indent with 2 spaces
     static final String BRANCH_SCOPE_PREFIX = "Branch_";
     private static final String MODEL_FUNCTION_SIGNATURE = SNIPPETS.getString("model.function.signature");
@@ -39,7 +43,12 @@ public class TFModel {
     public TFModel(CaffeModel caffeModel) {
         this();
         this.name = caffeModel.getName();
-        this.inputShape = Arrays.copyOfRange(caffeModel.getInputShape(), 1, 4);
+        int[] caffeShape = caffeModel.getInputShape();
+        this.inputShape = new int[4];
+        this.inputShape[SHAPE_N] = caffeShape[0];     // N: batch size
+        this.inputShape[SHAPE_H] = caffeShape[2];     // H: height
+        this.inputShape[SHAPE_W] = caffeShape[3];     // W: width
+        this.inputShape[SHAPE_C] = caffeShape[1];     // C: channels
         parseCaffeModel(caffeModel);
         if (this.layers.isEmpty()) return;
 
@@ -67,7 +76,7 @@ public class TFModel {
                 param.shape = layer.outputShape;
                 param.put(KEY_INPUT, layer.output);
 //                layer.name = param.getName();
-                this.lastLayer = layer;
+                if (!(layer instanceof TFSoftmaxLayer)) this.lastLayer = layer;
             }
 
             int nextCount = param.caffeLayer.next.size();
@@ -110,8 +119,9 @@ public class TFModel {
     public void generateFuncDef(PrintStream out, Map<String, String> context) {
         String indent = context.get(KEY_INDENT);
         String funcName = context.get(KEY_FUNC);
+        String config = context.containsKey(KEY_MULTIPLEX) && context.get(KEY_MULTIPLEX).equals("True")? ", config=None": "";
         out.print(indent);
-        out.printf(MODEL_FUNCTION_SIGNATURE, funcName, this.outputShape[0], this.name);
+        out.printf(MODEL_FUNCTION_SIGNATURE, funcName, this.outputShape[1], this.name, config);
         context.put(KEY_INDENT, indent + INDENT_STRING);
     }
 

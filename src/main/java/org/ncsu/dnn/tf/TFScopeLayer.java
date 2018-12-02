@@ -19,7 +19,7 @@ public class TFScopeLayer extends TFLayer {
             subParam.caffeLayer = branch;
             TFLayer layer = param.layerFactory.create(subParam);
             this.layerList.add(layer);
-            System.arraycopy(layer.outputShape, 0, this.outputShape, 0, 3);
+            System.arraycopy(layer.outputShape, 0, this.outputShape, 0, 4);
             param.put(KEY_INPUT, layer.output);
         }
     }

@@ -7,8 +7,7 @@ import org.ncsu.dnn.caffe.Token;
 import java.io.PrintStream;
 import java.util.Map;
 
-import static org.ncsu.dnn.tf.TFModel.KEY_INDENT;
-import static org.ncsu.dnn.tf.TFModel.KEY_MULTIPLEX;
+import static org.ncsu.dnn.tf.TFModel.*;
 
 public class TFConvLayer extends TFLayer {
     static final String INLINE = SimpleCodeGenerator.SNIPPETS.getString("layer.conv.inline");
@@ -31,9 +30,9 @@ public class TFConvLayer extends TFLayer {
             this.kernelWidth = Integer.parseInt(param.caffeLayer.paramMap.get("convolution_param.kernel_w").getVal());
         }
         this.stride = Integer.parseInt(param.caffeLayer.paramMap.get("convolution_param.stride").getVal());
-        this.outputShape[0] = Integer.parseInt(param.caffeLayer.paramMap.get("convolution_param.num_output").getVal());
-        this.outputShape[1] /= stride;
-        this.outputShape[2] /= stride;
+        this.outputShape[SHAPE_C] = Integer.parseInt(param.caffeLayer.paramMap.get("convolution_param.num_output").getVal());
+        this.outputShape[SHAPE_H] /= stride;
+        this.outputShape[SHAPE_W] /= stride;
         this.hasNormal = false;
         this.hasActivation = false;
         for (CaffeLayer subLayer: param.caffeLayer.group) {
@@ -53,9 +52,9 @@ public class TFConvLayer extends TFLayer {
         String option = stride > 1? ", stride=" + stride: "";
         if (!hasActivation) option += OPTION_NO_ACTIVATION;
         if (!hasNormal) option += OPTION_NO_NORMALIZER;
-        String outputClasses = String.valueOf(outputShape[0]);
+        String outputClasses = String.valueOf(outputShape[SHAPE_C]);
         if (canPrune && context.containsKey(KEY_MULTIPLEX))
-            outputClasses = String.format(SELECT_DEPTH, outputShape[0]);
+            outputClasses = String.format(SELECT_DEPTH, outputShape[SHAPE_C]);
         if (this == lastOuputNumber) outputClasses = "num_classes";
         out.printf(INLINE, context.get(KEY_INDENT), output, input, outputClasses, kernelHeight, kernelWidth,
                 option, context.get(KEY_SCOPE_STRING));
