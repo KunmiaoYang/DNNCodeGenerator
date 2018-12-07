@@ -106,12 +106,13 @@ public class TFModel {
                 while (!stack.isEmpty()) q.push(stack.pop());
             }
         }
+        TFLayer.lastOuputNumber.addSqueezeLayer();
     }
 
     private boolean checkBottom(Param param) {
         if (null == param.caffeLayer.bottom) return true;
         for (CaffeLayer prev: param.caffeLayer.bottom) {
-            if (!layers.containsKey(prev.getName())) return false;
+            if (!param.visited.contains(prev.getName())) return false;
         }
         return true;
     }

@@ -15,7 +15,7 @@ public class TFConvLayer extends TFLayer {
     static final String OPTION_NO_ACTIVATION = ", activation_fn=None";
     static final String OPTION_NO_NORMALIZER = ", normalizer_fn=None";
     private int kernelHeight, kernelWidth;
-    private int stride;
+    private int stride, padHeight, padWidth;
     private boolean hasNormal, hasActivation;
 
     TFConvLayer(Param param) {
@@ -29,10 +29,28 @@ public class TFConvLayer extends TFLayer {
             this.kernelHeight = Integer.parseInt(param.caffeLayer.paramMap.get("convolution_param.kernel_h").getVal());
             this.kernelWidth = Integer.parseInt(param.caffeLayer.paramMap.get("convolution_param.kernel_w").getVal());
         }
-        this.stride = Integer.parseInt(param.caffeLayer.paramMap.get("convolution_param.stride").getVal());
+
+        // Solve the problem that no stride parameter found in caffe model, the stride is 1 by default
+        Token strideToken = param.caffeLayer.paramMap.get("convolution_param.stride");
+        this.stride = strideToken == null ? 1: Integer.parseInt(strideToken.getVal());
+
+        // Parse padding
+        this.padHeight = 0;
+        this.padWidth = 0;
+        if (param.caffeLayer.paramMap.containsKey("convolution_param.pad")) {
+            this.padHeight = Integer.parseInt(param.caffeLayer.paramMap.get("convolution_param.pad").getVal());
+            this.padWidth = this.padHeight;
+        }
+        if (param.caffeLayer.paramMap.containsKey("convolution_param.pad_h")) {
+            this.padHeight = Integer.parseInt(param.caffeLayer.paramMap.get("convolution_param.pad_h").getVal());
+        }
+        if (param.caffeLayer.paramMap.containsKey("convolution_param.pad_w")) {
+            this.padWidth = Integer.parseInt(param.caffeLayer.paramMap.get("convolution_param.pad_w").getVal());
+        }
+
         this.outputShape[SHAPE_C] = Integer.parseInt(param.caffeLayer.paramMap.get("convolution_param.num_output").getVal());
-        this.outputShape[SHAPE_H] /= stride;
-        this.outputShape[SHAPE_W] /= stride;
+        this.outputShape[SHAPE_H] = calcSize(outputShape[SHAPE_H], this.kernelHeight, this.stride, this.padHeight);
+        this.outputShape[SHAPE_W] = calcSize(outputShape[SHAPE_W], this.kernelWidth, this.stride, this.padWidth);
         this.hasNormal = false;
         this.hasActivation = false;
         for (CaffeLayer subLayer: param.caffeLayer.group) {

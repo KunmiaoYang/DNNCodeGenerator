@@ -30,10 +30,15 @@ public abstract class TFLayer {
     boolean canPrune, startBranch;
     abstract void inlineCode(PrintStream out, Map<String, String> context);
 
+    void addSqueezeLayer() {
+        // Do nothing
+    }
+
     TFLayer(Param param) {
         this.input = param.getOrDefault(KEY_INPUT, DEFAULT_INPUT);
         this.output = param.getOrDefault(KEY_OUTPUT, DEFAULT_OUTPUT);
-        this.name = param.getOrDefault(KEY_NAME, param.caffeLayer.getName());
+        this.name = param.get(KEY_NAME);
+        if (null == this.name) this.name = param.caffeLayer.getName();
         this.outputShape = param.shape.clone();
         this.concatName = param.get(KEY_CONCAT_NAME);
         this.canPrune = param.branch >= 0;
@@ -138,5 +143,9 @@ public abstract class TFLayer {
     @Override
     public String toString() {
         return this.name + " " + Arrays.toString(this.outputShape);
+    }
+
+    static int calcSize(int inputSize, int kernel, int stride, int pad) {
+        return (inputSize + 2*pad - kernel)/stride + 1;
     }
 }

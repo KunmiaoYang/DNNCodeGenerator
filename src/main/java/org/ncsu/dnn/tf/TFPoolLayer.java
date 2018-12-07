@@ -19,15 +19,38 @@ public class TFPoolLayer extends TFLayer {
     public static final int TYPE_AVE = 1;
     int type;
     int kernelHeight, kernelWidth;
-    int stride;
+    int stride, padHeight, padWidth;
     TFDropOutLayer dropOutLayer;
 
     public TFPoolLayer(Param param) {
         super(param);
+        this.stride = 1;
         Token token = param.caffeLayer.paramMap.get("pooling_param.kernel_size");
         if (null != token) {
             this.kernelHeight = Integer.parseInt(token.getVal());
             this.kernelWidth = kernelHeight;
+
+            // Parse stride
+            token = param.caffeLayer.paramMap.get("pooling_param.stride");
+            if (null != token) this.stride = Integer.parseInt(token.getVal());
+
+            // Parse padding
+            this.padHeight = 0;
+            this.padWidth = 0;
+            if (param.caffeLayer.paramMap.containsKey("pooling_param.pad")) {
+                this.padHeight = Integer.parseInt(param.caffeLayer.paramMap.get("pooling_param.pad").getVal());
+                this.padWidth = this.padHeight;
+            }
+            if (param.caffeLayer.paramMap.containsKey("pooling_param.pad_h")) {
+                this.padHeight = Integer.parseInt(param.caffeLayer.paramMap.get("pooling_param.pad_h").getVal());
+            }
+            if (param.caffeLayer.paramMap.containsKey("pooling_param.pad_w")) {
+                this.padWidth = Integer.parseInt(param.caffeLayer.paramMap.get("pooling_param.pad_w").getVal());
+            }
+
+            // Calculate output shape
+            this.outputShape[SHAPE_H] = calcSize(outputShape[SHAPE_H], this.kernelHeight, this.stride, this.padHeight);
+            this.outputShape[SHAPE_W] = calcSize(outputShape[SHAPE_W], this.kernelWidth, this.stride, this.padWidth);
         } else if ((token = param.caffeLayer.paramMap.get("pooling_param.global_pooling")) != null && token.getVal().equals("true")) {
             this.kernelHeight = param.shape[SHAPE_H];
             this.kernelWidth = param.shape[SHAPE_W];
@@ -36,13 +59,7 @@ public class TFPoolLayer extends TFLayer {
         } else {
             throw new ParseException("Invalid pooling layer");
         }
-        token = param.caffeLayer.paramMap.get("pooling_param.stride");
-        this.stride = 1;
-        if (null != token) {
-            this.stride = Integer.parseInt(token.getVal());
-            this.outputShape[SHAPE_H] /= stride;
-            this.outputShape[SHAPE_W] /= stride;
-        }
+
         String poolType = param.caffeLayer.paramMap.get("pooling_param.pool").getVal();
         if ("MAX".equals(poolType)) {
             this.type = TYPE_MAX;
