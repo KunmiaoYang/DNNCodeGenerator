@@ -77,4 +77,8 @@ public class TFConvLayer extends TFLayer {
         out.printf(INLINE, context.get(KEY_INDENT), output, input, outputClasses, kernelHeight, kernelWidth,
                 option, context.get(KEY_SCOPE_STRING));
     }
+
+    private int calcSize(int inputSize, int kernel, int stride, int pad) {
+        return (inputSize + 2*pad - kernel)/stride + 1;
+    }
 }

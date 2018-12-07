@@ -53,4 +53,15 @@ public class MultiCodeGeneratorTest extends TestCase {
             e.printStackTrace();
         }
     }
+    public void testAlexNet() {
+        String protoTextFile = MultiCodeGeneratorTest.class
+                .getResource("caffe/alexnet.prototxt").getFile();
+        String outputFile = "output/alexnet.multiplexing.py";
+        String[] args = {protoTextFile, outputFile};
+        try {
+            MultiCodeGenerator.main(args);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

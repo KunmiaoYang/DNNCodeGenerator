@@ -49,4 +49,15 @@ public class SimpleCodeGeneratorTest extends TestCase {
             e.printStackTrace();
         }
     }
+    public void testAlexNet() {
+        String protoTextFile = SimpleCodeGeneratorTest.class
+                .getResource("caffe/alexnet.prototxt").getFile();
+        String outputFile = "output/alexnet.simple.py";
+        String[] args = {protoTextFile, outputFile};
+        try {
+            SimpleCodeGenerator.main(args);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -144,8 +144,4 @@ public abstract class TFLayer {
     public String toString() {
         return this.name + " " + Arrays.toString(this.outputShape);
     }
-
-    static int calcSize(int inputSize, int kernel, int stride, int pad) {
-        return (inputSize + 2*pad - kernel)/stride + 1;
-    }
 }

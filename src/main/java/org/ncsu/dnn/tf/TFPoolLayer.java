@@ -91,4 +91,8 @@ public class TFPoolLayer extends TFLayer {
             dropOutLayer.inlineCode(out, context);
         }
     }
+
+    private int calcSize(int inputSize, int kernel, int stride, int pad) {
+        return (int) (Math.ceil((inputSize + 2.0*pad - kernel)/stride) + 1);
+    }
 }
