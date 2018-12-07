@@ -81,7 +81,8 @@ To test the project you need to compile the code first.
     Test class files locate at <Project root>/src/test/java directory.
 
     3. Input files for tests:
-    The input files for tests are caffe prototxt files, including Inception V1, V2, V3 and V4.
+    The input files for tests are caffe prototxt files, including Inception V1, V2, V3 and V4
+    and AlexNet.
     You can find them under <Project root>/src/test/resources/org/ncsu/dnn/caffe directory.
 
 ******************** Execute ********************
@@ -161,7 +162,8 @@ Notations:
 ******************** Limitation ********************
     1. Applicable models:
     This program is designed to parse and generate Inception models. I tested from V1 to V4.
-    Currently it cannot support ResNet, so far as I've tested.
+    I also tested AlexNet, the generated code would use convolution layer to implement fully
+    connected layer.
 
     2. Caffe layer limitations:
     Currently it only supports the following caffe layers:
